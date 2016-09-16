@@ -1,0 +1,36 @@
+@import 'https://fonts.googleapis.com/css?family=Raleway:100,600';
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    font-family: Raleway, Verdana, serif;
+    font-size: 1em;
+}
+
+header {
+    width: 100%;
+    height: 50px;
+    background-color: black;
+}
+
+footer {
+    width: 100%;
+    height: 50px;
+    background-color: #3b3b3b;
+}
+
+input {
+    width: 200px;
+    height: 25px;
+}
+
+label {
+    width: 25px;
+}
+
+.main-article {
+    margin: 20px;
+}
