@@ -3,7 +3,12 @@
 
 <header>
     <div class="navbar">
-        <ul class="navbar-right">
+        <div class="navbar-left">
+            <a href="{{ url('/') }}">Photorgram</a>
+        </div>
+
+        <div class="navbar-right">
+            <ul>
             @if (Auth::guest())
                 <li><a href="{{ url('/login') }}">Login</a></li>
                 <li><a href="{{ url('/register') }}">Register</a></li>
@@ -27,6 +32,7 @@
                     {{--</ul>--}}
                 </li>
             @endif
-        </ul>
+            </ul>
+        </div>
     </div>
 </header>

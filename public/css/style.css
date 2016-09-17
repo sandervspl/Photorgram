@@ -26,7 +26,6 @@ input {
 
 label {
     display: block;
-    width: 25px;
 }
 
 ul {
@@ -68,12 +67,20 @@ header a {
 
 .navbar {
     margin: auto;
+    padding: 10px 0 10px 0;
     width: 80%;
 }
 
+.navbar-left, .navbar-right {
+    display: inline-block;
+}
+
+.navbar-left {
+
+}
+
 .navbar-right {
-    text-align: right;
-    padding: 10px 0 10px 0;
+    float: right;
 }
 
 .navbar-right li {
