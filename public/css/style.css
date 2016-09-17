@@ -8,7 +8,7 @@
 html, body {
     font-family: Raleway, Verdana, serif;
     font-size: 1em;
-    /*background-color: #eee;*/
+    color: #000;
     height: 100%;
     width: 100%;
 }
@@ -24,8 +24,13 @@ input {
     height: 25px;
 }
 
+input, select {
+    margin-bottom: 20px;
+}
+
 label {
     display: block;
+    margin-bottom: 5px;
 }
 
 ul {
