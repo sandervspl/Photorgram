@@ -6,7 +6,7 @@
 
     <div class="upload-form">
     {!! Form::open([
-            'action' => 'ImageController@upload',
+            'action' => 'ImageController@process',
             'files'  => true,
             'class'  => 'form-horizontal'
         ])

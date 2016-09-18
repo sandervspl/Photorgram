@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use \Storage;
 use App\Image;
+use App\User;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
@@ -69,7 +70,26 @@ class ImageController extends Controller
 
     public function edit($id)
     {
+        $user = User::find(Auth::id());
+        $verify = $user->images->contains($id);
+
+        // forbidden
+        if (! $verify) {
+            abort(403);
+        }
+
         $image = Image::find($id);
         return view('images.edit')->with('image', $image);
+    }
+
+    public function update(Request $request)
+    {
+        $image = Image::find($request->get('id'));
+        $image->title = $request->get('title');
+        $image->category = $request->get('category');
+        $image->description = $request->get('description');
+        $image->save();
+
+        return Redirect::to(action('ProfileController@index'));
     }
 }

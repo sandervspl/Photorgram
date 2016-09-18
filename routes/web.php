@@ -10,8 +10,10 @@ Route::get('/images/upload', 'ImageController@upload');
 Route::get('/images/result', 'ImageController@result');
 Route::get('/images/{id}', 'ImageController@show');
 Route::get('/images/{id}/edit', 'ImageController@edit');
+Route::post('/images/edit', 'ImageController@update');
 Route::post('/images/upload', 'ImageController@process');
 
+Route::get('/profile', 'ProfileController@index');
 Route::get('/profile/{userid}/image/{id}', 'ProfileController@showImage');
 Route::get('/profile/{userid}', 'ProfileController@show');
 

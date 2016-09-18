@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
 use App\Image;
+use Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class ProfileController extends Controller
 {
@@ -16,7 +18,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('profile.index');
+        $username = Auth::user()->name;
+        return Redirect::to('profile/'.$username);
     }
 
     /**
@@ -75,7 +78,7 @@ class ProfileController extends Controller
 
         // if not then abort
         if ( ! $verify) {
-            abort(404);
+            abort(403);
         }
 
         return view('profile.image', ['user' => $user, 'image' => $image]);

@@ -6,7 +6,7 @@
 
         <div class="upload-form row">
             {!! Form::open([
-                    'action' => 'ImageController@upload',
+                    'action' => 'ImageController@update',
                     'files'  => true,
                     'class'  => 'form-horizontal'
                 ])
@@ -19,6 +19,8 @@
             </div>
 
             <div class="edit-image-info col-md-8">
+                {!! Form::hidden('id', $image->id) !!}
+
                 <div class="form-group">
                     {!! Form::label('category', 'Category*', ['class' => 'col-sm-2 control-label']) !!}
                     <div class="col-sm-2">
@@ -59,7 +61,7 @@
 
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        {!! Form::submit('Upload Image', ['class' => 'btn btn-primary']) !!}
+                        {!! Form::submit('Edit Image', ['class' => 'btn btn-primary']) !!}
                     </div>
                 </div>
             </div>

@@ -2,7 +2,7 @@
 @section('title', 'Page Not Found')
 @section('content')
 <section class="main-article">
-    <div class="title">Whoops!</div>
+    <h1>Whoops!</h1>
     <div>This page could not be found (404).</div>
 </section>
 @endsection
