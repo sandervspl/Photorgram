@@ -2,10 +2,10 @@
 @section('title', 'Frontpage')
 @section('content')
 <section class="main-article">
-    <h1>Photorgram</h1>
+    <h1>Feed</h1>
 
     <article>
-        Hi!
+        Feed Pictures
     </article>
 </section>
 @stop

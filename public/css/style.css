@@ -19,26 +19,8 @@ footer {
     background-color: #3b3b3b;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-ul {
-    list-style: none;
-}
-
-li {
-    padding: 5px 0 5px 0;
-}
-
 h1, h2, h3 {
     margin-bottom: 1em;
-}
-
-#container {
-    text-align: center;
-    height: 100%;
 }
 
 .main-article {
@@ -60,26 +42,26 @@ header a {
     color: black;
 }
 
+header a:hover {
+    text-decoration: none;
+}
+
 .navbar {
     margin: auto;
-    padding: 10px 0 10px 0;
-    width: 80%;
+    padding-top: 7px;
+    width: 70%;
 }
 
 .navbar-left, .navbar-right {
     display: inline-block;
 }
 
-.navbar-left {
-
+.navbar-left a {
+    font-size: 1.5em;
 }
 
 .navbar-right {
     float: right;
-}
-
-.navbar-right li {
-    display: inline-block;
 }
 
 .upload-link, .dropdown {

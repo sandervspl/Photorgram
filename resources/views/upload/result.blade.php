@@ -2,12 +2,11 @@
 @section('title', 'Upload')
 @section('content')
     <section class="main-article">
-        <h1>Image Upload Result</h1>
-
         @if(Session::get('success') === 0)
-            <div class="text">Image not uploaded.</div>
+            <h1>Image upload failed.</h1>
+            <div class="text">Please try again later.</div>
         @else
-            <div class="text">Image uploaded!</div>
+            <h1>Image successfully uploaded!</h1>
         @endif
     </section>
 @endsection

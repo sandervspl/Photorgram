@@ -20,21 +20,36 @@
 
         <div class="form-group">
             {!! Form::label('category', 'Category', ['class' => 'col-sm-2 control-label']) !!}
-            <div class="col-sm-offset-2 col-sm-10">
-                {!! Form::select('category', [
-                        'comics' => 'Comics',
-                        'nature' => 'Nature'
-                    ],
-                    null,
-                    ['placeholder' => 'Pick a category...', 'required' => 'required'])
+            <div class="col-sm-2">
+                {!! Form::select(
+                        'category',
+                        [
+                            'comics' => 'Comics',
+                            'nature' => 'Nature'
+                        ],
+                        null,
+                        [
+                            'class'       => 'form control input-sm',
+                            'placeholder' => 'Pick a category...',
+                            'required'    => 'required'
+                        ]
+                    )
                 !!}
             </div>
         </div>
 
         <div class="form-group">
             {!! Form::label('image', 'Upload Image', ['class' => 'col-sm-2 control-label']) !!}
-            <div class="col-sm-offset-2 col-sm-10">
-                {!! Form::file('image', null, ['class' => 'form-control', 'required' => 'required']) !!}
+            <div class="col-sm-2">
+                {!! Form::file(
+                        'image',
+                        null,
+                        [
+                            'class'    => 'form-control input-sm',
+                            'required' => 'required'
+                        ]
+                    )
+                 !!}
             </div>
         </div>
 

@@ -4,11 +4,7 @@
 <header>
     <div class="navbar">
         <div class="navbar-left">
-            <ul>
-                <li>
-                    <a href="{{ url('/') }}">Photorgram</a>
-                </li>
-            </ul>
+            <a href="{{ url('/') }}">Photorgram</a>
         </div>
 
         <div class="navbar-right">
@@ -26,6 +22,8 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="{{ url('/images') }}">My Library</a></li>
+                        <li role="separator" class="divider"></li>
                         <li>
                             <a href="{{ url('/logout') }}"
                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
