@@ -14,7 +14,7 @@
                 <li><a href="{{ url('/register') }}">Register</a></li>
             @else
                 <li>
-                    <a href=" {{ url('/upload') }}">Upload Image</a>
+                    <a href=" {{ action('ImageController@upload') }}">Upload Image</a>
                     <a href="#">
                         {{ Auth::user()->name }}
                     </a>

@@ -3,7 +3,7 @@
 @section('content')
 <section class="main-article">
     <h1>Sign In</h1>
-    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+    <form role="form" method="POST" action="{{ url('/login') }}">
         {{ csrf_field() }}
 
         <div>

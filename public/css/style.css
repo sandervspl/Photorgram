@@ -19,11 +19,6 @@ footer {
     background-color: #3b3b3b;
 }
 
-input {
-    width: 200px;
-    height: 25px;
-}
-
 input, select {
     margin-bottom: 20px;
 }
@@ -90,4 +85,8 @@ header a {
 
 .navbar-right li {
     display: inline-block;
+}
+
+.upload-form {
+    width: 100%;
 }

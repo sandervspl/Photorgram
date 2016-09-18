@@ -4,21 +4,46 @@
 <section class="main-article">
     <h1>Upload New Image</h1>
 
-    <div id="upload-form-container">
-        <form action="" method="post" enctype="multipart/form-data" id="upload-form">
-            <label for="upload-title">Title</label>
-                <input type="text" id="upload-title" name="upload-title">
+    <div class="upload-form">
+    {!! Form::open([
+            'action' => 'ImageController@upload',
+            'files'  => true,
+            'class'  => 'form-horizontal'
+        ])
+    !!}
+        <div class="form-group">
+            {!! Form::label('title', 'Title', ['class' => 'col-sm-2 control-label']) !!}
+            <div class="col-sm-10">
+                {!! Form::text('title', null, ['class' => 'form-control', 'required' => 'required']) !!}
+            </div>
+        </div>
 
-            <label for="upload-category">Category</label>
-            <select name="upload-category" id="upload-category">
-                <option value="0" >Comics</option>
-            </select>
+        <div class="form-group">
+            {!! Form::label('category', 'Category', ['class' => 'col-sm-2 control-label']) !!}
+            <div class="col-sm-offset-2 col-sm-10">
+                {!! Form::select('category', [
+                        'comics' => 'Comics',
+                        'nature' => 'Nature'
+                    ],
+                    null,
+                    ['placeholder' => 'Pick a category...', 'required' => 'required'])
+                !!}
+            </div>
+        </div>
 
-            <label for="upload-file">Upload Image</label>
-            <input type="file" name="upload-file" id="upload-file"> <br/>
+        <div class="form-group">
+            {!! Form::label('image', 'Upload Image', ['class' => 'col-sm-2 control-label']) !!}
+            <div class="col-sm-offset-2 col-sm-10">
+                {!! Form::file('image', null, ['class' => 'form-control', 'required' => 'required']) !!}
+            </div>
+        </div>
 
-            <input type="submit" value="Upload Image" name="submit">
-        </form>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                {!! Form::submit('Upload Image', ['class' => 'btn btn-primary']) !!}
+            </div>
+        </div>
+    {!! Form::close() !!}
     </div>
 </section>
 @endsection

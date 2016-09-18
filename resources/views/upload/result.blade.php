@@ -1,7 +1,13 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Sandervspl
- * Date: 9/17/16
- * Time: 6:38 PM
- */
+@extends('layouts.master')
+@section('title', 'Upload')
+@section('content')
+    <section class="main-article">
+        <h1>Image Upload Result</h1>
+
+        @if(Session::get('success') === 0)
+            <div class="text">Image not uploaded.</div>
+        @else
+            <div class="text">Image uploaded!</div>
+        @endif
+    </section>
+@endsection
