@@ -24,7 +24,7 @@ ul {
 }
 
 h1, h2, h3 {
-    margin-bottom: 1em;
+    margin-bottom: .7em;
 }
 
 .main-article {
@@ -68,6 +68,10 @@ header a:hover {
     float: right;
 }
 
+#user-dropdown {
+    margin-left: 10px;
+}
+
 .signin-register-list {
     padding-top: 7px;
 }
@@ -90,4 +94,38 @@ header a:hover {
 
 .error-text {
     color: #ba3838;
+}
+
+.profile-image-thumbnail, .profile-image-thumbnail img {
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+}
+
+.profile-image-thumbnail {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#profile-follow-button, #profile-user-name {
+    display: inline-block;
+}
+
+#profile-follow-button {
+    position: relative;
+    top: -7px;
+    margin-left: 10px;
+}
+
+.image-body-src {
+    width: 100%;
+    padding: 0;
+}
+
+.image-info-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.image-info-header h1 {
+    margin: 0 0 .25em 0;
 }

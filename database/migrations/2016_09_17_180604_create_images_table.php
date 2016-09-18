@@ -19,6 +19,9 @@ class CreateImagesTable extends Migration
             $table->string('image_uri');
             $table->string('title');
             $table->string('category');
+            $table->integer('likes');
+            $table->integer('dislikes');
+            $table->text('description');
             $table->timestamps();
         });
     }

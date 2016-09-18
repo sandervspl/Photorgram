@@ -7,4 +7,4 @@ Homestead.yaml
 .env
 /tests
 /storage/logs/
-/resources/uploads/
+/public/uploads/

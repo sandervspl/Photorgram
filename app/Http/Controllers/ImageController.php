@@ -25,6 +25,18 @@ class ImageController extends Controller
         return view('upload.index');
     }
 
+    public function show($id)
+    {
+        // get user with id
+        // if it does not exist, show 404 page
+        $user = User::findOrFail($id);
+
+        // get all user's images
+        $images = $user->images;
+
+        return view('profile.index', ['user' => $user, 'images' => $images]);
+    }
+
     // Request all information from the form
     public function process(Request $request)
     {
