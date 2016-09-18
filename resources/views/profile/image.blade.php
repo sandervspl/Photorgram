@@ -4,7 +4,7 @@
     <section class="main-article">
         <div class="profile-header">
             <h1 id="profile-user-name">
-                <a href="{{ url('profile/'.$user->id) }}">{{ $user->name }}</a>
+                <a href="{{ url('profile/'.$user->name) }}">{{ $user->name }}</a>
             </h1>
             <button class="btn btn-default" id="profile-follow-button">Follow</button>
         </div>

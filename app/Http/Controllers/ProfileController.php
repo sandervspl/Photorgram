@@ -46,25 +46,35 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($name)
     {
-        // get user with id
+        // look for user with this name
+        $user = User::where('name', '=', $name)->first();
+
         // if it does not exist, show 404 page
-        $user = User::findOrFail($id);
+        if (is_null($user)) {
+            abort(404);
+        }
 
         return view('profile.index', ['user' => $user]);
     }
 
-    public function showImage($userid, $imageid)
+    public function showImage($name, $imageid)
     {
         // see if user and image exist before we continue
-        $user  = User::FindOrFail($userid);
+        $user = User::where('name', '=', $name)->first();
+        if (is_null($user)) {
+            abort(404);
+        }
+
+        // try to get image, if not then abort
         $image = Image::FindOrFail($imageid);
 
-        // make sure user and image are connected
-        // or else we show an image with the wrong username
-        $verify = Image::where('user_id', '=', $user->id)->first();
-        if (is_null($verify)) {
+        // make sure image is from this user
+        $verify = $user->images->contains($imageid);
+
+        // if not then abort
+        if ( ! $verify) {
             abort(404);
         }
 

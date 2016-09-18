@@ -51,12 +51,12 @@
     <div class="form-group">
         {!! Form::label('password-confirm', 'Confirm Password', ['class' => 'col-sm-2 control-label']) !!}
         <div class="col-sm-10">
-            {!! Form::password('password-confirm', ['class' => 'form-control', 'required' => 'required']) !!}
+            {!! Form::password('password-confirm', ['class' => 'form-control', 'name' => 'password_confirmation', 'required' => 'required']) !!}
         </div>
 
-        @if ($errors->has('password-confirmation'))
+        @if ($errors->has('password_confirmation'))
             <span class="help-block col-sm-offset-2 error-text">
-                <strong>{{ $errors->first('password-confirmation') }}</strong>
+                <strong>{{ $errors->first('password_confirmation') }}</strong>
             </span>
         @endif
     </div>
