@@ -3,46 +3,51 @@
 @section('content')
 <section class="main-article">
     <h1>Sign In</h1>
-    <form role="form" method="POST" action="{{ url('/login') }}">
-        {{ csrf_field() }}
 
-        <div>
-            <label for="email">E-Mail Address</label>
-            <div>
-                <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus>
-
-                @if ($errors->has('email'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </span>
-                @endif
-            </div>
+    {!! Form::open([
+            'url'   => '/login',
+            'class' => 'form-horizontal'
+        ])
+    !!}
+    <div class="form-group">
+        {!! Form::label('email', 'Email', ['class' => 'col-sm-2 control-label']) !!}
+        <div class="col-sm-10">
+            {!! Form::text('email', null, ['class' => 'form-control', 'required' => 'required']) !!}
         </div>
 
-        <div>
-            <label for="password">Password</label>
+        @if ($errors->has('email'))
+            <span class="help-block">
+                <strong>{{ $errors->first('email') }}</strong>
+            </span>
+        @endif
+    </div>
 
-            <div>
-                <input id="password" type="password" name="password" required>
-
-                @if ($errors->has('password'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('password') }}</strong>
-                    </span>
-                @endif
-            </div>
+    <div class="form-group">
+        {!! Form::label('password', 'Password', ['class' => 'col-sm-2 control-label']) !!}
+        <div class="col-sm-10">
+            {!! Form::password('password', ['class' => 'form-control', 'required' => 'required']) !!}
         </div>
 
-        <div>
-            <label>
-                <input type="checkbox" name="remember"> Remember Me
-            </label>
-        </div>
+        @if ($errors->has('password'))
+            <span class="help-block">
+                <strong>{{ $errors->first('password') }}</strong>
+            </span>
+        @endif
+    </div>
 
-        <div>
-            <button type="submit">Login</button>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            {!! Form::checkbox('remember', '') !!}
+            Remember Me
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            {!! Form::submit('Sign In', ['class' => 'btn btn-primary']) !!}
             <a href="{{ url('/password/reset') }}">Forgot Your Password?</a>
         </div>
-    </form>
+    </div>
+    {!! Form::close() !!}
 </section>
 @endsection

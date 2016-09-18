@@ -3,64 +3,69 @@
 @section('content')
 <section class="main-article">
     <h1>Register</h1>
-    <form role="form" method="POST" action="{{ url('/register') }}">
-        {{ csrf_field() }}
 
-        <div>
-            <label for="name">Name</label>
-            <div>
-                <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus>
-
-                @if ($errors->has('name'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('name') }}</strong>
-                    </span>
-                @endif
-            </div>
+    {!! Form::open([
+            'url'   => '/register',
+            'class' => 'form-horizontal'
+        ])
+    !!}
+    <div class="form-group">
+        {!! Form::label('name', 'Username', ['class' => 'col-sm-2 control-label']) !!}
+        <div class="col-sm-10">
+            {!! Form::text('name', null, ['class' => 'form-control', 'required' => 'required']) !!}
         </div>
 
-        <div>
-            <label for="email">E-Mail Address</label>
-            <div>
-                <input id="email" type="email" name="email" value="{{ old('email') }}" required>
+        @if ($errors->has('name'))
+            <span class="help-block col-sm-offset-2 error-text">
+                <strong>{{ $errors->first('name') }}</strong>
+            </span>
+        @endif
+    </div>
 
-                @if ($errors->has('email'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </span>
-                @endif
-            </div>
+    <div class="form-group">
+        {!! Form::label('email', 'E-Mail', ['class' => 'col-sm-2 control-label']) !!}
+        <div class="col-sm-10">
+            {!! Form::text('email', null, ['class' => 'form-control', 'required' => 'required']) !!}
         </div>
 
-        <div>
-            <label for="password">Password</label>
-            <div>
-                <input id="password" type="password" name="password" required>
+        @if ($errors->has('email'))
+            <span class="help-block col-sm-offset-2 error-text">
+                <strong>{{ $errors->first('email') }}</strong>
+            </span>
+        @endif
+    </div>
 
-                @if ($errors->has('password'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('password') }}</strong>
-                    </span>
-                @endif
-            </div>
+    <div class="form-group">
+        {!! Form::label('password', 'Password', ['class' => 'col-sm-2 control-label']) !!}
+        <div class="col-sm-10">
+            {!! Form::password('password', ['class' => 'form-control', 'required' => 'required']) !!}
         </div>
 
-        <div>
-            <label for="password-confirm">Confirm Password</label>
-            <div>
-                <input id="password-confirm" type="password" name="password_confirmation" required>
+        @if ($errors->has('password'))
+            <span class="help-block col-sm-offset-2 error-text">
+                <strong>{{ $errors->first('password') }}</strong>
+            </span>
+        @endif
+    </div>
 
-                @if ($errors->has('password_confirmation'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                    </span>
-                @endif
-            </div>
+    <div class="form-group">
+        {!! Form::label('password-confirm', 'Confirm Password', ['class' => 'col-sm-2 control-label']) !!}
+        <div class="col-sm-10">
+            {!! Form::password('password-confirm', ['class' => 'form-control', 'required' => 'required']) !!}
         </div>
 
-        <div>
-            <button type="submit">Register</button>
+        @if ($errors->has('password-confirmation'))
+            <span class="help-block col-sm-offset-2 error-text">
+                <strong>{{ $errors->first('password-confirmation') }}</strong>
+            </span>
+        @endif
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            {!! Form::submit('Register', ['class' => 'btn btn-primary']) !!}
         </div>
-    </form>
+    </div>
+    {!! Form::close() !!}
 </section>
 @endsection

@@ -11,5 +11,6 @@
     </div>
 
     @include('partials/footer')
+    <script src="{{ url('js/bootstrap.min.js') }}"></script>
 </body>
 </html>
