@@ -8,14 +8,18 @@
         </div>
 
         <div class="navbar-right">
-            <ul>
             @if (Auth::guest())
+            <ul class="signin-register-list">
                 <li><a href="{{ url('/login') }}">Sign In</a></li>
+                <li class="horizontal-list-divider"> | </li>
                 <li><a href="{{ url('/register') }}">Register</a></li>
+            </ul>
             @else
+            <ul>
                 <div class="upload-link">
                     <a href=" {{ action('ImageController@upload') }}">Upload Image</a>
                 </div>
+
                 <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         {{ Auth::user()->name }}

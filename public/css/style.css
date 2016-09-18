@@ -19,6 +19,10 @@ footer {
     background-color: #3b3b3b;
 }
 
+ul {
+    list-style: none;
+}
+
 h1, h2, h3 {
     margin-bottom: 1em;
 }
@@ -62,6 +66,18 @@ header a:hover {
 
 .navbar-right {
     float: right;
+}
+
+.signin-register-list {
+    padding-top: 7px;
+}
+
+.signin-register-list li {
+    display: inline-block;
+}
+
+.horizontal-list-divider {
+    padding: 0 5px;
 }
 
 .upload-link, .dropdown {
