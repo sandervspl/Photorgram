@@ -66,4 +66,10 @@ class ImageController extends Controller
     {
         return view('upload.result');
     }
+
+    public function edit($id)
+    {
+        $image = Image::find($id);
+        return view('images.edit')->with('image', $image);
+    }
 }

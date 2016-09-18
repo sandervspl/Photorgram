@@ -17,6 +17,12 @@
             <div class="image-info col-md-6">
                 <div class="image-info-header">
                     <h1>{{ $image->title }}</h1>
+
+                    @if($user->id === Auth::id())
+                        <a href="{{ url('/images/'.$image->id.'/edit') }}" class="btn btn-default" id="image-edit-button">
+                            Edit
+                        </a>
+                    @endif
                 </div>
 
                 <div class="image-info-section">
