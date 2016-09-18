@@ -129,3 +129,26 @@ header a:hover {
 .image-info-header h1 {
     margin: 0 0 .25em 0;
 }
+
+.image-info-description {
+    margin-top: 2em;
+}
+
+.image-info-description .description {
+    padding: .5em;
+    height: 175px;
+    overflow: scroll;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.image-info-rating {
+    margin-top: 2em;
+}
+
+.image-info-rating #dislike {
+    margin-left: 1.5em;
+}
+
+.image-info-rating span {
+    margin-left: .5em;
+}

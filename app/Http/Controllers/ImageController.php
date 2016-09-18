@@ -14,8 +14,6 @@ class ImageController extends Controller
 {
     public function index()
     {
-//        $images = Image::all();
-//        return $images;
         return view('images.index');
     }
 
@@ -54,6 +52,7 @@ class ImageController extends Controller
                 $image->image_uri = $fileName;
                 $image->title = $request->get('title');
                 $image->category = $request->get('category');
+                $image->description = $request->get('description');
                 $image->save();
 
                 $success = 1;

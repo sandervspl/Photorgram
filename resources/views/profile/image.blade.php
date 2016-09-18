@@ -23,8 +23,16 @@
                     <h4>{{ $image->created_at }}</h4>
                     <h4>{{ $image->category }}</h4>
 
-                    <div class="image-info-rating">
+                    <div class="image-info-description">
+                        <small>Description</small>
+                        <div class="description">
+                            {{ $image->description }}
+                        </div>
+                    </div>
 
+                    <div class="image-info-rating">
+                        <button id="like" class="btn btn-default">Like</button> <span>{{ $image->likes }}</span>
+                        <button id="dislike" class="btn btn-default">Dislike</button> <span>{{ $image->dislikes }}</span>
                     </div>
                 </div>
             </div>
