@@ -29,26 +29,7 @@
 
 
         <div class="form-group">
-            {!! Form::label('category', 'Category*', ['class' => 'col-sm-2 control-label']) !!}
-            <div class="col-sm-2">
-                {!! Form::select(
-                        'category',
-                        [
-                            'comics' => 'Comics',
-                            'nature' => 'Nature',
-                            'music'  => 'Music',
-                            'meme'   => 'Meme',
-                            'funny'  => 'Funny'
-                        ],
-                        null,
-                        [
-                            'class'       => 'form control input-sm',
-                            'placeholder' => 'Pick a category...',
-                            'required'    => 'required'
-                        ]
-                    )
-                !!}
-            </div>
+            @include('partials/category_select_form')
         </div>
 
 

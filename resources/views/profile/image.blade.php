@@ -16,18 +16,21 @@
 
             <div class="image-info col-md-6">
                 <div class="image-info-header">
-                    <h1>{{ $image->title }}</h1>
+                    <h3 class="image-info-title">{{ $image->title }}</h3>
 
                     @if($user->id === Auth::id())
-                        <a href="{{ url('/images/'.$image->id.'/edit') }}" class="btn btn-default" id="image-edit-button">
-                            Edit
-                        </a>
+                        <div id="image-user-buttons">
+                            <a href="{{ url('/images/'.$image->id.'/edit') }}" class="btn btn-default" id="image-edit-button">
+                                Edit
+                            </a>
+                            <a href="" class="btn btn-default btn-dark" id="image-remove-button">Remove</a>
+                        </div>
                     @endif
                 </div>
 
                 <div class="image-info-section">
                     <h4>{{ $image->created_at }}</h4>
-                    <h4>{{ $image->category }}</h4>
+                    <h4>{{ ucfirst(trans(App\Category::find($image->category_id)->name)) }}</h4>
 
                     <div class="image-info-description">
                         <small>Description</small>

@@ -4,10 +4,11 @@ Route::get('/', function (){ return view('index'); });
 Route::get('/login', function (){ return view('login'); });
 Route::get('/register', function (){ return view('register'); });
 
-Route::get('/images', 'ImageController@index');
-Route::get('/images/all', 'ImageController@index');
+Route::get('/images', 'ImageController@all');
+Route::get('/images/all', 'ImageController@all');
 Route::get('/images/upload', 'ImageController@upload');
 Route::get('/images/result', 'ImageController@result');
+Route::get('/images/category/{categoryname}', 'ImageController@category');
 Route::get('/images/{id}', 'ImageController@show');
 Route::get('/images/{id}/edit', 'ImageController@edit');
 Route::post('/images/edit', 'ImageController@update');

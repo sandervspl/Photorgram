@@ -4,22 +4,25 @@
 <header>
     <div class="navbar">
         <div class="navbar-left">
-            <a href="{{ url('/') }}">Photorgram</a>
+            <ul class="navbar-links">
+                <li><a href="{{ url('/') }}" id="navbar-logo">Photorgram</a></li>
+            </ul>
         </div>
 
         <div class="navbar-right">
             @if (Auth::guest())
             <ul class="signin-register-list">
                 <li><a href="{{ url('/login') }}">Sign In</a></li>
-                <li class="horizontal-list-divider"> | </li>
+                <li class="horizontal-list-divider"></li>
                 <li><a href="{{ url('/register') }}">Register</a></li>
             </ul>
             @else
             <ul>
-                <div class="upload-link">
-                    <a href=" {{ action('ImageController@upload') }}">Upload Image</a>
-                </div>
+                <li><a href="{{ action('ImageController@all') }}">All Images</a></li>
+                <li class="horizontal-list-divider"></li>
+                <li><a href=" {{ action('ImageController@upload') }}">Upload Image</a></li>
 
+                <li>
                 <div class="dropdown" id="user-dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         {{ Auth::user()->name }}
@@ -45,6 +48,7 @@
                         </li>
                     </ul>
                 </div>
+                </li>
             @endif
             </ul>
         </div>

@@ -58,7 +58,7 @@ header a {
     color: black;
 }
 
-header a:hover {
+a:hover {
     text-decoration: none;
 }
 
@@ -68,11 +68,15 @@ header a:hover {
     width: 70%;
 }
 
-.navbar-left, .navbar-right {
+.navbar ul li {
     display: inline-block;
 }
 
-.navbar-left a {
+.dropdown ul li {
+    display: block;
+}
+
+.navbar-left #navbar-logo {
     font-size: 1.5em;
 }
 
@@ -88,16 +92,17 @@ header a:hover {
     padding-top: 7px;
 }
 
-.signin-register-list li {
+.signin-register-list li, .navbar-links li {
     display: inline-block;
 }
 
 .horizontal-list-divider {
+    color: black;
     padding: 0 5px;
 }
 
-.upload-link, .dropdown {
-    display: inline-block;
+.horizontal-list-divider::before {
+    content: ' | ';
 }
 
 .upload-form {
@@ -108,25 +113,60 @@ header a:hover {
     color: #ba3838;
 }
 
-.profile-image-thumbnail, .profile-image-thumbnail img {
+.image-thumbnail, .image-thumbnail img {
     width: 250px;
     height: 250px;
     overflow: hidden;
 }
 
-.profile-image-thumbnail {
+.image-thumbnail {
     display: inline-block;
     margin: 0 10px 10px 0;
+}
+
+.image-thumbnail-small {
+    width: 125px;
+    height: 125px;
+    overflow: hidden;
+    display: inline-block;
+    margin: 0 5px 5px 0;
+}
+
+.image-thumbnail-small img {
+    width: 125px;
+    height: 125px;
+    overflow: hidden;
 }
 
 #profile-follow-button, #profile-user-name {
     display: inline-block;
 }
 
+#profile-user-name {
+    margin-bottom: .25em;
+}
+
+#profile-followers {
+    margin-top: 0;
+}
+
 #profile-follow-button {
     position: relative;
     top: -7px;
     margin-left: 10px;
+}
+
+.profile-header, .profile-body {
+    width: 88.39%;
+    margin: auto;
+}
+
+.profile-header {
+    margin-bottom: 2em;
+}
+
+#profile-bio {
+    margin-top: 1em;
 }
 
 .image-body-src {
@@ -138,13 +178,16 @@ header a:hover {
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.image-info-header h1 {
+.image-info-header .image-info-title {
     display: inline-block;
     margin: 0 0 .25em 0;
 }
 
-.image-info-header #image-edit-button {
+.image-info-header #image-user-buttons {
+    display: inline-block;
+    position: relative;
     float: right;
+    bottom: 8px;
 }
 
 .image-info-description {
@@ -180,7 +223,21 @@ header a:hover {
     margin-left: .5em;
 }
 
-.profile-header, .profile-body {
-    width: 88.39%;
-    margin: auto;
+.btn-dark {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
+
+.article-container {
+    margin-top: 3em;
+}
+
+.category {
+    margin-bottom: 1em;
+    height: 125px;
+}
+
+.debug {
+    font-family: serif;
 }

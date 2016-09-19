@@ -7,21 +7,55 @@ use App\Http\Requests;
 use \Storage;
 use App\Image;
 use App\User;
+use App\category;
 use Auth;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
 
 class ImageController extends Controller
 {
     public function index()
     {
-        return view('images.index');
+        $this->all();
+    }
+
+    public function all()
+    {
+        $categories = Category::all();
+        $images = [];
+
+        // get a maximum of 3 images per category
+        // store each category as an array in our images array
+        foreach ($categories as $category) {
+            $all_img = $category->images;
+            $temp_array = [];
+            $i = 0;
+
+            foreach ($all_img as $image) {
+                $temp_array[] = $image;
+                if (++$i >= 3)
+                    break;
+            }
+
+            $images[] = $temp_array;
+        }
+
+        return view('images.index', ['images' => $images, 'categories' => $categories]);
     }
 
 
     public function upload()
     {
         return view('upload.index');
+    }
+
+    public function category($categoryname)
+    {
+        $categories = Category::all();
+        $category = Category::where('name', '=', $categoryname)->first();
+        $images = $category->images;
+
+        return view('images.category', ['categoryname' => $categoryname, 'categories' => $categories, 'images' => $images]);
     }
 
     public function show($id)
@@ -50,7 +84,7 @@ class ImageController extends Controller
                 $image->user_id = Auth::id();
                 $image->image_uri = $fileName;
                 $image->title = $request->get('title');
-                $image->category = $request->get('category');
+                $image->category_id = $request->get('category');
                 $image->description = $request->get('description');
                 $image->save();
 
@@ -65,11 +99,6 @@ class ImageController extends Controller
                 abort(503);
             }
         }
-    }
-
-    public function result()
-    {
-        return view('upload.result');
     }
 
     public function edit($id)
@@ -90,7 +119,7 @@ class ImageController extends Controller
     {
         $image = Image::find($request->get('id'));
         $image->title = $request->get('title');
-        $image->category = $request->get('category');
+        $image->category_id = $request->get('category');
         $image->description = $request->get('description');
         $image->save();
 

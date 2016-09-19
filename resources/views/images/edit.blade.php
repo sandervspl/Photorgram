@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Edit Image')
+@section('title', 'Upload')
 @section('content')
 <section class="main-article">
     <h1>Edit Image</h1>
@@ -27,13 +27,15 @@
                     {!! Form::select(
                             'category',
                             [
-                                'comics' => 'Comics',
-                                'nature' => 'Nature',
-                                'music'  => 'Music',
-                                'meme'   => 'Meme',
-                                'funny'  => 'Funny'
+                                '1' => 'Nature',
+                                '2' => 'Comics',
+                                '3' => 'Funny',
+                                '4' => 'Meme',
+                                '5' => 'Portrait',
+                                '6' => 'People',
+                                '7' => 'Animal'
                             ],
-                            $image->category,
+                            $image->category_id,
                             [
                                 'class'       => 'form control input-sm',
                                 'placeholder' => 'Pick a category...',
