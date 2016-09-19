@@ -18,7 +18,9 @@
                             @for ($j = 0; $j < count($images[$i]); $j++)
                                 @if(isset($images[$i][$j]) && $images[$i][$j]['category_id'] == $category->id)
                                     <div class="image-thumbnail-small">
-                                        <img src="{{ url('/uploads/'.$images[$i][$j]['image_uri']) }}" alt="image">
+                                        <a href="{{ action('ProfileController@showImage', ['user' => App\User::findOrFail($images[$i][$j]['user_id'])->name, 'image' => $images[$i][$j]['id']]) }}">
+                                            <img src="{{ url('/uploads/'.$images[$i][$j]['image_uri']) }}" alt="image">
+                                        </a>
                                     </div>
                                 @endif
                             @endfor
