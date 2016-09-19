@@ -36,7 +36,9 @@
                         [
                             'comics' => 'Comics',
                             'nature' => 'Nature',
-                            'music'  => 'Music'
+                            'music'  => 'Music',
+                            'meme'   => 'Meme',
+                            'funny'  => 'Funny'
                         ],
                         null,
                         [

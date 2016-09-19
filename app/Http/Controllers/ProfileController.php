@@ -19,7 +19,7 @@ class ProfileController extends Controller
     public function index()
     {
         $username = Auth::user()->name;
-        return Redirect::to('profile/'.$username);
+        return Redirect::to('/'.$username);
     }
 
     /**

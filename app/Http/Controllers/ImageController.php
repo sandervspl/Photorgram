@@ -39,8 +39,6 @@ class ImageController extends Controller
     // Request all information from the form
     public function process(Request $request)
     {
-        $success = 0;
-
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $fileName = $file->getClientOriginalName();
@@ -56,11 +54,17 @@ class ImageController extends Controller
                 $image->description = $request->get('description');
                 $image->save();
 
-                $success = 1;
+                return Redirect::to(action(
+                    'ProfileController@showImage',
+                    [
+                        'name'    => Auth::user()->name,
+                        'imageid' => $image->id
+                    ]
+                ));
+            } else {
+                abort(503);
             }
         }
-
-        return Redirect::to(action('ImageController@result'))->with('success', $success);
     }
 
     public function result()

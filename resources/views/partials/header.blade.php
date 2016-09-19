@@ -28,7 +28,7 @@
 
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                         <li>
-                            <a href="{{ url('/profile/'.Auth::user()->name) }}">My Profile</a>
+                            <a href="{{ action('ProfileController@show', ['username' => Auth::user()->name]) }}">My Profile</a>
                         </li>
 
                         <li role="separator" class="divider"></li>

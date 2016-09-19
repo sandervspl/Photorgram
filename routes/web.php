@@ -14,8 +14,10 @@ Route::post('/images/edit', 'ImageController@update');
 Route::post('/images/upload', 'ImageController@process');
 
 Route::get('/profile', 'ProfileController@index');
-Route::get('/profile/{userid}/image/{id}', 'ProfileController@showImage');
+Route::get('/{userid}/{imageid}', 'ProfileController@showImage');
 Route::get('/profile/{userid}', 'ProfileController@show');
+
+Route::get('/{userid}', 'ProfileController@show');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index');

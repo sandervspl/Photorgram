@@ -4,7 +4,7 @@
     <section class="main-article">
         <div class="profile-header">
             <h1 id="profile-user-name">
-                <a href="{{ url('profile/'.$user->name) }}">{{ $user->name }}</a>
+                <a href="{{ action('ProfileController@show', ['username' => $user->name]) }}">{{ $user->name }}</a>
             </h1>
             <button class="btn btn-default" id="profile-follow-button">Follow</button>
         </div>
@@ -32,7 +32,7 @@
                     <div class="image-info-description">
                         <small>Description</small>
                         <div class="description">
-                            {{ $image->description }}
+                            <pre>{{ $image->description }}</pre>
                         </div>
                     </div>
 

@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Profile')
+@section('title', $user->name)
 @section('content')
     <section class="main-article">
         <div class="profile-header">
