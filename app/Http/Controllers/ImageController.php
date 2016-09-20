@@ -103,7 +103,7 @@ class ImageController extends Controller
 
     public function edit($id)
     {
-        $user = User::find(Auth::id());
+        $user = User::findOrFail(Auth::id());
         $verify = $user->images->contains($id);
 
         // forbidden
@@ -111,13 +111,13 @@ class ImageController extends Controller
             abort(403);
         }
 
-        $image = Image::find($id);
+        $image = Image::findOrFail($id);
         return view('images.edit')->with('image', $image);
     }
 
     public function update(Request $request)
     {
-        $image = Image::find($request->get('id'));
+        $image = Image::findOrFail($request->get('id'));
         $image->title = $request->get('title');
         $image->category_id = $request->get('category');
         $image->description = $request->get('description');

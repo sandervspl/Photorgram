@@ -16,7 +16,7 @@
         </div>
 
         @if ($errors->has('email'))
-            <span class="help-block col-sm-offset-2 error-text">
+            <span class="help-block col-sm-offset-2 col-sm-10 error-text">
                 <strong>{{ $errors->first('email') }}</strong>
             </span>
         @endif
@@ -29,7 +29,7 @@
         </div>
 
         @if ($errors->has('password'))
-            <span class="help-block col-sm-offset-2 error-text">
+            <span class="help-block col-sm-offset-2 col-sm-10 error-text">
                 <strong>{{ $errors->first('password') }}</strong>
             </span>
         @endif
@@ -37,8 +37,8 @@
 
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            {!! Form::checkbox('remember', '') !!}
-            Remember Me
+            {!! Form::checkbox('remember', false, '', ['id' => 'remember']) !!}
+            {!! Form::label('remember', 'Remember Me') !!}
         </div>
     </div>
 

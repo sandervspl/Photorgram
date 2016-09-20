@@ -6,7 +6,7 @@
             <h1 id="profile-user-name">
                 <a href="{{ action('ProfileController@show', ['username' => $user->name]) }}">{{ $user->name }}</a>
             </h1>
-            <button class="btn btn-default" id="profile-follow-button">Follow</button>
+            <a class="btn btn-default profile-buttons">Follow</a>
         </div>
 
         <div class="row">

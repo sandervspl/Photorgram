@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Profile;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -27,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = 'profile/edit/profile';
 
     /**
      * Create a new controller instance.
@@ -62,10 +63,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+            'password' => bcrypt($data['password'])]
+        );
+
+        if ($user) {
+            Profile::create([
+                'user_id' => $user->id,
+                'profile_picture' => '',
+                'bio' => ''
+            ]);
+        }
+
+        return $user;
     }
 }

@@ -90,9 +90,14 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editAccount()
     {
-        //
+        return view('profile.edit.edit_account');
+    }
+
+    public function editProfile()
+    {
+        return view('profile.edit.edit_profile');
     }
 
     /**
@@ -102,9 +107,13 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $profile = Profile::where('user_id', '=', Auth::id());
+        $profile->profile_picture = $request->get('image');
+        $profile->bio = $request->get('bio');
+
+        return Redirect::to(action('ProfileController@index'));
     }
 
     /**

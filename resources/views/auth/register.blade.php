@@ -10,59 +10,59 @@
         ])
     !!}
     <div class="form-group">
-        {!! Form::label('name', 'Username', ['class' => 'col-sm-2 control-label']) !!}
-        <div class="col-sm-10">
+        {!! Form::label('name', 'Username', ['class' => 'col-sm-3 control-label']) !!}
+        <div class="col-sm-9">
             {!! Form::text('name', null, ['class' => 'form-control', 'required' => 'required']) !!}
         </div>
 
         @if ($errors->has('name'))
-            <span class="help-block col-sm-offset-2 error-text">
+            <span class="help-block col-sm-offset-3 col-sm-9 error-text">
                 <strong>{{ $errors->first('name') }}</strong>
             </span>
         @endif
     </div>
 
     <div class="form-group">
-        {!! Form::label('email', 'E-Mail', ['class' => 'col-sm-2 control-label']) !!}
-        <div class="col-sm-10">
+        {!! Form::label('email', 'E-Mail', ['class' => 'col-sm-3 control-label']) !!}
+        <div class="col-sm-9">
             {!! Form::text('email', null, ['class' => 'form-control', 'required' => 'required']) !!}
         </div>
 
         @if ($errors->has('email'))
-            <span class="help-block col-sm-offset-2 error-text">
+            <span class="help-block col-sm-offset-3 col-sm-9 error-text">
                 <strong>{{ $errors->first('email') }}</strong>
             </span>
         @endif
     </div>
 
     <div class="form-group">
-        {!! Form::label('password', 'Password', ['class' => 'col-sm-2 control-label']) !!}
-        <div class="col-sm-10">
+        {!! Form::label('password', 'Password', ['class' => 'col-sm-3 control-label']) !!}
+        <div class="col-sm-9">
             {!! Form::password('password', ['class' => 'form-control', 'required' => 'required']) !!}
         </div>
 
         @if ($errors->has('password'))
-            <span class="help-block col-sm-offset-2 error-text">
+            <span class="help-block col-sm-offset-3 col-sm-9 error-text">
                 <strong>{{ $errors->first('password') }}</strong>
             </span>
         @endif
     </div>
 
     <div class="form-group">
-        {!! Form::label('password-confirm', 'Confirm Password', ['class' => 'col-sm-2 control-label']) !!}
-        <div class="col-sm-10">
+        {!! Form::label('password-confirm', 'Confirm Password', ['class' => 'col-sm-3 control-label']) !!}
+        <div class="col-sm-9">
             {!! Form::password('password-confirm', ['class' => 'form-control', 'name' => 'password_confirmation', 'required' => 'required']) !!}
         </div>
 
         @if ($errors->has('password_confirmation'))
-            <span class="help-block col-sm-offset-2 error-text">
+            <span class="help-block col-sm-offset-3 col-sm-9 error-text">
                 <strong>{{ $errors->first('password_confirmation') }}</strong>
             </span>
         @endif
     </div>
 
     <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
+        <div class="col-sm-offset-3 col-sm-9">
             {!! Form::submit('Register', ['class' => 'btn btn-primary']) !!}
         </div>
     </div>
