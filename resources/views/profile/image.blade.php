@@ -20,7 +20,7 @@
 
                     @if($user->id === Auth::id())
                         <div id="image-user-buttons">
-                            <a href="{{ url('/images/'.$image->id.'/edit') }}" class="btn btn-default" id="image-edit-button">
+                            <a href="{{ url('/images/'.$image->image_uri.'/edit') }}" class="btn btn-default" id="image-edit-button">
                                 Edit
                             </a>
                             <a href="" class="btn btn-default btn-dark" id="image-remove-button">Remove</a>

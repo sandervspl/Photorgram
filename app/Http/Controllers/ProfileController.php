@@ -62,19 +62,24 @@ class ProfileController extends Controller
         return view('profile.index', ['user' => $user]);
     }
 
-    public function showImage($name, $imageid)
+    public function showImage($username, $imagename)
     {
         // see if user and image exist before we continue
-        $user = User::where('name', '=', $name)->first();
+        $user = User::where('name', '=', $username)->first();
+
         if (is_null($user)) {
             abort(404);
         }
 
-        // try to get image, if not then abort
-        $image = Image::FindOrFail($imageid);
+        // try to get image
+        $image = Image::where('image_uri', '=', $imagename)->first();
+
+        if (is_null($image)) {
+            abort(404);
+        }
 
         // make sure image is from this user
-        $verify = $user->images->contains($imageid);
+        $verify = $user->images->contains($image->id);
 
         // if not then abort
         if ( ! $verify) {

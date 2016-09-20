@@ -10,10 +10,19 @@ use App\User;
 use App\category;
 use Auth;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\DB;
 
 class ImageController extends Controller
 {
+    private function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
     public function index()
     {
         $this->all();
@@ -75,10 +84,16 @@ class ImageController extends Controller
     {
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $fileName = $file->getClientOriginalName();
+
+            // generate file name for database
+            $fileName = $this->generateRandomString();
+
+            // create a destination and save to folder
             $destinationPath = config('app.fileDestinationPath').'/'.$fileName;
             $uploaded = Storage::put($destinationPath, file_get_contents($file->getRealPath()));
 
+            // if correctly uploaded
+            // add to database
             if ($uploaded) {
                 $image = new Image;
                 $image->user_id = Auth::id();
@@ -88,30 +103,38 @@ class ImageController extends Controller
                 $image->description = $request->get('description');
                 $image->save();
 
+                // redirect to image page
                 return Redirect::to(action(
-                    'ProfileController@showImage',
+                    'ImageController@showImage',
                     [
-                        'name'    => Auth::user()->name,
-                        'imageid' => $image->id
+                        'username'  => Auth::user()->name,
+                        'imagename' => $image->image_uri
                     ]
                 ));
             } else {
                 abort(503);
             }
+        } else {
+            return 'No file';
         }
     }
 
-    public function edit($id)
+    public function edit($imagename)
     {
         $user = User::findOrFail(Auth::id());
-        $verify = $user->images->contains($id);
+        $image = Image::where('image_uri', '=', $imagename)->first();
+
+        if (is_null($image)) {
+            abort(404);
+        }
+
+        $verify = $user->images->contains($image->id);
 
         // forbidden
         if (! $verify) {
             abort(403);
         }
 
-        $image = Image::findOrFail($id);
         return view('images.edit')->with('image', $image);
     }
 
