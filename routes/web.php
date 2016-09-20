@@ -22,7 +22,7 @@ Route::get('/{username}/{imagename}', 'ProfileController@showImage');
 Route::get('/profile/{userid}', 'ProfileController@show');
 Route::get('/{userid}', 'ProfileController@show');
 Route::post('/profile/update', 'ProfileController@update');
-Route::post('/user', 'UserController@update');
+Route::post('/user/update', 'UserController@update');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index');

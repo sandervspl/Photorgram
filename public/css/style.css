@@ -167,10 +167,29 @@ a:hover {
 
 .profile-header {
     margin-bottom: 2em;
+    min-height: 125px;
 }
 
 #profile-bio {
     margin-top: 1em;
+}
+
+#profile-user-info-box {
+    display: inline-block;
+    margin-left: 1em;
+    vertical-align: top;
+}
+
+#profile-user-image, #profile-user-image img {
+    display: inline-block;
+    vertical-align: bottom;
+    width: 100px;
+    height: 100px;
+}
+
+#profile-user-image {
+    overflow: hidden;
+    border-radius: 50%;
 }
 
 .image-body-src {

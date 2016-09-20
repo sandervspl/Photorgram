@@ -6,11 +6,23 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
 use App\Image;
+use App\Profile;
 use Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
+    private function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -114,9 +126,34 @@ class ProfileController extends Controller
      */
     public function update(Request $request)
     {
-        $profile = Profile::where('user_id', '=', Auth::id());
-        $profile->profile_picture = $request->get('image');
+        $profile = Profile::where('user_id', '=', Auth::id())->first();
+
+        // set bio
         $profile->bio = $request->get('bio');
+
+        // set profile picture if included
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+
+            // generate file name for database
+            $fileName = $this->generateRandomString();
+
+            // create a destination and save to folder
+            $destinationPath = config('app.fileDestinationPath').'/profile/'.$fileName;
+            $uploaded = Storage::put($destinationPath, file_get_contents($file->getRealPath()));
+
+            // if correctly uploaded
+            // add to database
+            if ($uploaded) {
+                $profile->profile_picture = $fileName;
+            } else {
+                echo "upload fail";
+            }
+        } else {
+            echo "no file";
+        }
+
+        $profile->save();
 
         return Redirect::to(action('ProfileController@index'));
     }

@@ -105,7 +105,7 @@ class ImageController extends Controller
 
                 // redirect to image page
                 return Redirect::to(action(
-                    'ImageController@showImage',
+                    'ProfileController@showImage',
                     [
                         'username'  => Auth::user()->name,
                         'imagename' => $image->image_uri

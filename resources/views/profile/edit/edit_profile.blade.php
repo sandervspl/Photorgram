@@ -10,6 +10,7 @@
 
             {!! Form::open([
                     'action' => 'ProfileController@update',
+                    'files'  => true,
                     'class' => 'form-horizontal'
                 ])
             !!}

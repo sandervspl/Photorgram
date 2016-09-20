@@ -72,7 +72,7 @@ class RegisterController extends Controller
         if ($user) {
             Profile::create([
                 'user_id' => $user->id,
-                'profile_picture' => '',
+                'profile_picture' => 'default.png',
                 'bio' => ''
             ]);
         }
