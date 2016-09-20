@@ -19,7 +19,8 @@ class UserController extends Controller
         $user->email = $request->get('email');
 
         $password = $request->get('password');
-        if ( ! is_null($password) || ! isEmpty($password) || $password != '') {
+
+        if ( ! is_null($password) && $password != '') {
             $user->password =Hash::make($password);
         }
 
