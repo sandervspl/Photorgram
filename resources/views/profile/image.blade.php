@@ -28,7 +28,7 @@
             <div class="image-info-header">
                 <h3 class="image-info-title">{{ $image->title }}</h3>
 
-                @if($user->id === Auth::id())
+                @if($user->id == Auth::id())
                     <div id="image-user-buttons">
                         <a href="{{ url('/images/'.$image->image_uri.'/edit') }}" class="btn btn-default" id="image-edit-button">
                             Edit
@@ -50,8 +50,33 @@
                 </div>
 
                 <div class="image-info-rating">
-                    <button id="like" class="btn btn-default">Like</button> <span>{{ $image->likes }}</span>
-                    <button id="dislike" class="btn btn-default">Dislike</button> <span>{{ $image->dislikes }}</span>
+                    {!! Form::open([
+                            'action' => 'RatingController@like',
+                            'class'  => 'horizontal-form rating-form'
+                        ])
+                    !!}
+
+                    {!! Form::hidden('image_id', $image->image_uri) !!}
+                    {!! Form::hidden('rating', 1) !!}
+                    {!! Form::submit('Like', ['class' => 'btn btn-default profile-buttons']) !!}
+
+                    {!! Form::close() !!}
+
+                    <span>{{ $likes }}</span>
+
+                    {!! Form::open([
+                            'action' => 'RatingController@dislike',
+                            'class'  => 'horizontal-form rating-form'
+                        ])
+                    !!}
+
+                    {!! Form::hidden('image_id', $image->image_uri) !!}
+                    {!! Form::hidden('rating', 0) !!}
+                    {!! Form::submit('Disike', ['class' => 'btn btn-default profile-buttons']) !!}
+
+                    {!! Form::close() !!}
+
+                    <span>{{ $dislikes }}</span>
                 </div>
             </div>
         </div>

@@ -26,6 +26,9 @@ Route::post('/profile/update', 'ProfileController@update');
 Route::post('/follow', 'FollowController@follow');
 Route::post('/unfollow', 'FollowController@unfollow');
 
+Route::post('/like', 'RatingController@like');
+Route::post('/dislike', 'RatingController@dislike');
+
 Route::post('/user/update', 'UserController@update');
 
 Auth::routes();

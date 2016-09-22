@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Rating;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
@@ -98,7 +99,10 @@ class ProfileController extends Controller
             abort(403);
         }
 
-        return view('profile.image', ['user' => $user, 'image' => $image]);
+        $likes = Rating::where('image_id', '=', $imagename)->where('rating', '=', '1')->count();
+        $dislikes = Rating::where('image_id', '=', $imagename)->where('rating', '=', '0')->count();
+
+        return view('profile.image', ['user' => $user, 'image' => $image, 'likes' => $likes, 'dislikes' => $dislikes]);
     }
 
     /**

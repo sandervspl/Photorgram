@@ -138,11 +138,7 @@ a:hover {
     overflow: hidden;
 }
 
-.followbutton {
-    display: inline-block;
-}
-
-#profile-follow-button, #profile-user-name {
+#profile-follow-button, #profile-user-name, .rating-form, .followbutton {
     display: inline-block;
 }
 
