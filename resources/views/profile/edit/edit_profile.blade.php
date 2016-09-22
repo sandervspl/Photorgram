@@ -8,10 +8,11 @@
 
             @include('partials/edit_account_menu')
 
-            {!! Form::open([
+            {!!
+                Form::open([
                     'action' => 'ProfileController@update',
                     'files'  => true,
-                    'class' => 'form-horizontal'
+                    'class'  => 'form-horizontal'
                 ])
             !!}
 

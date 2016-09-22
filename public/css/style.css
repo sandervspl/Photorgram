@@ -138,6 +138,10 @@ a:hover {
     overflow: hidden;
 }
 
+.followbutton {
+    display: inline-block;
+}
+
 #profile-follow-button, #profile-user-name {
     display: inline-block;
 }
@@ -154,6 +158,12 @@ a:hover {
     position: relative;
     top: -7px;
     margin-left: 10px;
+}
+
+.following {
+    background-color: #37bb5d;
+    color: #eee;
+    border: transparent;
 }
 
 #profile-edit-button {

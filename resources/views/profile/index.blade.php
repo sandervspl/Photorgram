@@ -10,9 +10,9 @@
         </div>
         <div id="profile-user-info-box">
             <h1 id="profile-user-name">{{ $user->name }}</h1>
-            @if(Auth::id() != $user->id)
-                <a class="btn btn-default profile-buttons">Follow</a>
-            @endif
+
+            @include('partials/following_button')
+
             <h5 id="profile-followers">100 Followers</h5>
             <div id="profile-bio">{{ $user->profile->bio }}</div>
         </div>

@@ -22,9 +22,11 @@ Route::get('/{username}/{imagename}', 'ProfileController@showImage');
 Route::get('/profile/{userid}', 'ProfileController@show');
 Route::get('/{userid}', 'ProfileController@show');
 Route::post('/profile/update', 'ProfileController@update');
+
+Route::post('/follow', 'FollowController@follow');
+Route::post('/unfollow', 'FollowController@unfollow');
+
 Route::post('/user/update', 'UserController@update');
 
 Auth::routes();
-Route::get('/home', 'HomeController@index');
 Auth::routes();
-Route::get('/home', 'HomeController@index');

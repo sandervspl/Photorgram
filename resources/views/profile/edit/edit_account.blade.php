@@ -8,7 +8,8 @@
 
         @include('partials/edit_account_menu')
 
-        {!! Form::open([
+        {!!
+            Form::open([
                 'action' => 'UserController@update',
                 'class' => 'form-horizontal'
             ])
@@ -48,8 +49,8 @@
 
             @if ($errors->has('password'))
                 <span class="help-block col-sm-offset-3 col-sm-10 error-text">
-                <strong>{{ $errors->first('password') }}</strong>
-            </span>
+                    <strong>{{ $errors->first('password') }}</strong>
+                </span>
             @endif
         </div>
 
