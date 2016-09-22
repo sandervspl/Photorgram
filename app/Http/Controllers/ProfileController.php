@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Follow;
 use App\Rating;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -72,7 +73,9 @@ class ProfileController extends Controller
             abort(404);
         }
 
-        return view('profile.index', ['user' => $user]);
+        $followers = Follow::where('follow_id', '=', $user->id)->count();
+
+        return view('profile.index', ['user' => $user, 'followers' => $followers]);
     }
 
     public function showImage($username, $imagename)

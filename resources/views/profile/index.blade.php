@@ -13,7 +13,7 @@
 
             @include('partials/following_button')
 
-            <h5 id="profile-followers">100 Followers</h5>
+            <h4 id="profile-followers">{{ $followers }} <b>Followers</b></h4>
             <div id="profile-bio">{{ $user->profile->bio }}</div>
         </div>
     </div>
