@@ -49,7 +49,14 @@
                     </div>
                 </div>
 
+
                 <div class="image-info-rating">
+                    @if(Auth::Guest())
+                        <?php $disabled = 'disabled' ?>
+                    @else
+                        <?php $disabled = '' ?>
+                    @endif
+
                     {!! Form::open([
                             'action' => 'RatingController@like',
                             'class'  => 'horizontal-form rating-form'
@@ -58,7 +65,7 @@
 
                     {!! Form::hidden('image_id', $image->image_uri) !!}
                     {!! Form::hidden('rating', 1) !!}
-                    {!! Form::submit('Like', ['class' => 'btn btn-default profile-buttons']) !!}
+                    {!! Form::submit('Like', ['class' => 'btn btn-default profile-buttons', $disabled]) !!}
 
                     {!! Form::close() !!}
 
@@ -72,7 +79,7 @@
 
                     {!! Form::hidden('image_id', $image->image_uri) !!}
                     {!! Form::hidden('rating', 0) !!}
-                    {!! Form::submit('Disike', ['class' => 'btn btn-default profile-buttons']) !!}
+                    {!! Form::submit('Disike', ['class' => 'btn btn-default profile-buttons', $disabled]) !!}
 
                     {!! Form::close() !!}
 

@@ -1,4 +1,4 @@
-@if(Auth::id() != $user->id)
+@if(! Auth::Guest() && Auth::id() != $user->id)
     @if (Auth::User()->isFollowing($user->id))
         {!!
             Form::open([
@@ -8,7 +8,6 @@
         !!}
 
         {!! Form::hidden('follow_id', $user->id) !!}
-
         {!! Form::submit('Following', ['class' => 'btn btn-default profile-buttons following']) !!}
 
         {!! Form::close() !!}
@@ -21,7 +20,6 @@
         !!}
 
         {!! Form::hidden('follow_id', $user->id) !!}
-
         {!! Form::submit('Follow', ['class' => 'btn btn-default profile-buttons']) !!}
 
         {!! Form::close() !!}

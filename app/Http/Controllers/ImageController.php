@@ -55,6 +55,9 @@ class ImageController extends Controller
 
     public function upload()
     {
+        if (Auth::Guest())
+            abort(403);
+
         return view('upload.index');
     }
 
@@ -82,6 +85,9 @@ class ImageController extends Controller
     // Request all information from the form
     public function process(Request $request)
     {
+        if (Auth::Guest())
+            abort(403);
+
         if ($request->hasFile('image')) {
             $file = $request->file('image');
 
@@ -121,6 +127,9 @@ class ImageController extends Controller
 
     public function edit($imagename)
     {
+        if (Auth::Guest())
+            abort(403);
+
         $user = User::findOrFail(Auth::id());
         $image = Image::where('image_uri', '=', $imagename)->first();
 
@@ -140,6 +149,9 @@ class ImageController extends Controller
 
     public function update(Request $request)
     {
+        if (Auth::Guest())
+            abort(403);
+
         $image = Image::findOrFail($request->get('id'));
         $image->title = $request->get('title');
         $image->category_id = $request->get('category');
