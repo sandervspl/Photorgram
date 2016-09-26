@@ -9,7 +9,7 @@
     <div class="article-container">
         @foreach($images as $image)
             <div class="image-thumbnail">
-                <a href="{{ action('ProfileController@showImage', ['user' => App\User::findOrFail($image->user_id)->name, 'image' => $image->image_uri]) }}">
+                <a href="{{ action('ImageController@show', ['image' => $image->image_uri]) }}">
                     <img src="{{ url('uploads/'.$image->image_uri) }}" alt="image">
                 </a>
             </div>
