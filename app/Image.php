@@ -15,8 +15,18 @@ class Image extends Model
         'updated_at'
     ];
 
+
+
+
     public function ratings()
     {
         return $this->belongsToMany('App\Rating');
+    }
+
+
+    // does not work
+    public function owner()
+    {
+        return $this->hasOne('App\User');
     }
 }

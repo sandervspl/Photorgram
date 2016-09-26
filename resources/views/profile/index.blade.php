@@ -21,7 +21,7 @@
     <div class="profile-body">
         @foreach($user->images as $image)
             <div class="image-thumbnail">
-                <a href="{{ action('ProfileController@showImage', ['user' => $user->name, 'image' => $image->image_uri]) }}">
+                <a href="{{ action('ImageController@show', ['image' => $image->image_uri]) }}">
                     <img src="{{ url('uploads/'.$image->image_uri) }}" alt="image">
                 </a>
             </div>

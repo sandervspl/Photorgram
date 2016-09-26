@@ -19,7 +19,6 @@ Route::get('/profile', 'ProfileController@index');
 Route::get('/profile/edit', 'ProfileController@editProfile');
 Route::get('/profile/edit/profile', 'ProfileController@editProfile');
 Route::get('/profile/edit/account', 'ProfileController@editAccount');
-Route::get('/{username}/{imagename}', 'ProfileController@showImage');
 Route::get('/profile/{userid}', 'ProfileController@show');
 Route::get('/{userid}', 'ProfileController@show');
 Route::post('/profile/update', 'ProfileController@update');

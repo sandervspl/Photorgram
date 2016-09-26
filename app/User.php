@@ -32,20 +32,26 @@ class User extends Authenticatable
         'remember_token'
     ];
 
+
+
+
     public function images()
     {
         return $this->hasMany('App\Image');
     }
+
 
     public function profile()
     {
         return $this->hasOne('App\Profile');
     }
 
+
     public function isFollowing($id)
     {
         return Follow::where('follow_id', '=', $id)->where('user_id', Auth::id())->first();
     }
+
 
     public function followers($id)
     {
