@@ -28,7 +28,7 @@ class RatingController extends Controller
 
             }
         }
-        
+
         $user = Auth::user();
         $image = Image::findOrFail($image_id);
 

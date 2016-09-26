@@ -275,7 +275,7 @@ a:hover {
     margin-bottom: 2em;
 }
 
-.user-liked, .image-like-btn:hover {
+.user-liked, .image-like-btn:enabled:hover {
     color: #eee;
     background-color: #37bb5d;
     border-color: #fff;
@@ -285,7 +285,7 @@ a:hover {
     transition: all .3s;
 }
 
-.user-disliked, .image-dislike-btn:hover {
+.user-disliked, .image-dislike-btn:enabled:hover {
     color: #eee;
     background-color: #ba3838;
     border-color: #fff;
