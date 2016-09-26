@@ -118,7 +118,7 @@ class ImageController extends Controller
         // followers count for header
         $followers = Follow::where('follow_id', '=', $user->id)->count();
 
-        return view('profile.image', [
+        return view('images.image', [
             'user' => $user,
             'image' => $image,
             'likes' => $likesAmount,
