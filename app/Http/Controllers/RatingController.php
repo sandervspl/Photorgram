@@ -7,6 +7,7 @@ use App\Rating;
 use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 class RatingController extends Controller
@@ -16,20 +17,21 @@ class RatingController extends Controller
         $image_id = $request->get('image_id');
         $rating_id = $request->get('rating_id');
         $rated = $request->get('user_rated');
+        $user = Auth::user();
 
         if ($rated) {
+            // remove rating
+            DB::table('image_rating')->where([
+                ['image_id', '=', $image_id],
+                ['user_id', '=', $user->id]
+            ])->delete();
+
+            // only remove rating if we click the same rating button
             if ($rated === $rating_id) {
-                // remove rating
-
-
-            } else {
-                // replace rating
-
-
+                return Redirect::back();
             }
         }
 
-        $user = Auth::user();
         $image = Image::findOrFail($image_id);
 
         $image->ratings()->attach($rating_id, ['user_id' => $user->id]);

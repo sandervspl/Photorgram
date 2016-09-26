@@ -14,17 +14,37 @@ html, body {
 }
 
 footer {
-    width: 100%;
-    height: 50px;
-    background-color: #3b3b3b;
-
-    font-weight: 600;
-    align-items: center;
-    justify-items: center;
-
     display: flex;
-    position: relative;
-    z-index: 1;
+    width: 100%;
+    min-height: 50px;
+    padding: 2.5em;
+    margin-top: 5em;
+    color: #eee;
+    font-size: .75em;
+    background-color: #3b3b3b;
+}
+
+footer section {
+    margin: auto;
+}
+
+footer section .content .part {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 15px;
+}
+
+footer h3 {
+    margin-top: 0;
+}
+
+footer a, footer a:hover {
+    cursor: pointer;
+    color: #eee;
+}
+
+footer p {
+    margin: 0 0 5px;
 }
 
 ul {
@@ -224,7 +244,7 @@ a:hover {
 }
 
 .image-info-description .description {
-    padding: .5em;
+    padding: .5em .5em 4em;
     height: 175px;
     overflow-y: scroll;
     border-right: 1px solid rgba(0, 0, 0, 0.2);
@@ -293,4 +313,30 @@ a:hover {
     -moz-transition: all .3s;
     -o-transition: all .3s;
     transition: all .3s;
+}
+
+.fadeout {
+    position: relative;
+    bottom: 4em;
+    height: 4em;
+    background: -webkit-linear-gradient(
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 1) 100%
+    );
+    background-image: -moz-linear-gradient(
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 1) 100%
+    );
+    background-image: -o-linear-gradient(
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 1) 100%
+    );
+    background-image: linear-gradient(
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 1) 100%
+    );
+    background-image: -ms-linear-gradient(
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 1) 100%
+    );
 }

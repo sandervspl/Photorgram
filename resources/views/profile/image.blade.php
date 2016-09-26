@@ -47,6 +47,7 @@
                     <div class="description">
                         <pre>{{ $image->description }}</pre>
                     </div>
+                    <div class="fadeout"></div>
                 </div>
 
 
