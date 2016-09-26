@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Rating;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use \Storage;
@@ -159,5 +160,11 @@ class ImageController extends Controller
         $image->save();
 
         return Redirect::to(action('ProfileController@index'));
+    }
+
+    public function ratings($imagename)
+    {
+        $image = Image::where('image_uri', '=', $imagename)->first();
+        return view('images.rating')->with(['image' => $image]);
     }
 }

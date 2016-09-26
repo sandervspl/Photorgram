@@ -15,7 +15,7 @@
 
             @include('partials/following_button')
 
-            <h5 id="profile-followers">100 Followers</h5>
+            <h4 id="profile-followers">{{ $followers }} <b>Followers</b></h4>
         </div>
     </div>
 
@@ -51,39 +51,53 @@
 
 
                 <div class="image-info-rating">
-                    @if(Auth::Guest())
+                    @if (Auth::Guest())
                         <?php $disabled = 'disabled' ?>
                     @else
                         <?php $disabled = '' ?>
                     @endif
 
+                    @if ($userHasRated == '1')
+                        <?php $likedStyle = ' user-liked'; $dislikedStyle = ''; ?>
+                    @elseif ($userHasRated == '2')
+                            <?php $likedStyle = ''; $dislikedStyle = ' user-disliked'; ?>
+                    @else
+                            <?php $likedStyle = ''; $dislikedStyle = ''; ?>
+                    @endif
+
                     {!! Form::open([
-                            'action' => 'RatingController@like',
+                            'action' => 'RatingController@rate',
                             'class'  => 'horizontal-form rating-form'
                         ])
                     !!}
 
-                    {!! Form::hidden('image_id', $image->image_uri) !!}
-                    {!! Form::hidden('rating', 1) !!}
-                    {!! Form::submit('Like', ['class' => 'btn btn-default profile-buttons', $disabled]) !!}
+                    {!! Form::hidden('image_id', $image->id) !!}
+                    {!! Form::hidden('rating_id', 1) !!}
+                    {!! Form::hidden('user_rated', $userHasRated) !!}
+                    {!! Form::submit('Like', ['class' => 'btn btn-default profile-buttons image-like-btn'.$likedStyle, $disabled]) !!}
 
                     {!! Form::close() !!}
 
                     <span>{{ $likes }}</span>
 
                     {!! Form::open([
-                            'action' => 'RatingController@dislike',
+                            'action' => 'RatingController@rate',
                             'class'  => 'horizontal-form rating-form'
                         ])
                     !!}
 
-                    {!! Form::hidden('image_id', $image->image_uri) !!}
-                    {!! Form::hidden('rating', 0) !!}
-                    {!! Form::submit('Disike', ['class' => 'btn btn-default profile-buttons', $disabled]) !!}
+                    {!! Form::hidden('image_id', $image->id) !!}
+                    {!! Form::hidden('rating_id', 2) !!}
+                    {!! Form::hidden('user_rated', $userHasRated) !!}
+                    {!! Form::submit('Dislike', ['class' => 'btn btn-default profile-buttons image-dislike-btn'.$dislikedStyle, $disabled]) !!}
 
                     {!! Form::close() !!}
 
                     <span>{{ $dislikes }}</span>
+
+                    <div>
+                        <a href="{{ action('ImageController@ratings', $image->image_uri) }}">Ratings Overview</a>
+                    </div>
                 </div>
             </div>
         </div>

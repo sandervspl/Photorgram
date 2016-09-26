@@ -9,8 +9,9 @@ Route::get('/images/all', 'ImageController@all');
 Route::get('/images/upload', 'ImageController@upload');
 Route::get('/images/result', 'ImageController@result');
 Route::get('/images/category/{categoryname}', 'ImageController@category');
-Route::get('/images/{id}', 'ImageController@show');
+Route::get('/images/{imagename}', 'ImageController@show');
 Route::get('/images/{imagename}/edit', 'ImageController@edit');
+Route::get('/images/{imagename}/ratings', 'ImageController@ratings');
 Route::post('/images/edit', 'ImageController@update');
 Route::post('/images/upload', 'ImageController@process');
 
@@ -26,8 +27,7 @@ Route::post('/profile/update', 'ProfileController@update');
 Route::post('/follow', 'FollowController@follow');
 Route::post('/unfollow', 'FollowController@unfollow');
 
-Route::post('/like', 'RatingController@like');
-Route::post('/dislike', 'RatingController@dislike');
+Route::post('/rate', 'RatingController@rate');
 
 Route::post('/user/update', 'UserController@update');
 

@@ -274,3 +274,23 @@ a:hover {
 #edit-account-menu {
     margin-bottom: 2em;
 }
+
+.user-liked, .image-like-btn:hover {
+    color: #eee;
+    background-color: #37bb5d;
+    border-color: #fff;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
+.user-disliked, .image-dislike-btn:hover {
+    color: #eee;
+    background-color: #ba3838;
+    border-color: #fff;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}

@@ -10,6 +10,7 @@ use App\User;
 use App\Image;
 use App\Profile;
 use Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 
@@ -102,10 +103,41 @@ class ProfileController extends Controller
             abort(403);
         }
 
-        $likes = Rating::where('image_id', '=', $imagename)->where('rating', '=', '1')->count();
-        $dislikes = Rating::where('image_id', '=', $imagename)->where('rating', '=', '0')->count();
+        // get all total ratings count for image
+        $likesAmount = 0;
+        if ($likes = $image->ratings->where('id', '=', '1')) {
+            $likesAmount = $likes->count();
+        }
 
-        return view('profile.image', ['user' => $user, 'image' => $image, 'likes' => $likes, 'dislikes' => $dislikes]);
+        $dislikesAmount = 0;
+        if ($dislikes = $image->ratings->where('id', '=', '2')) {
+            $dislikesAmount = $dislikes->count();
+        }
+
+        // check if logged-in user has rated this image and what he rated
+        $userHasRated = DB::table('image_rating')->where([
+            ['user_id', '=', Auth::id()],
+            ['image_id', '=', $image->id]
+        ])->first();
+
+
+        if ( ! is_null($userHasRated)) {
+            $userHasRated = $userHasRated->rating_id;
+        } else {
+            $userHasRated = 0;
+        }
+
+        // followers count for header
+        $followers = Follow::where('follow_id', '=', $user->id)->count();
+
+        return view('profile.image', [
+            'user' => $user,
+            'image' => $image,
+            'likes' => $likesAmount,
+            'dislikes' => $dislikesAmount,
+            'userHasRated' => $userHasRated,
+            'followers' => $followers
+        ]);
     }
 
     /**
