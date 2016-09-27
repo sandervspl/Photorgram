@@ -37,15 +37,4 @@ class FollowController extends Controller
 
         return Redirect::back();
     }
-
-    public function follows()
-    {
-        return $this->belongsToMany('App\User', 'follows', 'user_id', 'follows_id');
-    }
-
-    // wordt hasMany
-    public function followers()
-    {
-        return $this->belongsToMany('App\User', 'follows', 'follows_id', 'user_id');
-    }
 }

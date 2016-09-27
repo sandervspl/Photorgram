@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Image;
+use App\Image_Rating;
 use App\Rating;
 use Auth;
 use Illuminate\Http\Request;
@@ -21,10 +22,7 @@ class RatingController extends Controller
 
         if ($rated) {
             // remove rating
-            DB::table('image_rating')->where([
-                ['image_id', '=', $image_id],
-                ['user_id', '=', $user->id]
-            ])->delete();
+            Image_Rating::removeRating($user->id, $image_id);
 
             // only remove rating if we click the same rating button
             if ($rated === $rating_id) {
@@ -34,19 +32,8 @@ class RatingController extends Controller
 
         $image = Image::findOrFail($image_id);
 
+        // add to image_rating table
         $image->ratings()->attach($rating_id, ['user_id' => $user->id]);
-
-        return Redirect::back();
-    }
-
-    public function removeRating(Request $request)
-    {
-        $user = Auth::user();
-
-        $rating = Rating::where('user_id', $user->id)->where('image_id', $request->get('image_id'))->first();
-        if ($rating) {
-            Rating::destroy($rating->id);
-        }
 
         return Redirect::back();
     }

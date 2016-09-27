@@ -55,6 +55,6 @@ class User extends Authenticatable
 
     public function followers($id)
     {
-        return Follow::where('follow_id', '=', $id)->get();
+        return Follow::where('user_id', '=', $id)->get();
     }
 }

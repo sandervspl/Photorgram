@@ -44,9 +44,12 @@ class ProfileController extends Controller
             abort(404);
         }
 
-        $followers = Follow::where('follow_id', '=', $user->id)->count();
+        $followers = Follow::getFollowersCount($user->id);
 
-        return view('profile.index', ['user' => $user, 'followers' => $followers]);
+        return view('profile.index', [
+            'user' => $user,
+            'followers' => $followers
+        ]);
     }
 
 
@@ -63,7 +66,7 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
-        $profile = Profile::where('user_id', '=', Auth::id())->first();
+        $profile = Profile::getProfile(Auth::id());
 
         // set bio
         $profile->bio = $request->get('bio');

@@ -16,7 +16,10 @@ class Image extends Model
     ];
 
 
-
+    public static function getImageByName($image_name)
+    {
+        return Image::where('image_uri', '=', $image_name)->firstOrFail();
+    }
 
     public function ratings()
     {

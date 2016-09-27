@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Follow;
+use App\Image_Rating;
+use App\Rating;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use Illuminate\Support\Facades\DB;
 use \Storage;
 use App\Image;
 use App\User;
-use App\category;
+use App\Category;
 use Auth;
 use Illuminate\Support\Facades\Redirect;
 
@@ -69,17 +70,21 @@ class ImageController extends Controller
     public function category($categoryname)
     {
         $categories = Category::all();
-        $category = Category::where('name', '=', $categoryname)->first();
+        $category = Category::getCategoryByName($categoryname);
         $images = $category->images;
 
-        return view('images.category', ['categoryname' => $categoryname, 'categories' => $categories, 'images' => $images]);
+        return view('images.category', [
+            'categoryname' => $categoryname,
+            'categories' => $categories,
+            'images' => $images
+        ]);
     }
 
 
     public function show($imagename)
     {
         // try to get image
-        $image = Image::where('image_uri', '=', $imagename)->firstOrFail();
+        $image = Image::getImageByName($imagename);
 
         // try to get owner of this image
         $user = User::findOrFail($image->user_id);
@@ -93,30 +98,14 @@ class ImageController extends Controller
         }
 
         // get all total ratings count for image
-        $likesAmount = 0;
-        if ($likes = $image->ratings->where('id', '=', '1')) {
-            $likesAmount = $likes->count();
-        }
-
-        $dislikesAmount = 0;
-        if ($dislikes = $image->ratings->where('id', '=', '2')) {
-            $dislikesAmount = $dislikes->count();
-        }
+        $likesAmount = Image_Rating::getLikesCountForImage($image->id);
+        $dislikesAmount = Image_Rating::getDislikesCountForImage($image->id);
 
         // check if logged-in user has rated this image and what he rated
-        $userHasRated = DB::table('image_rating')->where([
-            ['user_id', '=', Auth::id()],
-            ['image_id', '=', $image->id]
-        ])->first();
-
-        if ( ! is_null($userHasRated)) {
-            $userHasRated = $userHasRated->rating_id;
-        } else {
-            $userHasRated = 0;
-        }
+        $userHasRated = Image_Rating::userHasRated(Auth::id(), $image->id);
 
         // followers count for header
-        $followers = Follow::where('follow_id', '=', $user->id)->count();
+        $followers = Follow::getFollowersCount($user->id);
 
         return view('images.image', [
             'user' => $user,
@@ -175,12 +164,12 @@ class ImageController extends Controller
             abort(403);
 
         $user = User::findOrFail(Auth::id());
-        $image = Image::where('image_uri', '=', $imagename)->firstOrFail();
+        $image = Image::getImageByName($imagename);
 
         $verify = $user->images->contains($image->id);
 
         // forbidden
-        if (! $verify) {
+        if ( ! $verify) {
             abort(403);
         }
 
@@ -199,7 +188,7 @@ class ImageController extends Controller
         $image->description = $request->get('description');
         $image->save();
 
-        return Redirect::to(action('ProfileController@index'));
+        return Redirect::to(action('ImageController@show', $image->image_uri));
     }
 
 
