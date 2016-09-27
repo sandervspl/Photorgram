@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Image;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use Illuminate\Support\Facades\Redirect;
 
 class SearchController extends Controller
 {

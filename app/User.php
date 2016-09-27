@@ -57,4 +57,10 @@ class User extends Authenticatable
     {
         return Follow::where('user_id', '=', $id)->get();
     }
+
+
+    public static function getAllFollowing($user_id)
+    {
+        return Follow::where('user_id', '=', $user_id)->get();
+    }
 }

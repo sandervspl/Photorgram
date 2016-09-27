@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Image extends Model
 {
@@ -21,12 +22,26 @@ class Image extends Model
         return Image::where('image_uri', '=', $image_name)->firstOrFail();
     }
 
+
     public static function getAllImagesWithQuery($query)
     {
         return Image::where('title', 'like', '%'.$query.'%')
             ->orWhere('description', 'like', '%'.$query.'%')
             ->get();
     }
+
+
+    public static function getAllImagesFromProfiles($profiles)
+    {
+        $query = DB::table('images');
+
+        foreach($profiles as $profile) {
+            $query->orWhere('user_id', '=', $profile->follow_id);
+        }
+
+        return $query->orderBy('created_at', 'desc')->get();
+    }
+
 
     public function ratings()
     {
