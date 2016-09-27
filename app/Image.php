@@ -21,6 +21,13 @@ class Image extends Model
         return Image::where('image_uri', '=', $image_name)->firstOrFail();
     }
 
+    public static function getAllImagesWithQuery($query)
+    {
+        return Image::where('title', 'like', '%'.$query.'%')
+            ->orWhere('description', 'like', '%'.$query.'%')
+            ->get();
+    }
+
     public function ratings()
     {
         return $this->belongsToMany('App\Rating');

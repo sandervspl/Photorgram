@@ -113,6 +113,7 @@ a:hover {
     margin: auto;
     padding-top: 7px;
     width: 70%;
+    z-index: 2;
 }
 
 .navbar ul li, #edit-account-menu ul li {
@@ -128,6 +129,7 @@ a:hover {
 }
 
 .navbar-right {
+    font-size: .8em;
     float: right;
 }
 
@@ -271,10 +273,14 @@ a:hover {
 }
 
 .image-info-description .description {
-    padding: .5em .5em 4em;
+    padding: .5em .5em 2em;
     height: 175px;
     overflow-y: scroll;
     border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.ratings-link-container {
+    margin-left: .65em;
 }
 
 .image-info-description .description pre {
@@ -285,10 +291,6 @@ a:hover {
     border: none;
     white-space: normal;
     word-break: normal;
-}
-
-.image-info-rating {
-    margin-top: 2em;
 }
 
 .image-info-rating #dislike {
@@ -366,4 +368,73 @@ a:hover {
             rgba(255, 255, 255, 0) 0%,
             rgba(255, 255, 255, 1) 100%
     );
+}
+
+#searchbar {
+    position: relative;
+    z-index: 1;
+    height: 0;
+    width: 100%;
+    background: #eee;
+    -webkit-transition: height .3s ease-in-out;
+    -moz-transition: height .3s ease-in-out;
+    -o-transition: height .3s ease-in-out;
+    transition: height .3s ease-in-out;
+}
+
+#searchbar.show {
+    height: 70px;
+}
+
+#search-btn {
+    position: relative;
+    top: 7px;
+    margin-left: 10px;
+    width: 20px;
+    height: 20px;
+    background: transparent url('../img/search3.png') 0 0 no-repeat;
+    background-size: 20px;
+    border: 0;
+}
+
+#searchbar-form {
+    position: relative;
+    z-index: 1;
+    top: -5px;
+}
+
+#searchbar-input {
+    position: relative;
+    z-index: 1;
+    border: none;
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    padding-left: 4.8em;
+    font-size: 2.5em;
+}
+
+#searchbar-clear {
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    width: 30px;
+    right: 11em;
+    top: -3.4em;
+    float: right;
+    opacity: 0;
+    pointer-events: none;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+#searchbar-clear.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.alt-title {
+    margin-top: -1em;
 }

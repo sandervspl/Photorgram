@@ -23,6 +23,9 @@ Route::get('/profile/{userid}', 'ProfileController@show');
 Route::get('/{userid}', 'ProfileController@show');
 Route::post('/profile/update', 'ProfileController@update');
 
+Route::get('/search/{images}', 'SearchController@show');
+Route::post('/search', 'SearchController@search');
+
 Route::post('/follow', 'FollowController@follow');
 Route::post('/unfollow', 'FollowController@unfollow');
 

@@ -97,7 +97,7 @@
 
                         <span>{{ $dislikes }}</span>
 
-                        <div>
+                        <div class="ratings-link-container">
                             <a href="{{ action('ImageController@ratings', $image->image_uri) }}">Ratings Overview</a>
                         </div>
                     </div>

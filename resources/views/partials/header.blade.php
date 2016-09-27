@@ -1,6 +1,3 @@
-<?php
-?>
-
 <header>
     <div class="navbar">
         <div class="navbar-left">
@@ -53,8 +50,28 @@
                     </ul>
                 </div>
                 </li>
+                <li>
+                    <button id="search-btn"></button>
+                </li>
             @endif
             </ul>
         </div>
     </div>
 </header>
+<div id="searchbar">
+    {!! Form::open([
+            'action' => 'SearchController@search',
+            'id'     => 'searchbar-form'
+        ])
+    !!}
+
+    {!! Form::label('', '') !!}
+    {!! Form::text('search', '', [
+        'required' => 'required',
+        'id' => 'searchbar-input',
+        'placeholder' => 'What are you looking for?'
+    ]) !!}
+
+    {!! Form::close() !!}
+    <img src="img/clear.png" alt="clear" id="searchbar-clear">
+</div>
