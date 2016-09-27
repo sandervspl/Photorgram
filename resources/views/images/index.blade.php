@@ -19,7 +19,7 @@
                                 @if(isset($images[$i][$j]) && $images[$i][$j]['category_id'] == $category->id)
                                     <div class="image-thumbnail-small">
                                         <a href="{{ action('ImageController@show', ['image' => $images[$i][$j]['image_uri']]) }}">
-                                            <img src="{{ url('/uploads/'.$images[$i][$j]['image_uri']) }}" alt="image">
+                                            <img src="{{ url('/uploads/'.$images[$i][$j]['image_uri']) }}"  alt="{{ $images[$i][$j]['title'] }}" title="{{ $images[$i][$j]['title'] }}">
                                         </a>
                                     </div>
                                 @endif

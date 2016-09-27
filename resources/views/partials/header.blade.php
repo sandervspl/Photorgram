@@ -73,5 +73,5 @@
     ]) !!}
 
     {!! Form::close() !!}
-    <img src="img/clear.png" alt="clear" id="searchbar-clear">
+    <img src="{{ url('img/clear.png') }}" alt="clear" id="searchbar-clear">
 </div>
