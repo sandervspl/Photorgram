@@ -3,6 +3,7 @@
 @section('content')
 <section class="main-article">
     <h1>Ratings</h1>
+
     <div class="row">
         <div class="image-body col-md-3">
             <a href="{{ url('images/'.$image->image_uri) }}">

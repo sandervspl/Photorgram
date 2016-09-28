@@ -540,7 +540,6 @@ h4.user.feed {
 }
 
 .admin-page tr.users-data {
-    /*margin-bottom: 1em;*/
     border-bottom: 1px solid #eee;
 }
 
@@ -558,4 +557,12 @@ tr.users-data td span {
 
 .role-filter-list-item, .add-new-category-btn {
     float: right;
+}
+
+.admin-role-dropdown {
+    min-width: 50%;
+}
+
+.remove-btn {
+    margin-left: 2em;
 }

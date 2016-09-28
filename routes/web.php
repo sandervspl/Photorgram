@@ -12,6 +12,8 @@ Route::get('/images/category/{categoryname}', 'ImageController@category');
 Route::get('/images/{imagename}', 'ImageController@show');
 Route::get('/images/{imagename}/edit', 'ImageController@edit');
 Route::get('/images/{imagename}/ratings', 'ImageController@ratings');
+Route::get('/images/{imagename}/remove', 'ImageController@confirmRemove');
+Route::post('images/remove', 'ImageController@remove');
 Route::post('/images/edit', 'ImageController@update');
 Route::post('/images/upload', 'ImageController@process');
 

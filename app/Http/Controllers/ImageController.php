@@ -191,6 +191,44 @@ class ImageController extends Controller
     }
 
 
+    public function confirmRemove($image_name)
+    {
+        $image = Image::getImageByName($image_name);
+
+        if (Auth::Guest())
+            abort(404);
+
+        if ($image->user_id != Auth::id())
+            abort(403);
+
+        if ($image->user_id != Auth::id() && User::findOrFail(Auth::id())->role < 4)
+            abort(403);
+
+        return view('images.remove')->with([
+            'image' => $image
+        ]);
+    }
+
+
+    public function remove(Request $request)
+    {
+        $image = Image::findOrFail($request->get('image_id'));
+
+        if (Auth::Guest())
+            abort(404);
+
+        if ($image->user_id != Auth::id())
+            abort(403);
+
+        if ($image->user_id != Auth::id() && User::findOrFail(Auth::id())->role < 4)
+            abort(403);
+
+        $image->delete();
+
+        return Redirect::to(action('ProfileController@index'));
+    }
+
+
     public function ratings($imagename)
     {
         $image = Image::getImageByName($imagename);

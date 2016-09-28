@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Image;
 use App\Image_Rating;
-use App\Rating;
 use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 class RatingController extends Controller

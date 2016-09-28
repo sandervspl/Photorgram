@@ -58,7 +58,7 @@
                         ],
                         $user->role,
                         [
-                            'class'       => 'form control input-sm',
+                            'class'       => 'form control input-sm admin-role-dropdown',
                             'required'    => 'required',
                             'onchange'    => 'this.form.submit()'
                         ]

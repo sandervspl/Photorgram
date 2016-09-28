@@ -10,7 +10,7 @@
         @foreach($images as $image)
             <div class="image-thumbnail">
                 <a href="{{ action('ImageController@show', ['image' => $image->image_uri]) }}">
-                    <img src="{{ url('uploads/'.$image->image_uri) }}" alt="image">
+                    <img src="{{ url('uploads/'.$image->image_uri) }}" alt="{{ $image->title }}" title="{{ $image->title }}">
                 </a>
             </div>
         @endforeach

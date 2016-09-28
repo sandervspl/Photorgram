@@ -14,7 +14,9 @@
 
         <div class="edit-image col-md-3">
             <div class="form-group">
-                <img src="{{ '/uploads/'.$image->image_uri }}" alt="image" class="col-md-4 image-body-src">
+                <a href="{{ url('images/'.$image->image_uri) }}">
+                    <img src="{{ '/uploads/'.$image->image_uri }}" class="col-md-4 image-body-src" alt="{{ $image->title }}" title="{{ $image->title }}">
+                </a>
             </div>
         </div>
 
