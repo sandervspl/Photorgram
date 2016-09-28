@@ -20,7 +20,6 @@ Route::get('/profile/edit', 'ProfileController@editProfile');
 Route::get('/profile/edit/profile', 'ProfileController@editProfile');
 Route::get('/profile/edit/account', 'ProfileController@editAccount');
 Route::get('/profile/{userid}', 'ProfileController@show');
-Route::get('/{userid}', 'ProfileController@show');
 Route::post('/profile/update', 'ProfileController@update');
 
 Route::get('/search/{images}', 'SearchController@show');
@@ -32,6 +31,13 @@ Route::post('/unfollow', 'FollowController@unfollow');
 Route::post('/rate', 'RatingController@rate');
 
 Route::post('/user/update', 'UserController@update');
+
+Route::get('/admin', 'AdminController@index');
+Route::get('/admin/categories', 'AdminController@categories');
+Route::post('/admin/updaterole', 'AdminController@updateRole');
+
+// wildcard acting as a profile url !! always have as last route !!
+Route::get('/{userid}', 'ProfileController@show');
 
 Auth::routes();
 Auth::routes();

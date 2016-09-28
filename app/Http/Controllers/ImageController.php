@@ -46,7 +46,7 @@ class ImageController extends Controller
 
             foreach ($all_img as $image) {
                 $temp_array[] = $image;
-                if (++$i >= 3)
+                if (++$i >= 5)
                     break;
             }
 

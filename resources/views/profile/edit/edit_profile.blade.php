@@ -17,8 +17,8 @@
             !!}
 
             <div class="form-group">
-                {!! Form::label('image', 'Profile Picture', ['class' => 'col-sm-2 control-label']) !!}
-                <div class="col-sm-2">
+                {!! Form::label('image', 'Profile Picture', ['class' => 'col-sm-3 control-label']) !!}
+                <div class="col-sm-3">
                     {!! Form::file(
                             'image',
                             null,
@@ -33,15 +33,15 @@
 
 
             <div class="form-group">
-                {!! Form::label('bio', 'Bio', ['class' => 'col-sm-2 control-label']) !!}
-                <div class="col-sm-10">
+                {!! Form::label('bio', 'Bio', ['class' => 'col-sm-3 control-label']) !!}
+                <div class="col-sm-9">
                     {!! Form::textarea('bio', $user->profile->bio, ['class' => 'form-control']) !!}
                 </div>
             </div>
 
 
             <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
+                <div class="col-sm-offset-3 col-sm-9">
                     {!! Form::submit('Save Changes', ['class' => 'btn btn-primary']) !!}
                 </div>
             </div>

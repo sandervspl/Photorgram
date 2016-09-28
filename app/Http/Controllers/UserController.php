@@ -21,7 +21,7 @@ class UserController extends Controller
         $password = $request->get('password');
 
         if ( ! is_null($password) && $password != '') {
-            $user->password =Hash::make($password);
+            $user->password = Hash::make($password);
         }
 
         $user->save();

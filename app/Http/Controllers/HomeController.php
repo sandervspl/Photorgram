@@ -31,10 +31,14 @@ class HomeController extends Controller
         // get all profiles he follows
         $following = User::getAllFollowing($user->id);
 
-        // get all images these profiles have posted
-        // and order them latest to oldest
-        $images = Image::getAllImagesFromProfiles($following);
+        if ($following->count() > 0) {
+            // get all images these profiles have posted
+            // and order them latest to oldest
+            $images = Image::getAllImagesFromProfiles($following);
 
-        return view('index')->with('images', $images);
+            return view('index')->with('images', $images);
+        }
+
+        return view('index');
     }
 }

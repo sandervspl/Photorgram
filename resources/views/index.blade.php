@@ -2,6 +2,7 @@
 @section('title', 'Frontpage')
 @section('content')
 <section class="main-article feed">
+    @if (isset($images))
     <div class="feed-images">
         @foreach($images as $image)
             <div class="feed-image">
@@ -36,5 +37,9 @@
             </div>
         @endforeach
     </div>
+    @else
+    <h1>Feed</h1>
+    <p>You are not following any profiles!</p>
+    @endif
 </section>
 @stop

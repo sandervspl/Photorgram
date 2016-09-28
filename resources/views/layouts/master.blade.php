@@ -4,7 +4,11 @@
     <title>Photogram - @yield('title')</title>
 </head>
 <body>
-    @include('partials/header')
+    @if ( ! Auth::Guest() && App\User::findOrFail(Auth::id())->role == 4)
+        @include('partials/header_admin')
+    @else
+        @include('partials/header')
+    @endif
 
     <div class="container">
         @yield('content')

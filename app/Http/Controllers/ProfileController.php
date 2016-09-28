@@ -26,18 +26,30 @@ class ProfileController extends Controller
         return $randomString;
     }
 
+    private function forbiddenAccess($user_name)
+    {
+        return ($user_name == 'administrator');
+    }
+
 
     public function index()
     {
         $username = Auth::user()->name;
+
+        if ($this->forbiddenAccess($username))
+            abort(404);
+
         return Redirect::to('/'.$username);
     }
 
 
-    public function show($name)
+    public function show($username)
     {
+        if ($this->forbiddenAccess($username))
+            abort(404);
+
         // look for user with this name
-        $user = User::getUserByName($name);
+        $user = User::getUserByName($username);
 
         // if it does not exist, show 404 page
         if (is_null($user)) {
@@ -58,7 +70,13 @@ class ProfileController extends Controller
         if (Auth::Guest())
             abort(403);
 
-        return view('profile.edit.edit_account');
+        $user = User::findOrFail(Auth::id());
+
+//        if ($user->role == 4) {
+//            return view('profile.edit.edit_account', ['user' => Auth::User()]);
+//        }
+
+        return view('profile.edit.edit_account', ['user' => $user]);
     }
 
     public function editProfile()

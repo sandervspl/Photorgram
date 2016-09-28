@@ -82,6 +82,10 @@ h1, h2, h3 {
     margin-bottom: .7em;
 }
 
+table {
+    width: 100%;
+}
+
 .container {
     min-height: 100%;
 }
@@ -97,8 +101,12 @@ h1, h2, h3 {
 header {
     width: 100%;
     height: 50px;
-    background-color: white;
+    background-color: #fff;
     box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+}
+
+header.admin {
+    background-color: #6a93bb;
 }
 
 header a {
@@ -520,4 +528,34 @@ h4.user.feed {
 
 .ratings-dislike ul li::before {
     color: #ba3838;
+}
+
+.admin-page table {
+    table-layout: fixed;
+}
+
+.admin-page th {
+    font-size: 2em;
+    padding-bottom: .75em;
+}
+
+.admin-page tr.users-data {
+    /*margin-bottom: 1em;*/
+    border-bottom: 1px solid #eee;
+}
+
+tr.spacer {
+    height: 1.5em;
+}
+
+tr.users-data td span {
+    padding: 0 .3em;
+}
+
+#edit-account-menu ul li .filter-role-container .dropdown ul.dropdown-menu li {
+    display: block;
+}
+
+.role-filter-list-item, .add-new-category-btn {
+    float: right;
 }
