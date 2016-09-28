@@ -4,6 +4,7 @@
             <div class="part">
                 <h3>Website</h3>
                 <p><a href="{{ url('/about') }}">About</a></p>
+                <p><a href="{{ url('/credits') }}">Credits</a></p>
             </div>
 
             <div class="part">

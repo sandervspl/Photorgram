@@ -37,7 +37,7 @@ class ProfileController extends Controller
     public function show($name)
     {
         // look for user with this name
-        $user = User::where('name', '=', $name)->first();
+        $user = User::getUserByName($name);
 
         // if it does not exist, show 404 page
         if (is_null($user)) {
@@ -55,11 +55,17 @@ class ProfileController extends Controller
 
     public function editAccount()
     {
+        if (Auth::Guest())
+            abort(403);
+
         return view('profile.edit.edit_account');
     }
 
     public function editProfile()
     {
+        if (Auth::Guest())
+            abort(403);
+
         return view('profile.edit.edit_profile');
     }
 

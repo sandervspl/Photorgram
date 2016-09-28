@@ -129,7 +129,7 @@ a:hover {
 }
 
 .navbar-right {
-    font-size: .8em;
+    font-size: .85em;
     float: right;
 }
 
@@ -491,6 +491,33 @@ h4.user.feed {
     border-radius: 50%;
 }
 
-.feed-image {
+.title-like::before, .title-dislike::before/*, .ratings-like ul li::before, .ratings-dislike ul li::before*/ {
+    position: relative;
+    display: inline-block;
+    content: '';
+    width: 1em;
+    height: 1em;
+    margin-right: .5em;
+}
 
+.title-like::before {
+    background: transparent url('../img/like.png') no-repeat;
+    background-size: 1em;
+}
+
+.title-dislike::before {
+    background: transparent url('../img/dislike.png') no-repeat;
+    background-size: 1em;
+}
+
+.ratings-like ul li::before, .ratings-dislike ul li::before {
+    content: "•";
+    color: #37bb5d;
+    font-size: 2em;
+    vertical-align: middle;
+    margin-right: .25em;
+}
+
+.ratings-dislike ul li::before {
+    color: #ba3838;
 }

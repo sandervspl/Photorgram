@@ -22,7 +22,7 @@ class RatingController extends Controller
 
         if ($rated) {
             // remove rating
-            Image_Rating::removeRating($user->id, $image_id);
+            Image_Rating::removeRatingFromUser($user->id, $image_id);
 
             // only remove rating if we click the same rating button
             if ($rated === $rating_id) {

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Follow;
 use App\Image_Rating;
-use App\Rating;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use \Storage;
@@ -194,7 +193,14 @@ class ImageController extends Controller
 
     public function ratings($imagename)
     {
-        $image = Image::where('image_uri', '=', $imagename)->first();
-        return view('images.rating')->with(['image' => $image]);
+        $image = Image::getImageByName($imagename);
+        $likes = Image_Rating::getLikesForImage($image->id);
+        $dislikes = Image_Rating::getDislikesForImage($image->id);
+
+        return view('images.rating')->with([
+            'image' => $image,
+            'likes' => $likes,
+            'dislikes' => $dislikes
+        ]);
     }
 }

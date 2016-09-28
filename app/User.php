@@ -47,12 +47,6 @@ class User extends Authenticatable
     }
 
 
-    public function isFollowing($id)
-    {
-        return Follow::where('follow_id', '=', $id)->where('user_id', Auth::id())->first();
-    }
-
-
     public function followers($id)
     {
         return Follow::where('user_id', '=', $id)->get();
@@ -62,5 +56,17 @@ class User extends Authenticatable
     public static function getAllFollowing($user_id)
     {
         return Follow::where('user_id', '=', $user_id)->get();
+    }
+
+
+    public static function isFollowing($id)
+    {
+        return Follow::where('follow_id', '=', $id)->where('user_id', Auth::id())->first();
+    }
+
+
+    public static function getUserByName($user_name)
+    {
+        return User::where('name', '=', $user_name)->firstOrFail();
     }
 }
