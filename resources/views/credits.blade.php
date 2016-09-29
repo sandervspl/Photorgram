@@ -7,7 +7,7 @@
 
         <div class="article-container">
             <h2>Artwork —</h2>
-            <ul class="credits-list">
+            <ul class="bulleted-list">
                 <li>PCMPixels</li>
                 <li>Shashank Sahay</li>
                 <li>artworkbean</li>

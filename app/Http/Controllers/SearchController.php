@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Image;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -13,7 +14,13 @@ class SearchController extends Controller
         $query = $request->get('search');
         $images = Image::getAllImagesWithQuery($query);
 
-        return view('search.index')->with(['images' => $images, 'query' => $query]);
+        $categories = Category::getAllCategoriesWithQuery($query);
+
+        return view('search.index', [
+            'images' => $images,
+            'query' => $query,
+            'categories' => $categories
+        ]);
     }
 
     public function show()

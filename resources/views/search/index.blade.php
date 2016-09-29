@@ -6,17 +6,33 @@
         <h4 class="alt-title">You searched for "{{ $query }}"</h4>
 
         <div class="article-container">
-            <div class="images clearfix">
-            @foreach($images as $image)
-                <div class="image-thumbnail">
-                    <a href="{{ action('ImageController@show', ['image' => $image->image_uri]) }}">
-                        <img src="{{ url('/uploads/'.$image->image_uri) }}" alt="{{ $image->title }}" title="{{ $image->title }}">
-                    </a>
-                </div>
-            @endforeach
-            @if($images->count() == 0)
-                <p>There are no images like that, sorry.</p>
-            @endif
+            <div class="search-result categories">
+                @if($categories->count() > 0)
+                    <h2>Categories</h2>
+
+                    <ul>
+                    @foreach($categories as $category)
+                        <li class="search-category">
+                            <a href="{{ url('/images/category/'.$category->name) }}"> {{ $category->name }} </a>
+                        </li>
+                    @endforeach
+                    </ul>
+                @endif
+            </div>
+
+            <div class="search-result images">
+                <h2>Images</h2>
+                @if($images->count() == 0)
+                    <p>There are no images like that, sorry.</p>
+                @else
+                    @foreach($images as $image)
+                        <div class="image-thumbnail">
+                            <a href="{{ action('ImageController@show', ['image' => $image->image_uri]) }}">
+                                <img src="{{ url('/uploads/'.$image->image_uri) }}" alt="{{ $image->title }}" title="{{ $image->title }}">
+                            </a>
+                        </div>
+                    @endforeach
+                @endif
             </div>
         </div>
     </section>

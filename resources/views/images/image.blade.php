@@ -92,7 +92,8 @@
                     {!! Form::hidden('image_id', $image->id) !!}
                     {!! Form::hidden('rating_id', 1) !!}
                     {!! Form::hidden('user_rated', $userHasRated) !!}
-                    {!! Form::submit('Like', ['class' => 'btn btn-default profile-buttons image-like-btn'.$likedStyle, $disabled]) !!}
+
+                    {!! Form::submit('', ['class' => 'btn btn-default profile-buttons image-like-btn like-btn'.$likedStyle, $disabled]) !!}
 
                     {!! Form::close() !!}
 
@@ -107,7 +108,7 @@
                     {!! Form::hidden('image_id', $image->id) !!}
                     {!! Form::hidden('rating_id', 2) !!}
                     {!! Form::hidden('user_rated', $userHasRated) !!}
-                    {!! Form::submit('Dislike', ['class' => 'btn btn-default profile-buttons image-dislike-btn'.$dislikedStyle, $disabled]) !!}
+                    {!! Form::submit('', ['class' => 'btn btn-default profile-buttons image-dislike-btn dislike-btn'.$dislikedStyle, $disabled]) !!}
 
                     {!! Form::close() !!}
 

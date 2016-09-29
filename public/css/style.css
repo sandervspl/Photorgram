@@ -124,7 +124,7 @@ a:hover {
     z-index: 2;
 }
 
-.navbar ul li, #edit-account-menu ul li {
+.navbar ul li, #edit-account-menu ul li, .search-category {
     display: inline-block;
 }
 
@@ -311,7 +311,8 @@ a:hover {
 }
 
 .image-info-rating span {
-    margin-left: .5em;
+    margin-left: 2.25em;
+    vertical-align: top;
 }
 
 .btn-dark {
@@ -338,8 +339,7 @@ a:hover {
 }
 
 .user-liked, .image-like-btn:enabled:hover {
-    color: #eee;
-    background-color: #37bb5d;
+    background-color: rgba(55, 187, 93, 0.5);
     border-color: #fff;
     -webkit-transition: all .3s;
     -moz-transition: all .3s;
@@ -348,13 +348,32 @@ a:hover {
 }
 
 .user-disliked, .image-dislike-btn:enabled:hover {
-    color: #eee;
-    background-color: #ba3838;
+    background-color: rgba(186, 56, 56, 0.5);
     border-color: #fff;
     -webkit-transition: all .3s;
     -moz-transition: all .3s;
     -o-transition: all .3s;
     transition: all .3s;
+}
+
+.like-btn, .dislike-btn {
+    width: 150%;
+    padding: 10px 15px;
+    border: 1px solid #eee;
+}
+
+.like-btn {
+    background-image: url('../img/like.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 2em;
+}
+
+.dislike-btn {
+    background-image: url('../img/dislike.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 2em;
 }
 
 .fadeout {
@@ -563,10 +582,22 @@ tr.users-data td span {
     margin-left: 2em;
 }
 
-.credits-list {
+.bulleted-list {
     list-style: circle;
 }
 
 .remove-link {
     color: #ba3838;
+}
+
+.search-category {
+    font-size: 1.15em;
+}
+
+.search-category:not(:first-child) {
+    margin-left: 2em;
+}
+
+.search-result:not(:last-child) {
+    margin-bottom: 3em;
 }
