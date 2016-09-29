@@ -170,7 +170,7 @@ a:hover {
     color: #ba3838;
 }
 
-.image-thumbnail, .image-thumbnail img {
+.image-thumbnail {
     width: 250px;
     height: 250px;
     overflow: hidden;
@@ -189,20 +189,15 @@ a:hover {
     margin: 0 5px 5px 0;
 }
 
-.image-thumbnail-small img {
-    width: 125px;
-    height: 125px;
-    overflow: hidden;
-}
-
-.image-thumbnail-big, .image-thumbnail-big img {
+.image-thumbnail-big {
     width: 500px;
     height: 500px;
     overflow: hidden;
+    margin-bottom: 20px;
 }
 
-.image-thumbnail-big {
-    margin-bottom: 20px;
+.image-thumbnail img, .image-thumbnail-small img, .image-thumbnail-big img {
+    width: 100%;
 }
 
 #profile-follow-button, #profile-user-name, .rating-form, .followbutton {
@@ -565,4 +560,8 @@ tr.users-data td span {
 
 .remove-btn {
     margin-left: 2em;
+}
+
+.credits-list {
+    list-style: circle;
 }

@@ -1,4 +1,12 @@
-{!! Form::label('category', 'Category*', ['class' => 'col-sm-2 control-label']) !!}
+<?php
+
+if (isset($image)) {
+    $category = $image->category_id;
+} else {
+    $category = null;
+}
+
+?>
 <div class="col-sm-2">
     {!! Form::select(
             'category',
@@ -9,9 +17,11 @@
                 '4' => 'Meme',
                 '5' => 'Portrait',
                 '6' => 'People',
-                '7' => 'Animal'
+                '7' => 'Animal',
+                '8' => 'City',
+                '9' => 'Art'
             ],
-            null,
+            $category,
             [
                 'class'       => 'form control input-sm',
                 'placeholder' => 'Pick a category...',

@@ -29,6 +29,7 @@
 
 
         <div class="form-group">
+            {!! Form::label('category', 'Category*', ['class' => 'col-sm-2 control-label']) !!}
             @include('partials/category_select_form')
         </div>
 
