@@ -1,32 +1,18 @@
 <?php
-
 if (isset($image)) {
-    $category = $image->category_id;
+    $cur_category = $image->category_id;
 } else {
-    $category = null;
+    $cur_category = null;
 }
-
 ?>
 <div class="col-sm-2">
-    {!! Form::select(
-            'category',
-            [
-                '1' => 'Nature',
-                '2' => 'Comics',
-                '3' => 'Funny',
-                '4' => 'Meme',
-                '5' => 'Portrait',
-                '6' => 'People',
-                '7' => 'Animal',
-                '8' => 'City',
-                '9' => 'Art'
-            ],
-            $category,
-            [
-                'class'       => 'form control input-sm',
-                'placeholder' => 'Pick a category...',
-                'required'    => 'required'
-            ]
-        )
-    !!}
+    <select name="category" class="form-control input-sm" required>
+        @foreach($categories as $category)
+            @if ($category->id == $cur_category)
+                <option value="{{ $category->id }}" selected=>{{ $category->name }}</option>
+            @else
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endif
+        @endforeach
+    </select>
 </div>

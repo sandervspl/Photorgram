@@ -62,7 +62,9 @@ class ImageController extends Controller
         if (Auth::Guest())
             abort(403);
 
-        return view('upload.index');
+        $categories = Category::all();
+
+        return view('upload.index', compact('categories'));
     }
 
 
@@ -172,7 +174,9 @@ class ImageController extends Controller
             abort(403);
         }
 
-        return view('images.edit')->with('image', $image);
+        $categories = Category::all();
+
+        return view('images.edit', ['image' => $image, 'categories' => $categories]);
     }
 
 

@@ -42,8 +42,22 @@
 
             <div class="image-info-section">
                 <h4>{{ $image->created_at }}</h4>
-                <?php $categoryName = App\Category::find($image->category_id)->name ?>
-                <h4><a href="{{ url('/images/category/'.$categoryName) }}">{{ ucfirst(trans($categoryName)) }}</a></h4>
+
+                <?php
+                $categoryName = App\Category::find($image->category_id);
+                if ($categoryName == null) {
+                    $categoryName = 'undefined';
+                } else {
+                    $categoryName = $categoryName->name;
+                }
+                ?>
+                <h4>
+                    @if ($categoryName !== 'undefined')
+                    <a href="{{ url('/images/category/'.$categoryName) }}">{{ ucfirst(trans($categoryName)) }}</a>
+                    @else
+                    <span>{{ ucfirst(trans($categoryName)) }}</span>
+                    @endif
+                </h4>
 
                 <div class="image-info-description">
                     <small>Description</small>
