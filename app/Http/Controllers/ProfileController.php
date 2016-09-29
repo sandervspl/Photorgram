@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Follow;
-use App\Rating;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
-use App\Image;
 use App\Profile;
 use Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 

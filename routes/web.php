@@ -38,6 +38,12 @@ Route::post('/user/update', 'UserController@update');
 
 Route::get('/admin', 'AdminController@index');
 Route::get('/admin/categories', 'AdminController@categories');
+Route::get('/admin/categories/add', 'AdminController@addCategory');
+Route::get('/admin/categories/{categoryid}/edit', 'AdminController@editCategory');
+Route::get('/admin/categories/{categoryid}/remove', 'AdminController@removeCategory');
+Route::post('/admin/addCategory', 'CategoryController@add');
+Route::post('/admin/updateCategory', 'CategoryController@editName');
+Route::post('/admin/removeCategory', 'CategoryController@remove');
 Route::post('/admin/updaterole', 'AdminController@updateRole');
 
 // wildcard acting as a profile url !! always have as last route !!

@@ -450,6 +450,7 @@ a:hover {
 
 .alt-title {
     margin-top: -1em;
+    margin-bottom: 2em;
 }
 
 .feed-image {
@@ -564,4 +565,8 @@ tr.users-data td span {
 
 .credits-list {
     list-style: circle;
+}
+
+.remove-link {
+    color: #ba3838;
 }
