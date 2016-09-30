@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Role;
 use Auth;
 use App\User;
 use Illuminate\Http\Request;
@@ -39,16 +40,23 @@ class AdminController extends Controller
     }
 
 
-    public function updateRole(Request $request)
+    public function roles()
     {
         $this->userHasAccess();
 
-        $user = User::findOrFail($request->get('user_id'));
+        $roles = Role::all();
 
-        $user->role = $request->get('role');
-        $user->save();
+        return view('admin.roles', compact('roles'));
+    }
 
-        return Redirect::back();
+
+    public function userRoles($role_id)
+    {
+        $this->userHasAccess();
+
+        $users = User::getAllUsersWithRole($role_id);
+
+        return view('admin.role', compact('users', 'role_id'));
     }
 
 
@@ -71,5 +79,27 @@ class AdminController extends Controller
     {
         $category = Category::findOrFail($category_id);
         return view('admin.remove_category', ['category' => $category]);
+    }
+
+
+    public function addRole()
+    {
+        return view('admin.add_role');
+    }
+
+
+    public function editRole($role_id)
+    {
+        $this->userHasAccess();
+
+        $role = Role::findOrFail($role_id);
+        return view('admin.edit_role', ['role' => $role]);
+    }
+
+
+    public function removeRole($role_id)
+    {
+        $role = Role::findOrFail($role_id);
+        return view('admin.remove_role', ['role' => $role]);
     }
 }

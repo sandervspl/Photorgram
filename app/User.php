@@ -69,4 +69,10 @@ class User extends Authenticatable
     {
         return User::where('name', '=', $user_name)->firstOrFail();
     }
+
+
+    public static function getAllUsersWithRole($role_id)
+    {
+        return User::where('role', '=', $role_id)->get();
+    }
 }

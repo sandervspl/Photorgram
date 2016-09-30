@@ -13,7 +13,9 @@
                     <ul>
                     @foreach($categories as $category)
                         <li class="search-category">
-                            <a href="{{ url('/images/category/'.$category->name) }}"> {{ $category->name }} </a>
+                            <a href="{{ url('/images/category/'.$category->name) }}">
+                                {{ ucfirst(trans($category->name)) }}
+                            </a>
                         </li>
                     @endforeach
                     </ul>

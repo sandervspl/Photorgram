@@ -28,4 +28,15 @@ class UserController extends Controller
 
         return Redirect::to(action('ProfileController@index'));
     }
+
+
+    public function updateRole(Request $request)
+    {
+        $user = User::findOrFail($request->get('user_id'));
+
+        $user->role = $request->get('role');
+        $user->save();
+
+        return Redirect::back();
+    }
 }

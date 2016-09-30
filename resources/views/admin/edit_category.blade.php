@@ -23,7 +23,7 @@
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-6">
-                {!! Form::submit('Edit Category', ['class' => 'btn btn-primary']) !!}
+                {!! Form::submit('Save Changes', ['class' => 'btn btn-primary']) !!}
             </div>
         </div>
         {!! Form::close() !!}

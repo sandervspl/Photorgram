@@ -7,6 +7,7 @@
     <div id="edit-account-menu">
         <ul>
             <li><a href="{{ action('AdminController@index') }}" class="btn btn-default">Users</a></li>
+            <li><a href="{{ action('AdminController@roles') }}" class="btn btn-default">Roles</a></li>
             <li><a href="{{ action('AdminController@categories') }}" class="btn btn-default">Categories</a></li>
             <li class="role-filter-list-item">
                 <div class="filter-role-container">
@@ -16,12 +17,12 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="{{ action('ImageController@all') }}">All</a></li>
+                            <li><a href="{{ action('AdminController@index') }}">All</a></li>
                             <li class="divider"></li>
                             <?php $roles = App\Role::all() ?>
                             @foreach($roles as $role)
                                 <li>
-                                    <a href="#">{{ ucfirst(trans($role->name)) }}</a>
+                                    <a href="{{ action('AdminController@userRoles', ['role_id' => $role->id]) }}">{{ ucfirst(trans($role->name)) }}</a>
                                 </li>
                             @endforeach
                         </ul>
@@ -43,7 +44,7 @@
 
             <td>
                 {!! Form::open([
-                        'action' => 'AdminController@updateRole'
+                        'action' => 'UserController@updateRole'
                     ])
                 !!}
 

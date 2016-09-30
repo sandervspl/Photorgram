@@ -9,7 +9,9 @@
             <li class="divider"></li>
             @foreach($categories as $category)
                 <li>
-                    <a href="{{ action('ImageController@category', ['categoryid' => $category->name]) }}">{{ ucfirst(trans($category->name)) }}</a>
+                    <a href="{{ action('ImageController@category', ['categoryid' => $category->name]) }}">
+                        {{ ucfirst(trans($category->name)) }}
+                    </a>
                 </li>
             @endforeach
         </ul>

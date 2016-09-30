@@ -37,14 +37,27 @@ Route::post('/rate', 'RatingController@rate');
 Route::post('/user/update', 'UserController@update');
 
 Route::get('/admin', 'AdminController@index');
+
 Route::get('/admin/categories', 'AdminController@categories');
 Route::get('/admin/categories/add', 'AdminController@addCategory');
 Route::get('/admin/categories/{categoryid}/edit', 'AdminController@editCategory');
 Route::get('/admin/categories/{categoryid}/remove', 'AdminController@removeCategory');
+
+Route::get('/admin/roles', 'AdminController@roles');
+Route::get('/admin/roles/add', 'AdminController@addRole');
+Route::get('/admin/roles/{roleid}/edit', 'AdminController@editRole');
+Route::get('/admin/roles/{roleid}/remove', 'AdminController@removeRole');
+Route::get('/admin/roles/{roleid}', 'AdminController@userRoles');
+
 Route::post('/admin/addCategory', 'CategoryController@add');
 Route::post('/admin/updateCategory', 'CategoryController@editName');
 Route::post('/admin/removeCategory', 'CategoryController@remove');
-Route::post('/admin/updaterole', 'AdminController@updateRole');
+
+Route::post('/admin/addRole', 'RoleController@add');
+Route::post('/admin/updateUserRole', 'RoleController@editName');
+Route::post('/admin/removeRole', 'RoleController@remove');
+
+Route::post('/admin/updaterole', 'UserController@updateRole');
 
 // wildcard acting as a profile url !! always have as last route !!
 Route::get('/{userid}', 'ProfileController@show');
