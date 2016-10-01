@@ -23,7 +23,7 @@
                                 <?php $roles = App\Role::all() ?>
                                 @foreach($roles as $role)
                                     <li>
-                                        <a href="{{ action('AdminController@roles', ['role_id' => $role->id]) }}">{{ ucfirst(trans($role->name)) }}</a>
+                                        <a href="{{ action('AdminController@userRoles', ['role_id' => $role->id]) }}">{{ ucfirst(trans($role->name)) }}</a>
                                     </li>
                                 @endforeach
                             </ul>
