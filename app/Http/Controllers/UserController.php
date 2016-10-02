@@ -47,5 +47,22 @@ class UserController extends Controller
     {
         $user = User::findOrFail($request->get('user_id'));
 
+        // remove all their images
+        foreach ($user->images as $image) {
+            $image->delete();
+        }
 
+        // remove all their ratings
+        foreach ($user->ratings as $rating) {
+            $rating->delete();
+        }
+
+        // remove their profile
+        $user->profile->delete();
+
+        // remove the user itself
+        User::findOrFail($user->id)->delete();
+
+        return Redirect::to(action('AdminController@index'));
+    }
 }
