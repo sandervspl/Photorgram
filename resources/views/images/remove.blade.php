@@ -22,7 +22,7 @@
             {!! Form::hidden('image_id', $image->id) !!}
 
             <a href="{{ url('images/'.$image->image_uri) }}" class="btn btn-default">Cancel</a>
-            {!! Form::submit('Remove', ['class' => 'btn btn-dark remove-btn']) !!}
+            {!! Form::submit('Remove', ['class' => 'btn btn-warning warning-space']) !!}
 
             {!! Form::close() !!}
 

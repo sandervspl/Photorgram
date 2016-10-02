@@ -6,6 +6,31 @@
         <h4 class="alt-title">You searched for "{{ $query }}"</h4>
 
         <div class="article-container">
+            <div class="search-result users">
+                @if($users->count() > 0)
+                    <h2>Users</h2>
+
+                    <ul>
+                        @foreach($users as $user)
+                            <li class="search-user">
+                                <a href="{{ action('ProfileController@show', $user->name) }}">
+                                    <div class="user-card">
+                                        <div class="profile-picture">
+                                            <img src="{{ url('uploads/profile/', $user->profile->profile_picture) }}"
+                                                 alt="avatar">
+                                        </div>
+                                        <div class="profile-info">
+                                            <div class="username"> {{ $user->name }} </div>
+                                            <div class="followers small"> {{ App\Follow::getFollowersCount($user->id) }} followers </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
+
             <div class="search-result categories">
                 @if($categories->count() > 0)
                     <h2>Categories</h2>

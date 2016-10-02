@@ -6,6 +6,8 @@ Route::get('/credits', 'HomeController@credits');
 Route::get('/login', function (){ return view('login'); });
 Route::get('/register', function (){ return view('register'); });
 
+Route::post('/user/remove', 'UserController@remove');
+
 Route::get('/images', 'ImageController@all');
 Route::get('/images/all', 'ImageController@all');
 Route::get('/images/upload', 'ImageController@upload');
@@ -19,11 +21,9 @@ Route::post('images/remove', 'ImageController@remove');
 Route::post('/images/edit', 'ImageController@update');
 Route::post('/images/upload', 'ImageController@process');
 
-Route::get('/profile', 'ProfileController@index');
-Route::get('/profile/edit', 'ProfileController@editProfile');
-Route::get('/profile/edit/profile', 'ProfileController@editProfile');
-Route::get('/profile/edit/account', 'ProfileController@editAccount');
-Route::get('/profile/{userid}', 'ProfileController@show');
+Route::get('/profile/{username}/edit/profile', 'ProfileController@editProfile');
+Route::get('/profile/{username}/edit/account', 'ProfileController@editAccount');
+Route::get('/profile/{username}', 'ProfileController@show');
 Route::post('/profile/update', 'ProfileController@update');
 
 Route::get('/search/{images}', 'SearchController@show');
@@ -48,6 +48,8 @@ Route::get('/admin/roles/add', 'AdminController@addRole');
 Route::get('/admin/roles/{roleid}/edit', 'AdminController@editRole');
 Route::get('/admin/roles/{roleid}/remove', 'AdminController@removeRole');
 Route::get('/admin/roles/{roleid}', 'AdminController@userRoles');
+
+Route::get('/admin/users/{username}/remove', 'AdminController@removeUser');
 
 Route::post('/admin/addCategory', 'CategoryController@add');
 Route::post('/admin/updateCategory', 'CategoryController@editName');

@@ -20,9 +20,9 @@ class Category extends Model
     }
 
 
-    public static function getAllCategoriesWithQuery($query)
+    public static function getAllCategoriesWithName($category_name)
     {
-        return Category::where('name', 'like', '%'.$query.'%')->get();
+        return Category::where('name', 'like', '%'.$category_name.'%')->get();
     }
 
 

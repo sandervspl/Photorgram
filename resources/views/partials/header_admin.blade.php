@@ -27,7 +27,7 @@
                 </li>
 
                 <li>
-                    <a href="{{ action('ProfileController@editAccount') }}">Edit Account</a>
+                    <a href="{{ action('ProfileController@editAccount', ['user_name' => Auth::user()->name]) }}">Edit Account</a>
                 </li>
 
                 <li role="separator" class="divider"></li>

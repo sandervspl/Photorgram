@@ -15,7 +15,7 @@
 
             @include('partials/following_button')
 
-            <h4 id="profile-followers">{{ $followers }} <b>Followers</b></h4>
+            <h4 id="profile-followers"><b>{{ $followers }}</b> followers</h4>
         </div>
     </div>
 
@@ -28,12 +28,12 @@
             <div class="image-info-header">
                 <h3 class="image-info-title">{{ $image->title }}</h3>
 
-                @if($user->id == Auth::id())
+                @if($user->id == Auth::id() || App\User::find(Auth::id())->role >= 3)
                     <div id="image-user-buttons">
                         <a href="{{ action('ImageController@edit', $image->image_uri) }}" class="btn btn-default" id="image-edit-button">
                             Edit
                         </a>
-                        <a href="{{ action('ImageController@confirmRemove', $image->image_uri) }}" class="btn btn-default btn-dark" id="image-remove-button">
+                        <a href="{{ action('ImageController@confirmRemove', $image->image_uri) }}" class="btn btn-default btn-warning" id="image-remove-button">
                             Remove
                         </a>
                     </div>

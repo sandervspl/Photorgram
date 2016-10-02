@@ -1,10 +1,15 @@
-<?php $user = Auth::user() ?>
 @extends('layouts.master')
 @section('title', 'Edit')
 @section('content')
 <section class="main-article">
     <div class="profile-header">
         <h1>Account Settings</h1>
+
+        @if($user->id != Auth::id())
+            <div class="warning-box">
+                <span>You are now editing the account/profile settings of: <b>{{ $user->name }}</b></span>
+            </div>
+        @endif
 
         @include('partials/edit_account_menu')
 
@@ -54,6 +59,7 @@
             @endif
         </div>
 
+        {!! Form::hidden('user_id', $user->id) !!}
 
         <div class="form-group">
             <div class="col-sm-offset-3 col-sm-10">

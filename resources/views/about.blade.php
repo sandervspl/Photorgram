@@ -7,7 +7,7 @@
         <div class="article-container">
             <p>
                 Photorgram is een project gemaakt door Sander Vispoel in opdracht van Hogeschool Rotterdam. <br/>
-                De bedoeling was om te leren werken met een framework. Deze website is gebouwd op de framework
+                De bedoeling was om te leren werken met een framework. Deze website is gebouwd op het framework
                 <a href="https://laravel.com/">Laravel</a>.
             </p>
         </div>

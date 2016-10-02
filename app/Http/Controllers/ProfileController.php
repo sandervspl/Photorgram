@@ -23,30 +23,22 @@ class ProfileController extends Controller
         return $randomString;
     }
 
+
+
+
     private function forbiddenAccess($user_name)
     {
         return ($user_name == 'administrator');
     }
 
 
-    public function index()
+    public function show($user_name)
     {
-        $username = Auth::user()->name;
-
-        if ($this->forbiddenAccess($username))
-            abort(404);
-
-        return Redirect::to('/'.$username);
-    }
-
-
-    public function show($username)
-    {
-        if ($this->forbiddenAccess($username))
+        if ($this->forbiddenAccess($user_name))
             abort(404);
 
         // look for user with this name
-        $user = User::getUserByName($username);
+        $user = User::getUserByName($user_name);
 
         // if it does not exist, show 404 page
         if (is_null($user)) {
@@ -62,32 +54,38 @@ class ProfileController extends Controller
     }
 
 
-    public function editAccount()
+    public function editAccount($user_name)
     {
         if (Auth::Guest())
             abort(403);
 
-        $user = User::findOrFail(Auth::id());
+        $profile_user = User::getUserByName($user_name);
+        $cur_user = User::findOrFail(Auth::id());
 
-//        if ($user->role == 4) {
-//            return view('profile.edit.edit_account', ['user' => Auth::User()]);
-//        }
+        if ($cur_user->id != $profile_user->id && $cur_user->role < 4)
+            abort(403);
 
-        return view('profile.edit.edit_account', ['user' => $user]);
+        return view('profile.edit.edit_account', ['user' => $profile_user]);
     }
 
-    public function editProfile()
+    public function editProfile($user_name)
     {
         if (Auth::Guest())
             abort(403);
 
-        return view('profile.edit.edit_profile');
+        $profile_user = User::getUserByName($user_name);
+        $cur_user = User::findOrFail(Auth::id());
+
+        if ($cur_user->id != $profile_user->id && $cur_user->role < 4)
+            abort(403);
+
+        return view('profile.edit.edit_profile', ['user' => $profile_user]);
     }
 
 
     public function update(Request $request)
     {
-        $profile = Profile::getProfile(Auth::id());
+        $profile = Profile::getProfile($request->get('user_id'));
 
         // set bio
         $profile->bio = $request->get('bio');
@@ -116,6 +114,7 @@ class ProfileController extends Controller
 
         $profile->save();
 
-        return Redirect::to(action('ProfileController@index'));
+        $user = User::findOrFail($request->get('user_id'));
+        return Redirect::to(action('ProfileController@show', $user->name));
     }
 }

@@ -68,24 +68,24 @@ class ImageController extends Controller
     }
 
 
-    public function category($categoryname)
+    public function category($category_name)
     {
         $categories = Category::all();
-        $category = Category::getCategoryByName($categoryname);
+        $category = Category::getCategoryByName($category_name);
         $images = $category->images;
 
         return view('images.category', [
-            'categoryname' => $categoryname,
+            'categoryname' => $category_name,
             'categories' => $categories,
             'images' => $images
         ]);
     }
 
 
-    public function show($imagename)
+    public function show($image_name)
     {
         // try to get image
-        $image = Image::getImageByName($imagename);
+        $image = Image::getImageByName($image_name);
 
         // try to get owner of this image
         $user = User::findOrFail($image->user_id);
@@ -159,15 +159,15 @@ class ImageController extends Controller
     }
 
 
-    public function edit($imagename)
+    public function edit($image_name)
     {
         if (Auth::Guest())
             abort(403);
 
         $user = User::findOrFail(Auth::id());
-        $image = Image::getImageByName($imagename);
+        $image = Image::getImageByName($image_name);
 
-        $verify = $user->images->contains($image->id);
+        $verify = $user->images->contains($image->id) || $user->role >= 3;
 
         // forbidden
         if ( ! $verify) {
@@ -202,15 +202,12 @@ class ImageController extends Controller
         if (Auth::Guest())
             abort(404);
 
-        if ($image->user_id != Auth::id())
+        $user = User::findOrFail(Auth::id());
+
+        if ($image->user_id != Auth::id() && $user->role < 3)
             abort(403);
 
-        if ($image->user_id != Auth::id() && User::findOrFail(Auth::id())->role < 4)
-            abort(403);
-
-        return view('images.remove')->with([
-            'image' => $image
-        ]);
+        return view('images.remove')->with(['image' => $image]);
     }
 
 
@@ -221,21 +218,22 @@ class ImageController extends Controller
         if (Auth::Guest())
             abort(404);
 
-        if ($image->user_id != Auth::id())
-            abort(403);
+        $user = User::findOrFail(Auth::id());
 
-        if ($image->user_id != Auth::id() && User::findOrFail(Auth::id())->role < 4)
+        if ($image->user_id != Auth::id() && $user->role < 3)
             abort(403);
 
         $image->delete();
 
-        return Redirect::to(action('ProfileController@index'));
+        $user = User::findOrFail($image->user_id);
+
+        return Redirect::to(action('ProfileController@show', ['user_name' => $user->name]));
     }
 
 
-    public function ratings($imagename)
+    public function ratings($image_name)
     {
-        $image = Image::getImageByName($imagename);
+        $image = Image::getImageByName($image_name);
         $likes = Image_Rating::getLikesForImage($image->id);
         $dislikes = Image_Rating::getDislikesForImage($image->id);
 

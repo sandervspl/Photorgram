@@ -75,4 +75,10 @@ class User extends Authenticatable
     {
         return User::where('role', '=', $role_id)->get();
     }
+
+
+    public static function getAllUsersWithName($name)
+    {
+        return User::where('name', 'like', '%'.$name.'%')->where('role', '=', '1')->get();
+    }
 }

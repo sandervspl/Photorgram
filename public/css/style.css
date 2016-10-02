@@ -124,14 +124,6 @@ a:hover {
     z-index: 2;
 }
 
-.navbar ul li, #edit-account-menu ul li, .search-category {
-    display: inline-block;
-}
-
-.dropdown ul li {
-    display: block;
-}
-
 .navbar-left #navbar-logo {
     font-size: 1.5em;
 }
@@ -149,10 +141,6 @@ a:hover {
     padding-top: 7px;
 }
 
-.signin-register-list li, .navbar-links li {
-    display: inline-block;
-}
-
 .horizontal-list-divider {
     color: black;
     padding: 0 5px;
@@ -168,6 +156,10 @@ a:hover {
 
 .error-text {
     color: #ba3838;
+}
+
+.small {
+    font-size: .75em;
 }
 
 .image-thumbnail {
@@ -200,12 +192,26 @@ a:hover {
     width: 100%;
 }
 
-#profile-follow-button, #profile-user-name, .rating-form, .followbutton {
+.navbar ul li, #edit-account-menu ul li, .search-category, .search-user, .user-card .profile-picture,
+.user-card .profile-info, .signin-register-list li, .navbar-links li, #profile-user-name, .rating-form,
+.followbutton
+{
     display: inline-block;
+}
+
+.dropdown ul li {
+    display: block;
+}
+
+#follow-button:hover {
+    background-color: rgba(55, 187, 93, 0.5) !important;
+    box-shadow: inset 0 -2px 0 0 rgba(55, 187, 93, 1.0);
+    border: 1px solid rgba(55, 187, 93, 1.0);
 }
 
 #profile-user-name {
     margin-bottom: .25em;
+
 }
 
 #profile-followers {
@@ -216,12 +222,23 @@ a:hover {
     position: relative;
     top: -7px;
     margin-left: 10px;
+
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
 }
 
 .following {
     background-color: #37bb5d;
     color: #eee;
-    border: transparent;
+    box-shadow: inset 0 -2px 0 0 rgba(55, 187, 93, 1.0) !important;
+    border: 1px solid rgba(55, 187, 93, 1.0);
+}
+
+.following:hover {
+    box-shadow: inset 0 -2px 0 0 #a7a7a7 !important;
+    border: 1px solid #a7a7a7;
 }
 
 #profile-edit-button {
@@ -315,12 +332,6 @@ a:hover {
     vertical-align: top;
 }
 
-.btn-dark {
-    color: #333;
-    background-color: #e6e6e6;
-    border-color: #adadad;
-}
-
 .article-container {
     margin-top: 3em;
 }
@@ -338,22 +349,51 @@ a:hover {
     margin-bottom: 2em;
 }
 
-.user-liked, .image-like-btn:enabled:hover {
-    background-color: rgba(55, 187, 93, 0.5);
-    border-color: #fff;
+.btn-warning:hover {
+    color: #fff;
+    background: #ba3838;
+    border: 1px solid #ba3838;
+}
+
+.btn-default:not(.dropdown-toggle) {
+    box-shadow: inset 0 -2px 0 0 #a7a7a7;
+}
+
+.btn-primary {
+    box-shadow: inset 0 -2px 0 0 #235780;
+}
+
+.btn-dark {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+    box-shadow: inset 0 -2px 0 0 #a6a6a6;
+}
+
+.btn-warning {
+    color: #ba3838;
+    background: #fff;
+    border: 1px solid #ba3838;
+    box-shadow: inset 0 -2px 0 0 #a73232 !important;
+}
+
+.btn {
     -webkit-transition: all .3s;
     -moz-transition: all .3s;
     -o-transition: all .3s;
     transition: all .3s;
 }
 
+.user-liked, .image-like-btn:enabled:hover {
+    background-color: rgba(55, 187, 93, 0.5) !important;
+    box-shadow: inset 0 -2px 0 0 rgba(55, 187, 93, 1.0) !important;
+    border-color: rgba(55, 187, 93, 0.5) !important;
+}
+
 .user-disliked, .image-dislike-btn:enabled:hover {
-    background-color: rgba(186, 56, 56, 0.5);
-    border-color: #fff;
-    -webkit-transition: all .3s;
-    -moz-transition: all .3s;
-    -o-transition: all .3s;
-    transition: all .3s;
+    background-color: rgba(186, 56, 56, 0.5) !important;
+    box-shadow: inset 0 -2px 0 0 rgba(186, 56, 56, 1.0) !important;
+    border-color: rgba(186, 56, 56, 0.5) !important;
 }
 
 .like-btn, .dislike-btn {
@@ -514,7 +554,7 @@ h4.user.feed {
     border-radius: 50%;
 }
 
-.title-like::before, .title-dislike::before/*, .ratings-like ul li::before, .ratings-dislike ul li::before*/ {
+.title-like::before, .title-dislike::before {
     position: relative;
     display: inline-block;
     content: '';
@@ -578,10 +618,6 @@ tr.users-data td span {
     min-width: 50%;
 }
 
-.remove-btn {
-    margin-left: 2em;
-}
-
 .bulleted-list {
     list-style: circle;
 }
@@ -598,6 +634,74 @@ tr.users-data td span {
     margin-left: 2em;
 }
 
+.search-user:not(:first-child) {
+    margin-left: 1em;
+}
+
 .search-result:not(:last-child) {
     margin-bottom: 3em;
+}
+
+.search-result h2 {
+    font-weight: bold;
+}
+
+.warning-box {
+    padding: 1em;
+    margin: 1em 0;
+    color: #ba3838;
+    border: 2px solid #ba3838;
+}
+
+.warning-box b {
+    font-size: 1.25em;
+}
+
+.warning-box span::before {
+    position: relative;
+    top: 4px;
+    display: inline-block;
+    content: '';
+    background: transparent url('../img/icon_excl.png') no-repeat;
+    background-size: 20px;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.user-card {
+    width: 250px;
+    height: 75px;
+    border: 1px solid black;
+    padding: .75em;
+    color: black;
+    white-space: nowrap;
+    overflow: hidden;
+
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
+.user-card:hover {
+    background-color: #eee;
+}
+
+.user-card .profile-picture img {
+    width: 50px;
+    border-radius: 50%;
+}
+
+.user-card .profile-info {
+    vertical-align: middle;
+    margin-left: 1em;
+}
+
+.user-card .profile-info .username {
+    font-weight: bold;
+}
+
+.warning-space {
+    margin-left: 2em;
 }

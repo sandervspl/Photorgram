@@ -20,7 +20,7 @@
         !!}
 
         {!! Form::hidden('follow_id', $user->id) !!}
-        {!! Form::submit('Follow', ['class' => 'btn btn-default profile-buttons']) !!}
+        {!! Form::submit('Follow', ['class' => 'btn btn-default profile-buttons', 'id' => 'follow-button']) !!}
 
         {!! Form::close() !!}
     @endif
