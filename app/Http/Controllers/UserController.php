@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Profile;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -14,7 +15,7 @@ class UserController extends Controller
 {
     public function update(Request $request)
     {
-        $user = User::findOrFail(Auth::id());
+        $user = User::findOrFail($request->get('user_id'));
         $user->name = $request->get('name');
         $user->email = $request->get('email');
 
@@ -26,7 +27,8 @@ class UserController extends Controller
 
         $user->save();
 
-        return Redirect::to(action('ProfileController@index'));
+        $user = User::findOrFail($request->get('user_id'));
+        return Redirect::to(action('ProfileController@show', $user->name));
     }
 
 
@@ -39,4 +41,11 @@ class UserController extends Controller
 
         return Redirect::back();
     }
+
+
+    public function remove(Request $request)
+    {
+        $user = User::findOrFail($request->get('user_id'));
+
+
 }

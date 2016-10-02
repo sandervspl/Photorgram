@@ -41,6 +41,12 @@ class User extends Authenticatable
     }
 
 
+    public function ratings()
+    {
+        return $this->hasMany('App\Image_Rating');
+    }
+
+
     public function profile()
     {
         return $this->hasOne('App\Profile');
@@ -61,7 +67,9 @@ class User extends Authenticatable
 
     public static function isFollowing($id)
     {
-        return Follow::where('follow_id', '=', $id)->where('user_id', Auth::id())->first();
+        return Follow::where('follow_id', '=', $id)
+            ->where('user_id', Auth::id())
+            ->first();
     }
 
 
@@ -79,6 +87,8 @@ class User extends Authenticatable
 
     public static function getAllUsersWithName($name)
     {
-        return User::where('name', 'like', '%'.$name.'%')->where('role', '=', '1')->get();
+        return User::where('name', 'like', '%'.$name.'%')
+            ->where('role', '=', '1')
+            ->get();
     }
 }

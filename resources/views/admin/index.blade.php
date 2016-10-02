@@ -72,11 +72,21 @@
             </td>
 
             <td>
-                <a href="{{ action('ProfileController@show', ['username' => $user->name]) }}">Profile</a>
+                <a href="{{ action('ProfileController@show', ['user_name' => $user->name]) }}">
+                    Profile
+                </a>
+
                 <span> | </span>
-                Edit
+
+                <a href="{{ action('ProfileController@editProfile', ['user_name' => $user->name]) }}">
+                    Edit
+                </a>
+
                 <span> | </span>
-                Remove User
+
+                <a href="{{ action('AdminController@removeUser', ['user_name' => $user->name]) }}" class="remove-link">
+                    Remove user
+                </a>
             </td>
         </tr>
         <tr class="spacer"></tr>

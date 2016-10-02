@@ -102,4 +102,12 @@ class AdminController extends Controller
         $role = Role::findOrFail($role_id);
         return view('admin.remove_role', ['role' => $role]);
     }
+
+
+    public function removeUser($user_name)
+    {
+        $user = User::getUserByName($user_name);
+
+        return view('admin.remove_user', ['user' => $user]);
+    }
 }
