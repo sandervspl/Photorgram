@@ -15,7 +15,9 @@
 
             @include('partials/following_button')
 
-            <h4 id="profile-followers"><b>{{ $followers }}</b> followers</h4>
+            <div id="profile-more-info">
+                <h4 id="profile-followers"><b>{{ $followers }}</b> followers</h4>
+            </div>
         </div>
     </div>
 
