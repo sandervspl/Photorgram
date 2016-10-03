@@ -28,10 +28,24 @@
             </div>
 
             <div class="image-info col-md-6">
-                <div class="image-info-header">
-                    <h3 class="image-info-title">{{ $image->title }}</h3>
+                <div class="image-info-header row">
+                    <?php
+                        if($user->id == Auth::id() || App\User::find(Auth::id())->role >= 3) {
+                            $colWidth = 'col-md-7';
+                            $isUserImg = true;
+                        }
+                        else {
+                            $colWidth = 'col-md-12';
+                            $isUserImg = false;
+                        }
+                    ?>
 
-                    @if($user->id == Auth::id() || App\User::find(Auth::id())->role >= 3)
+                    <div class="{{ $colWidth }}">
+                        <h3 class="image-info-title">{{ $image->title }}</h3>
+                    </div>
+
+                    @if($isUserImg)
+                    <div class="col-md-5">
                         <div id="image-user-buttons">
                             <a href="{{ action('ImageController@edit', $image->image_uri) }}" class="btn btn-default" id="image-edit-button">
                                 Edit
@@ -40,6 +54,7 @@
                                 Remove
                             </a>
                         </div>
+                    </div>
                     @endif
                 </div>
 
