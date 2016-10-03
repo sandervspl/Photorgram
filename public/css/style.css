@@ -270,10 +270,10 @@ header a {
     top: -7px;
     margin-left: 10px;
 
-    -webkit-transition: all .3s;
-    -moz-transition: all .3s;
-    -o-transition: all .3s;
-    transition: all .3s;
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    -o-transition: all .2s;
+    transition: all .2s;
 }
 
 .following {
@@ -292,7 +292,7 @@ header a {
     float: right;
 }
 
-.profile-header, .profile-body {
+.profile-header, .profile-body, .image-container {
     width: 88.39%;
     margin: auto;
 }
@@ -435,10 +435,10 @@ header a {
 }
 
 .btn {
-    -webkit-transition: all .3s;
-    -moz-transition: all .3s;
-    -o-transition: all .3s;
-    transition: all .3s;
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    -o-transition: all .2s;
+    transition: all .2s;
 }
 
 .user-liked, .image-like-btn:enabled:hover {
@@ -454,24 +454,24 @@ header a {
 }
 
 .like-btn, .dislike-btn {
-    width: 63px;
-    height: 42px;
+    width: 55px;
+    height: 37px;
     padding: 10px 15px;
-    border: 1px solid #eee;
+    border: 1px solid #e9e9e9;
 }
 
 .like-btn {
     background-image: url('../img/like.png');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 2em;
+    background-size: 1.7em;
 }
 
 .dislike-btn {
     background-image: url('../img/dislike.png');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 2em;
+    background-size: 1.7em;
 }
 
 .fadeout {
@@ -621,12 +621,12 @@ h4.user.feed {
 }
 
 .feed-image-card .info .row.info-1 {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #e9e9e9;
     padding-bottom: .67em;
 }
 
 .feed-image-card .info .row.info-2 {
-
+    margin-top: 1.33em;
 }
 
 .row.info-2 .image-info-rating {
@@ -639,8 +639,15 @@ h4.user.feed {
     height: 32px;
 }
 
-.row.info-2 .image-info-rating .like-btn, .row.info-2 .image-info-rating .dislike-btn {
+.row.info-2 .image-info-rating .like-btn {
     background-image: url(../img/like.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 1.33em;
+}
+
+.row.info-2 .image-info-rating .dislike-btn {
+    background-image: url(../img/dislike.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 1.33em;
@@ -779,10 +786,10 @@ tr.users-data td span {
     white-space: nowrap;
     overflow: hidden;
 
-    -webkit-transition: all .3s;
-    -moz-transition: all .3s;
-    -o-transition: all .3s;
-    transition: all .3s;
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    -o-transition: all .2s;
+    transition: all .2s;
 }
 
 .user-card:hover {

@@ -21,108 +21,110 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="image-body col-md-6">
-            <img src="{{ url('uploads/'.$image->image_uri) }}" class="col-md-6 image-body-src" alt="{{ $image->title }}" title="{{ $image->title }}">
-        </div>
-
-        <div class="image-info col-md-6">
-            <div class="image-info-header">
-                <h3 class="image-info-title">{{ $image->title }}</h3>
-
-                @if($user->id == Auth::id() || App\User::find(Auth::id())->role >= 3)
-                    <div id="image-user-buttons">
-                        <a href="{{ action('ImageController@edit', $image->image_uri) }}" class="btn btn-default" id="image-edit-button">
-                            Edit
-                        </a>
-                        <a href="{{ action('ImageController@confirmRemove', $image->image_uri) }}" class="btn btn-default btn-warning" id="image-remove-button">
-                            Remove
-                        </a>
-                    </div>
-                @endif
+    <div class="image-container">
+        <div class="row">
+            <div class="image-body col-md-6">
+                <img src="{{ url('uploads/'.$image->image_uri) }}" class="col-md-6 image-body-src" alt="{{ $image->title }}" title="{{ $image->title }}">
             </div>
 
-            <div class="image-info-section">
-                <h4>{{ $image->created_at }}</h4>
+            <div class="image-info col-md-6">
+                <div class="image-info-header">
+                    <h3 class="image-info-title">{{ $image->title }}</h3>
 
-                <?php
-                $categoryName = App\Category::find($image->category_id);
-                if ($categoryName == null) {
-                    $categoryName = 'undefined';
-                } else {
-                    $categoryName = $categoryName->name;
-                }
-                ?>
-                <h4>
-                    @if ($categoryName !== 'undefined')
-                    <a href="{{ url('/images/category/'.$categoryName) }}">{{ ucfirst(trans($categoryName)) }}</a>
-                    @else
-                    <span>{{ ucfirst(trans($categoryName)) }}</span>
+                    @if($user->id == Auth::id() || App\User::find(Auth::id())->role >= 3)
+                        <div id="image-user-buttons">
+                            <a href="{{ action('ImageController@edit', $image->image_uri) }}" class="btn btn-default" id="image-edit-button">
+                                Edit
+                            </a>
+                            <a href="{{ action('ImageController@confirmRemove', $image->image_uri) }}" class="btn btn-default btn-warning" id="image-remove-button">
+                                Remove
+                            </a>
+                        </div>
                     @endif
-                </h4>
-
-                <div class="image-info-description">
-                    <small>Description</small>
-                    <div class="description">
-                        <pre>{{ $image->description }}</pre>
-                    </div>
-                    <div class="fadeout"></div>
                 </div>
 
+                <div class="image-info-section">
+                    <h4>{{ $image->created_at->format('j F Y') }}</h4>
 
-                <div class="image-info-rating">
-                <?php
-                    $disabled = '';
-                    if (Auth::Guest()) {
-                        $disabled = 'disabled';
+                    <?php
+                    $categoryName = App\Category::find($image->category_id);
+                    if ($categoryName == null) {
+                        $categoryName = 'undefined';
+                    } else {
+                        $categoryName = $categoryName->name;
                     }
+                    ?>
+                    <h4>
+                        @if ($categoryName !== 'undefined')
+                        <a href="{{ url('/images/category/'.$categoryName) }}">{{ ucfirst(trans($categoryName)) }}</a>
+                        @else
+                        <span>{{ ucfirst(trans($categoryName)) }}</span>
+                        @endif
+                    </h4>
 
-                    if ($userHasRated == '1') {
-                        $likedStyle = ' user-liked';
-                        $dislikedStyle = '';
-                    }
-                    elseif ($userHasRated == '2') {
-                        $likedStyle = '';
-                        $dislikedStyle = ' user-disliked';
-                    }
-                    else {
-                        $likedStyle = ''; $dislikedStyle = '';
-                    }
-                ?>
+                    <div class="image-info-description">
+                        <small>Description</small>
+                        <div class="description">
+                            <pre>{{ $image->description }}</pre>
+                        </div>
+                        <div class="fadeout"></div>
+                    </div>
 
-                    {!! Form::open([
-                            'action' => 'RatingController@rate',
-                            'class'  => 'horizontal-form rating-form'
-                        ])
-                    !!}
 
-                    {!! Form::hidden('image_id', $image->id) !!}
-                    {!! Form::hidden('rating_id', 1) !!}
-                    {!! Form::hidden('user_rated', $userHasRated) !!}
+                    <div class="image-info-rating">
+                    <?php
+                        $disabled = '';
+                        if (Auth::Guest()) {
+                            $disabled = 'disabled';
+                        }
 
-                    {!! Form::submit('', ['class' => 'btn btn-default profile-buttons image-like-btn like-btn'.$likedStyle, $disabled]) !!}
+                        if ($userHasRated == '1') {
+                            $likedStyle = ' user-liked';
+                            $dislikedStyle = '';
+                        }
+                        elseif ($userHasRated == '2') {
+                            $likedStyle = '';
+                            $dislikedStyle = ' user-disliked';
+                        }
+                        else {
+                            $likedStyle = ''; $dislikedStyle = '';
+                        }
+                    ?>
 
-                    {!! Form::close() !!}
+                        {!! Form::open([
+                                'action' => 'RatingController@rate',
+                                'class'  => 'horizontal-form rating-form'
+                            ])
+                        !!}
 
-                    <span>{{ $likes }}</span>
+                        {!! Form::hidden('image_id', $image->id) !!}
+                        {!! Form::hidden('rating_id', 1) !!}
+                        {!! Form::hidden('user_rated', $userHasRated) !!}
 
-                    {!! Form::open([
-                            'action' => 'RatingController@rate',
-                            'class'  => 'horizontal-form rating-form'
-                        ])
-                    !!}
+                        {!! Form::submit('', ['class' => 'btn btn-default profile-buttons image-like-btn like-btn'.$likedStyle, $disabled]) !!}
 
-                    {!! Form::hidden('image_id', $image->id) !!}
-                    {!! Form::hidden('rating_id', 2) !!}
-                    {!! Form::hidden('user_rated', $userHasRated) !!}
-                    {!! Form::submit('', ['class' => 'btn btn-default profile-buttons image-dislike-btn dislike-btn'.$dislikedStyle, $disabled]) !!}
+                        {!! Form::close() !!}
 
-                    {!! Form::close() !!}
+                        <span>{{ $likes }}</span>
 
-                    <span>{{ $dislikes }}</span>
+                        {!! Form::open([
+                                'action' => 'RatingController@rate',
+                                'class'  => 'horizontal-form rating-form'
+                            ])
+                        !!}
 
-                    <div class="ratings-link-container">
-                        <a href="{{ action('ImageController@ratings', $image->image_uri) }}">Ratings Overview</a>
+                        {!! Form::hidden('image_id', $image->id) !!}
+                        {!! Form::hidden('rating_id', 2) !!}
+                        {!! Form::hidden('user_rated', $userHasRated) !!}
+                        {!! Form::submit('', ['class' => 'btn btn-default profile-buttons image-dislike-btn dislike-btn'.$dislikedStyle, $disabled]) !!}
+
+                        {!! Form::close() !!}
+
+                        <span>{{ $dislikes }}</span>
+
+                        <div class="ratings-link-container">
+                            <a href="{{ action('ImageController@ratings', $image->image_uri) }}">Ratings Overview</a>
+                        </div>
                     </div>
                 </div>
             </div>
