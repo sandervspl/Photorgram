@@ -40,11 +40,11 @@ class ImageController extends Controller
         // get a maximum of 3 images per category
         // store each category as an array in our images array
         foreach ($categories as $category) {
-            $all_img = $category->images;
             $temp_array = [];
             $i = 0;
 
-            foreach ($all_img as $image) {
+            // start at the latest image
+            foreach ($category->images->reverse() as $image) {
                 $temp_array[] = $image;
                 if (++$i >= 5)
                     break;

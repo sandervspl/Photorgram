@@ -8,7 +8,7 @@
 
     <div class="article-container">
         @if($images->count() > 0)
-            @foreach($images as $image)
+            @foreach($images->reverse() as $image)
             <div class="image-thumbnail">
                 <a href="{{ action('ImageController@show', ['image' => $image->image_uri]) }}">
                     <img src="{{ url('uploads/'.$image->image_uri) }}" alt="{{ $image->title }}" title="{{ $image->title }}">

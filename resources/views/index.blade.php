@@ -4,6 +4,11 @@
 @extends('layouts.master')
 @section('title', 'Frontpage')
 @section('content')
+
+    {{--@foreach($images as $image)--}}
+        {{--{{ dd($image) }}--}}
+    {{--@endforeach--}}
+
 <section class="main-article feed">
     @if (isset($images))
     <div class="feed-images">

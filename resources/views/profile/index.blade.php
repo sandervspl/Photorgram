@@ -21,7 +21,7 @@
     </div>
 
     <div class="profile-body">
-        @foreach($user->images as $image)
+        @foreach($user->images->reverse() as $image)
             <div class="image-thumbnail">
                 <a href="{{ action('ImageController@show', ['image' => $image->image_uri]) }}">
                     <img src="{{ url('uploads/'.$image->image_uri) }}" alt="{{ $image->title }}" title="{{ $image->title }}">
