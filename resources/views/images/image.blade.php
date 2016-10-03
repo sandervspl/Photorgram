@@ -71,19 +71,24 @@
 
 
                 <div class="image-info-rating">
-                    @if (Auth::Guest())
-                        <?php $disabled = 'disabled' ?>
-                    @else
-                        <?php $disabled = '' ?>
-                    @endif
+                <?php
+                    $disabled = '';
+                    if (Auth::Guest()) {
+                        $disabled = 'disabled';
+                    }
 
-                    @if ($userHasRated == '1')
-                        <?php $likedStyle = ' user-liked'; $dislikedStyle = ''; ?>
-                    @elseif ($userHasRated == '2')
-                        <?php $likedStyle = ''; $dislikedStyle = ' user-disliked'; ?>
-                    @else
-                        <?php $likedStyle = ''; $dislikedStyle = ''; ?>
-                    @endif
+                    if ($userHasRated == '1') {
+                        $likedStyle = ' user-liked';
+                        $dislikedStyle = '';
+                    }
+                    elseif ($userHasRated == '2') {
+                        $likedStyle = '';
+                        $dislikedStyle = ' user-disliked';
+                    }
+                    else {
+                        $likedStyle = ''; $dislikedStyle = '';
+                    }
+                ?>
 
                     {!! Form::open([
                             'action' => 'RatingController@rate',

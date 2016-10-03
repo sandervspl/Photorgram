@@ -17,6 +17,33 @@ class Image extends Model
     ];
 
 
+
+
+    // does not work
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+
+    public function ratings()
+    {
+        return $this->belongsToMany('App\Rating');
+    }
+
+
+    public function getLikesCount()
+    {
+        return Image_Rating::getLikesForImage($this->id);
+    }
+
+
+    public function getDislikesCount()
+    {
+        return Image_Rating::getDislikesCountForImage($this->id);
+    }
+
+
     public static function getImageByName($image_name)
     {
         return Image::where('image_uri', '=', $image_name)->firstOrFail();
@@ -40,18 +67,5 @@ class Image extends Model
         }
 
         return $query->orderBy('created_at', 'desc')->get();
-    }
-
-
-    public function ratings()
-    {
-        return $this->belongsToMany('App\Rating');
-    }
-
-
-    // does not work
-    public function owner()
-    {
-        return $this->hasOne('App\User');
     }
 }

@@ -16,7 +16,7 @@
                 <div class="info">
                     <div class="row info-1">
                         <div class="col-md-8">
-                            <h3 class="title feed">{{ $image->title }}</h3>
+                            <h3 class="title feed">{{ $image->title or 'Undefined' }}</h3>
                         </div>
 
                         <div class="col-md-4 username feed">
@@ -29,13 +29,14 @@
 
                                 <h4 class="user feed">
                                     {{ $username }}
+{{--                                    {{ $image->user->name }}--}}
                                 </h4>
                             </a>
                         </div>
                     </div>
 
                     <div class="row info-2">
-                        <div class="col-md-8">
+                        <div class="col-md-4">
                             <?php
                             $created = new Carbon($image->created_at);
                             $now = Carbon::now();
@@ -55,7 +56,64 @@
                             ?>
                             <h4 class="date feed">{{ $timeSinceCreated }}</h4>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-8">
+                            <div class="image-info-rating">
+                                <?php
+                                $userHasRated = App\Image_Rating::userHasRated(Auth::id(), $image->id);
+                                $likes = App\Image_Rating::getLikesCountForImage($image->id);
+                                $dislikes = App\Image_Rating::getDislikesCountForImage($image->id);
+
+                                $disabled = '';
+                                if (Auth::Guest()) {
+                                    $disabled = 'disabled';
+                                }
+
+                                if ($userHasRated == '1') {
+                                    $likedStyle = ' user-liked';
+                                    $dislikedStyle = '';
+                                }
+                                elseif ($userHasRated == '2') {
+                                    $likedStyle = '';
+                                    $dislikedStyle = ' user-disliked';
+                                }
+                                else {
+                                    $likedStyle = '';
+                                    $dislikedStyle = '';
+                                }
+                                ?>
+
+                                {!! Form::open([
+                                        'action' => 'RatingController@rate',
+                                        'class'  => 'horizontal-form rating-form'
+                                    ])
+                                !!}
+
+                                {!! Form::hidden('image_id', $image->id) !!}
+                                {!! Form::hidden('rating_id', 1) !!}
+                                {!! Form::hidden('user_rated', $userHasRated) !!}
+
+                                {!! Form::submit('', ['class' => 'btn btn-default profile-buttons image-like-btn like-btn'.$likedStyle, $disabled]) !!}
+
+                                {!! Form::close() !!}
+
+                                <span>{{ $likes }}</span>
+
+                                {!! Form::open([
+                                        'action' => 'RatingController@rate',
+                                        'class'  => 'horizontal-form rating-form'
+                                    ])
+                                !!}
+
+                                {!! Form::hidden('image_id', $image->id) !!}
+                                {!! Form::hidden('rating_id', 2) !!}
+                                {!! Form::hidden('user_rated', $userHasRated) !!}
+
+                                {!! Form::submit('', ['class' => 'btn btn-default profile-buttons image-dislike-btn dislike-btn'.$dislikedStyle, $disabled]) !!}
+
+                                {!! Form::close() !!}
+
+                                <span>{{ $dislikes }}</span>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 @if(Auth::Guest() || Auth::id() == $user->id)
-    <?php $visibility = 'invisible'; ?>
+    <?php $visibility = ' invisible'; ?>
 @else
     <?php $visibility = ''; ?>
 @endif
@@ -13,7 +13,7 @@
     !!}
 
     {!! Form::hidden('follow_id', $user->id) !!}
-    {!! Form::submit('Following', ['class' => 'btn btn-default profile-buttons following '.$visibility]) !!}
+    {!! Form::submit('Following', ['class' => 'btn btn-default profile-buttons following'.$visibility]) !!}
 
     {!! Form::close() !!}
 @else
@@ -25,7 +25,7 @@
     !!}
 
     {!! Form::hidden('follow_id', $user->id) !!}
-    {!! Form::submit('Follow', ['class' => 'btn btn-default profile-buttons '.$visibility, 'id' => 'follow-button']) !!}
+    {!! Form::submit('Follow', ['class' => 'btn btn-default profile-buttons'.$visibility, 'id' => 'follow-button']) !!}
 
     {!! Form::close() !!}
 @endif
