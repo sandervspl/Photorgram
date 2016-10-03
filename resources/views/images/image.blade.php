@@ -86,7 +86,7 @@
                     </div>
 
 
-                    <div class="image-info-rating">
+                    <div class="image-info-buttons">
                     <?php
                         $disabled = '';
                         if (Auth::Guest()) {
@@ -136,10 +136,21 @@
                         {!! Form::close() !!}
 
                         <span>{{ $dislikes }}</span>
+                    </div>
 
-                        <div class="ratings-link-container">
-                            <a href="{{ action('ImageController@ratings', $image->image_uri) }}">Ratings Overview</a>
+                    <?php
+                    $totalRates = $likes + $dislikes;
+                    $likePct = ($likes / $totalRates) * 100;
+                    ?>
+
+                    <div class="ratings-bar-container">
+                            <div class="rating-bar-bg"></div>
+                            <div class="rating-bar" style="width: {{ $likePct }}%;"></div>
                         </div>
+                    </div>
+
+                    <div class="ratings-link-container">
+                        <a href="{{ action('ImageController@ratings', $image->image_uri) }}">Ratings Overview</a>
                     </div>
                 </div>
             </div>

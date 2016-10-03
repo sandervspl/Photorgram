@@ -47,7 +47,7 @@
                             <h4 class="date feed">{{ time_elapsed_string($image->created_at) }}</h4>
                         </div>
                         <div class="col-md-8">
-                            <div class="image-info-rating">
+                            <div class="image-info-buttons">
                                 <?php
                                 $userHasRated = App\Image_Rating::userHasRated(Auth::id(), $image->id);
                                 $likes = App\Image_Rating::getLikesCountForImage($image->id);
@@ -104,6 +104,19 @@
 
                                 <span>{{ $dislikes }}</span>
                             </div>
+                        </div>
+                    </div>
+
+                    <?php
+                        $totalRates = $likes + $dislikes;
+                        $likePct = ($likes / $totalRates) * 100;
+                    ?>
+
+                    <div class="row info-3">
+                        <div class="col-md-7"></div>
+                        <div class="col-md-5">
+                            <div class="rating-bar-bg"></div>
+                            <div class="rating-bar" style="width: {{ $likePct }}%;"></div>
                         </div>
                     </div>
                 </div>
