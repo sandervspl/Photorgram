@@ -1,4 +1,6 @@
-<?php use Carbon\Carbon; ?>
+<?php
+    include_once 'php/main.php';
+?>
 @extends('layouts.master')
 @section('title', 'Frontpage')
 @section('content')
@@ -37,24 +39,7 @@
 
                     <div class="row info-2">
                         <div class="col-md-4">
-                            <?php
-                            $created = new Carbon($image->created_at);
-                            $now = Carbon::now();
-                            $difference = $created->diffInMinutes($now);
-                            $timeSinceCreated = $difference;
-
-                            if ($difference < 1)
-                                $timeSinceCreated .= ' minute ago';
-                            else if ($difference < 60)
-                                $timeSinceCreated .= ' minutes ago';
-
-                            if ($difference > 60)
-                                $timeSinceCreated = floor($difference / 60) . ' hours ago';
-
-                            if ($difference > 24*60)
-                                $timeSinceCreated = floor($difference / (24*60)) . ' days ago';
-                            ?>
-                            <h4 class="date feed">{{ $timeSinceCreated }}</h4>
+                            <h4 class="date feed">{{ time_elapsed_string($image->created_at) }}</h4>
                         </div>
                         <div class="col-md-8">
                             <div class="image-info-rating">

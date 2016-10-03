@@ -742,8 +742,8 @@ tr.users-data td span {
     margin-left: 2em;
 }
 
-.search-user:not(:first-child) {
-    margin-left: 1em;
+.search-user {
+    margin: .25em;
 }
 
 .search-result:not(:last-child) {
@@ -752,6 +752,10 @@ tr.users-data td span {
 
 .search-result h2 {
     font-weight: bold;
+}
+
+.search-user {
+    margin: .25em;
 }
 
 .warning-box {
