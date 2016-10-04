@@ -46,6 +46,7 @@ class ImageController extends Controller
             // start at the latest image
             foreach ($category->images->reverse() as $image) {
                 $temp_array[] = $image;
+
                 if (++$i >= 5)
                     break;
             }
@@ -94,9 +95,8 @@ class ImageController extends Controller
         $verify = $user->images->contains($image->id);
 
         // if not then abort
-        if ( ! $verify) {
+        if ( ! $verify)
             abort(403);
-        }
 
         // get all total ratings count for image
         $likesAmount = Image_Rating::getLikesCountForImage($image->id);
@@ -170,9 +170,8 @@ class ImageController extends Controller
         $verify = $user->images->contains($image->id) || $user->role >= 3;
 
         // forbidden
-        if ( ! $verify) {
+        if ( ! $verify)
             abort(403);
-        }
 
         $categories = Category::all();
 

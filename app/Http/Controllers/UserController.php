@@ -13,8 +13,16 @@ use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
+    private function userHasAccess()
+    {
+        if (User::findOrFail(Auth::id())->role < 4)
+            abort(403);
+    }
+
     public function update(Request $request)
     {
+        $this->userHasAccess();
+
         $user = User::findOrFail($request->get('user_id'));
         $user->name = $request->get('name');
         $user->email = $request->get('email');
@@ -34,6 +42,8 @@ class UserController extends Controller
 
     public function updateRole(Request $request)
     {
+        $this->userHasAccess();
+
         $user = User::findOrFail($request->get('user_id'));
 
         $user->role = $request->get('role');
@@ -45,6 +55,8 @@ class UserController extends Controller
 
     public function remove(Request $request)
     {
+        $this->userHasAccess();
+
         $user = User::findOrFail($request->get('user_id'));
 
         // remove all their images

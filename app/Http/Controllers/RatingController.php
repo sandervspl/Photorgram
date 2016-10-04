@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Redirect;
 
 class RatingController extends Controller
 {
+    private function userHasAccess()
+    {
+        if (User::findOrFail(Auth::id())->role < 4)
+            abort(403);
+    }
+
     public function rate(Request $request)
     {
         $image_id = $request->get('image_id');
@@ -39,6 +45,8 @@ class RatingController extends Controller
 
     public function remove($rating_id)
     {
+        $this->userHasAccess();
+
         Image_Rating::findOrFail($rating_id)->delete();
 
         return Redirect::back();

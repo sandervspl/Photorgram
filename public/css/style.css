@@ -202,21 +202,20 @@ header a {
 }
 
 .image-thumbnail {
+    position: relative;
+    display: inline-block;
+    margin: 0 10px 10px 0;
     width: 250px;
     height: 250px;
     overflow: hidden;
 }
 
-.image-thumbnail {
-    display: inline-block;
-    margin: 0 10px 10px 0;
-}
-
 .image-thumbnail-small {
+    position: relative;
+    display: inline-block;
     width: 125px;
     height: 125px;
     overflow: hidden;
-    display: inline-block;
     margin: 0 5px 5px 0;
 }
 
@@ -225,7 +224,27 @@ header a {
     margin-bottom: 1.5em;
 }
 
-.image-thumbnail img, .image-thumbnail-small img, .image-thumbnail-big img {
+.image-thumbnail img {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 250px;
+}
+
+.image-thumbnail-small img {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 125px;
+}
+
+.image-thumbnail-small img, .image-thumbnail-big img {
     width: 100%;
 }
 
