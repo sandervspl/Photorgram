@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "29bde75005bf8abeaea2ade7783913c3",
+    "hash": "dedc355f4c5803a27207f7dfd6efb74c",
     "content-hash": "043992285b9d4c9a1627cfbc7e64b8d6",
     "packages": [
         {
@@ -3116,16 +3116,16 @@
         },
         {
             "name": "phpunit/phpunit-mock-objects",
-            "version": "3.3.0",
+            "version": "3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "7462c19bdb9814f6e6bdeb5cad3eb3ce72c6e0da"
+                "reference": "03500345483e1e17b52e2e4d34a89c9408ab2902"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/7462c19bdb9814f6e6bdeb5cad3eb3ce72c6e0da",
-                "reference": "7462c19bdb9814f6e6bdeb5cad3eb3ce72c6e0da",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/03500345483e1e17b52e2e4d34a89c9408ab2902",
+                "reference": "03500345483e1e17b52e2e4d34a89c9408ab2902",
                 "shasum": ""
             },
             "require": {
@@ -3171,7 +3171,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2016-09-27 03:17:40"
+            "time": "2016-10-04 11:03:26"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
