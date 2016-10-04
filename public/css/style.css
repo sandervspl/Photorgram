@@ -591,10 +591,18 @@ header a {
     margin: auto;
 }
 
+.feed-image-card .info .col-md-8.title {
+    white-space: nowrap;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+
 h3.title.feed {
     display: inline;
     margin-top: 0.5em;
     font-weight: bold;
+    line-height: normal;
 }
 
 h4.user.feed, h4.date.feed, .username.feed {
@@ -841,4 +849,11 @@ tr.users-data td span {
 
 .invisible {
     visibility: hidden;
+}
+
+.remove-btn-small {
+    width: 20px;
+    height: 20px;
+    font-size: .67em;
+    padding: 0;
 }

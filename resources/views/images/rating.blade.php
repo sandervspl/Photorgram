@@ -20,6 +20,9 @@
                         @foreach($likes as $like)
                             <?php $username = App\User::find($like->user_id)->name; ?>
                             <li>
+                                @if ( ! Auth::Guest() && App\User::find(Auth::id())->role >= 3)
+                                <a href="{{ action('RatingController@remove', ['rating_id' => $like->id]) }}" class="btn btn-warning remove-btn-small">x</a>
+                                @endif
                                 <a href="{{ url('/'.$username) }}">{{ $username }}</a>
                             </li>
                         @endforeach
@@ -33,6 +36,9 @@
                         @foreach($dislikes as $dislike)
                             <?php $username = App\User::find($dislike->user_id)->name; ?>
                             <li>
+                                @if ( ! Auth::Guest() && App\User::find(Auth::id())->role >= 3)
+                                    <a href="{{ action('RatingController@remove', ['rating_id' => $dislike->id]) }}" class="btn btn-warning remove-btn-small">x</a>
+                                @endif
                                 <a href="{{ url('/'.$username) }}">{{ $username }}</a>
                             </li>
                         @endforeach

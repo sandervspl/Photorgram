@@ -22,7 +22,7 @@
 
                 <div class="info">
                     <div class="row info-1">
-                        <div class="col-md-8">
+                        <div class="col-md-8 title">
                             <h3 class="title feed">{{ $image->title or 'Undefined' }}</h3>
                         </div>
 

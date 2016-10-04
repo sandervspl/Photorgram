@@ -35,4 +35,12 @@ class RatingController extends Controller
 
         return Redirect::back();
     }
+
+
+    public function remove($rating_id)
+    {
+        Image_Rating::findOrFail($rating_id)->delete();
+
+        return Redirect::back();
+    }
 }

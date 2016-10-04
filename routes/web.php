@@ -32,6 +32,7 @@ Route::post('/search', 'SearchController@search');
 Route::post('/follow', 'FollowController@follow');
 Route::post('/unfollow', 'FollowController@unfollow');
 
+Route::get('/rate/{rating_id}/remove', 'RatingController@remove');
 Route::post('/rate', 'RatingController@rate');
 
 Route::post('/user/update', 'UserController@update');
