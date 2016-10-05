@@ -131,7 +131,7 @@
 
                         {!! Form::close() !!}
 
-                        <span>{{ $likes }}</span>
+                        <span>{{ $image->getLikesCount() }}</span>
 
                         {!! Form::open([
                                 'action' => 'RatingController@rate',
@@ -146,12 +146,12 @@
 
                         {!! Form::close() !!}
 
-                        <span>{{ $dislikes }}</span>
+                        <span>{{ $image->getDislikesCount() }}</span>
                     </div>
 
                     <?php
-                    $totalRates = $likes + $dislikes;
-                    $likePct = ($totalRates > 0) ? ($likes / $totalRates) * 100 : 0;
+                    $totalRates = $image->getLikesCount() + $image->getDislikesCount();
+                    $likePct = ($totalRates > 0) ? ($image->getLikesCount() / $totalRates) * 100 : 0;
                     ?>
 
                     <div class="ratings-bar-container">

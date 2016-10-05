@@ -91,18 +91,12 @@ class ImageController extends Controller
         // try to get image
         $image = Image::getImageByName($image_name);
 
-        // get all total ratings count for image
-        $likesAmount = Image_Rating::getLikesCountForImage($image->id);
-        $dislikesAmount = Image_Rating::getDislikesCountForImage($image->id);
-
         // check if logged-in user has rated this image and what he rated
         $userHasRated = Image_Rating::userHasRated(Auth::id(), $image->id);
 
         return view('images.image', [
             'user' => $image->user,
             'image' => $image,
-            'likes' => $likesAmount,
-            'dislikes' => $dislikesAmount,
             'userHasRated' => $userHasRated
         ]);
     }

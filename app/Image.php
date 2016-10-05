@@ -34,7 +34,7 @@ class Image extends Model
 
     public function getLikesCount()
     {
-        return Image_Rating::getLikesForImage($this->id);
+        return Image_Rating::getLikesCountForImage($this->id);
     }
 
 
@@ -60,10 +60,14 @@ class Image extends Model
 
     public static function getAllImagesFromProfiles($profiles)
     {
-        $query = DB::table('images');
+        $query = '';
 
-        foreach($profiles as $profile) {
-            $query->orWhere('user_id', '=', $profile->follow_id);
+        for ($i = 0; $i < count($profiles); $i += 1) {
+            if ($i == 0) {
+                $query = Image::where('user_id', '=', $profiles[$i]->follow_id);
+            } else {
+                $query->orWhere('user_id', '=', $profiles[$i]->follow_id);
+            }
         }
 
         return $query->orderBy('created_at', 'desc')->get();
