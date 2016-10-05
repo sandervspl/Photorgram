@@ -22,13 +22,13 @@ class Image extends Model
     // does not work
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 
 
     public function ratings()
     {
-        return $this->belongsToMany('App\Rating');
+        return $this->belongsToMany(Rating::class);
     }
 
 

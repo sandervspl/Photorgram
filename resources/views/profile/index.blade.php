@@ -14,7 +14,9 @@
             @include('partials/following_button')
 
             <div id="profile-more-info">
-                <h4 id="profile-followers">{{ $followers }} <b>followers</b></h4>
+                <a href="#" id="profile-followers"><b>{{ $user->followers->count() }}</b> followers</a>
+                <a href="#" id="profile-following"><b>{{ $user->following->count() }}</b> following</a>
+                <span id="profile-pictures"><b>{{ $user->images->count() }}</b> photos</span>
                 <div id="profile-bio">{{ $user->profile->bio }}</div>
             </div>
         </div>

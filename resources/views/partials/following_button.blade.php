@@ -4,7 +4,7 @@
     <?php $visibility = ''; ?>
 @endif
 
-@if (Auth::User()->isFollowing($user->id))
+@if ( ! Auth::Guest() && Auth::User()->isFollowing($user->id))
     {!!
         Form::open([
             'action' => 'FollowController@unfollow',

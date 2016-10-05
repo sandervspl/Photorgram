@@ -6,15 +6,13 @@ use App\Category;
 use App\Role;
 use Auth;
 use App\User;
-use Illuminate\Http\Request;
 use App\Http\Requests;
-use Illuminate\Support\Facades\Redirect;
 
 class AdminController extends Controller
 {
     private function userHasAccess()
     {
-        if (User::findOrFail(Auth::id())->role < 4)
+        if (Auth::guest() || Auth::user()->role < 4)
             abort(403);
     }
 

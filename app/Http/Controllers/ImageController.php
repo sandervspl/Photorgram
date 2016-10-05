@@ -28,11 +28,11 @@ class ImageController extends Controller
 
     public function index()
     {
-        $this->all();
+        $this->allImages();
     }
 
 
-    public function all()
+    public function allImages()
     {
         $categories = Category::all();
         $images = [];
@@ -54,7 +54,10 @@ class ImageController extends Controller
             $images[] = $temp_array;
         }
 
-        return view('images.index', ['images' => $images, 'categories' => $categories]);
+        return view('images.index', [
+            'images' => $images,
+            'categories' => $categories
+        ]);
     }
 
 
@@ -88,16 +91,6 @@ class ImageController extends Controller
         // try to get image
         $image = Image::getImageByName($image_name);
 
-        // try to get owner of this image
-        $user = User::findOrFail($image->user_id);
-
-        // make sure image is from this user
-        $verify = $user->images->contains($image->id);
-
-        // if not then abort
-        if ( ! $verify)
-            abort(403);
-
         // get all total ratings count for image
         $likesAmount = Image_Rating::getLikesCountForImage($image->id);
         $dislikesAmount = Image_Rating::getDislikesCountForImage($image->id);
@@ -105,16 +98,12 @@ class ImageController extends Controller
         // check if logged-in user has rated this image and what he rated
         $userHasRated = Image_Rating::userHasRated(Auth::id(), $image->id);
 
-        // followers count for header
-        $followers = Follow::getFollowersCount($user->id);
-
         return view('images.image', [
-            'user' => $user,
+            'user' => $image->user,
             'image' => $image,
             'likes' => $likesAmount,
             'dislikes' => $dislikesAmount,
-            'userHasRated' => $userHasRated,
-            'followers' => $followers
+            'userHasRated' => $userHasRated
         ]);
     }
 
@@ -164,10 +153,10 @@ class ImageController extends Controller
         if (Auth::Guest())
             abort(403);
 
-        $user = User::findOrFail(Auth::id());
+        $user = Auth::User();
         $image = Image::getImageByName($image_name);
 
-        $verify = $user->images->contains($image->id) || $user->role >= 3;
+        $verify = $image->user->id == $user->id || $user->role >= 3;
 
         // forbidden
         if ( ! $verify)
@@ -175,7 +164,10 @@ class ImageController extends Controller
 
         $categories = Category::all();
 
-        return view('images.edit', ['image' => $image, 'categories' => $categories]);
+        return view('images.edit', [
+            'image' => $image,
+            'categories' => $categories
+        ]);
     }
 
 
@@ -201,12 +193,14 @@ class ImageController extends Controller
         if (Auth::Guest())
             abort(404);
 
-        $user = User::findOrFail(Auth::id());
+        $user = Auth::User();
+        $verify = $image->user->id == $user->id || $user->role < 3;
 
-        if ($image->user_id != Auth::id() && $user->role < 3)
+        // forbidden
+        if ( ! $verify)
             abort(403);
 
-        return view('images.remove')->with(['image' => $image]);
+        return view('images.remove', ['image' => $image]);
     }
 
 
@@ -217,14 +211,14 @@ class ImageController extends Controller
         if (Auth::Guest())
             abort(404);
 
-        $user = User::findOrFail(Auth::id());
+        $user = Auth::User();
+        $verify = $image->user->id == $user->id || $user->role < 3;
 
-        if ($image->user_id != Auth::id() && $user->role < 3)
+        // forbidden
+        if ( ! $verify)
             abort(403);
 
         $image->delete();
-
-        $user = User::findOrFail($image->user_id);
 
         return Redirect::to(action('ProfileController@show', ['user_name' => $user->name]));
     }
@@ -236,7 +230,7 @@ class ImageController extends Controller
         $likes = Image_Rating::getLikesForImage($image->id);
         $dislikes = Image_Rating::getDislikesForImage($image->id);
 
-        return view('images.rating')->with([
+        return view('images.rating', [
             'image' => $image,
             'likes' => $likes,
             'dislikes' => $dislikes

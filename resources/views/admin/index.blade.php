@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Administration')
+@section('title', 'Use')
 @section('content')
 <section class="main-article admin-page">
     <h1>Administration - Users</h1>
@@ -48,23 +48,17 @@
                     ])
                 !!}
 
-                {!! Form::label('', '', ['class' => 'control-label']) !!}
-                {!! Form::select(
-                        'role',
-                        [
-                            '1' => 'User',
-                            '2' => 'Developer',
-                            '3' => 'Moderator',
-                            '4' => 'Administrator'
-                        ],
-                        $user->role,
-                        [
-                            'class'       => 'form control input-sm admin-role-dropdown',
-                            'required'    => 'required',
-                            'onchange'    => 'this.form.submit()'
-                        ]
-                    )
-                !!}
+                <label for="role" class="control-label"></label>
+                <select name="role" id="role" class="form control input-sm admin-role-dropdown"
+                        onchange="this.form.submit()" required>
+                    @foreach(\App\Role::all() as $role)
+                        @if($user->role == $role->id)
+                            <option value="{{ $role->id }}" selected>{{ $role->name }}</option>
+                        @else
+                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                        @endif
+                    @endforeach
+                </select>
 
                 {!! Form::hidden('user_id', $user->id) !!}
 

@@ -14,7 +14,7 @@ class CategoryController extends Controller
 {
     private function userHasAccess()
     {
-        if (User::findOrFail(Auth::id())->role < 4)
+        if (Auth::guest() || Auth::user()->role < 4)
             abort(403);
     }
 

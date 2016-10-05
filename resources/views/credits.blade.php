@@ -11,6 +11,8 @@
                 <li>PCMPixels</li>
                 <li>Shashank Sahay</li>
                 <li>artworkbean</li>
+                <li>AFY Studio</li>
+                <li>Karthik Aathis</li>
             </ul>
         </div>
     </section>

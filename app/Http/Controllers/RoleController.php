@@ -14,7 +14,7 @@ class RoleController extends Controller
 {
     private function userHasAccess()
     {
-        if (User::findOrFail(Auth::id())->role < 4)
+        if (Auth::User()->role < 4)
             abort(403);
     }
 
@@ -47,7 +47,19 @@ class RoleController extends Controller
 
     public function remove(Request $request)
     {
-        Role::findOrFail($request->get('role_id'))->delete();
+        $role = $request->get('role_id');
+
+        // get all users with this role
+        $users = User::getAllUsersWithRole($role);
+
+        // update their role to user
+        foreach ($users as $user) {
+            $user->role = 1;
+            $user->save();
+        }
+
+        // remove role
+        Role::findOrFail($role)->delete();
 
         return Redirect::to(action('AdminController@roles'));
     }

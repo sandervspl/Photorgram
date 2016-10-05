@@ -4,11 +4,6 @@
 @extends('layouts.master')
 @section('title', 'Frontpage')
 @section('content')
-
-    {{--@foreach($images as $image)--}}
-        {{--{{ dd($image) }}--}}
-    {{--@endforeach--}}
-
 <section class="main-article feed">
     @if (isset($images))
     <div class="feed-images">
@@ -36,7 +31,7 @@
 
                                 <h4 class="user feed">
                                     {{ $username }}
-{{--                                    {{ $image->user->name }}--}}
+                                    {{--{{ $image->user->name }}--}}
                                 </h4>
                             </a>
                         </div>
@@ -108,8 +103,8 @@
                     </div>
 
                     <?php
-                        $totalRates = $likes + $dislikes;
-                        $likePct = ($likes / $totalRates) * 100;
+                    $totalRates = $likes + $dislikes;
+                    $likePct = ($totalRates > 0) ? ($likes / $totalRates) * 100 : 0;
                     ?>
 
                     <div class="row info-3">

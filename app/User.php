@@ -4,7 +4,6 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Follow;
 use Auth;
 
 class User extends Authenticatable
@@ -37,32 +36,40 @@ class User extends Authenticatable
 
     public function images()
     {
-        return $this->hasMany('App\Image');
+        return $this->hasMany(Image::class);
     }
 
 
     public function ratings()
     {
-        return $this->hasMany('App\Image_Rating');
+        return $this->hasMany(Image_Rating::class);
     }
 
 
     public function profile()
     {
-        return $this->hasOne('App\Profile');
+        return $this->hasOne(Profile::class);
     }
 
 
-    public function followers($id)
+    public function following()
     {
-        return Follow::where('user_id', '=', $id)->get();
+        return $this->hasMany(Follow::class);
     }
 
 
-    public static function getAllFollowing($user_id)
+    public function followers()
     {
-        return Follow::where('user_id', '=', $user_id)->get();
+        return $this->hasMany(Follow::class, 'follow_id', 'id');
     }
+
+
+    public function role()
+    {
+        return $this->hasOne(Role::class);
+    }
+
+
 
 
     public static function isFollowing($id)

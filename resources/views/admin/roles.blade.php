@@ -31,9 +31,13 @@
 
                         <span> | </span>
 
+                        @if($role->id != 1)
                         <a href="{{ action('AdminController@removeRole', ['roleid' => $role->id]) }}" class="remove-link">
                             Remove Role
                         </a>
+                        @else
+                            Remove Role
+                        @endif
                     </td>
                 </tr>
                 <tr class="spacer"></tr>

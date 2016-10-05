@@ -20,6 +20,6 @@ class Profile extends Model
 
     public function user()
     {
-        $this->belongsTo('App\User');
+        $this->belongsTo(User::class);
     }
 }

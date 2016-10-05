@@ -5,7 +5,7 @@
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li><a href="{{ action('ImageController@all') }}">All</a></li>
+            <li><a href="{{ action('ImageController@allImages') }}">All</a></li>
             <li class="divider"></li>
             @foreach($categories as $category)
                 <li>

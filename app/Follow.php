@@ -19,12 +19,12 @@ class Follow extends Model
 
     public function follows()
     {
-        return $this->belongsToMany('App\User', 'follows', 'user_id', 'follows_id');
+        return $this->belongsToMany(User::class, 'follows', 'user_id', 'follows_id');
     }
 
     // wordt hasMany
     public function followers()
     {
-        return $this->belongsToMany('App\User', 'follows', 'follows_id', 'user_id');
+        return $this->belongsToMany(User::class, 'follows', 'follows_id', 'user_id');
     }
 }

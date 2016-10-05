@@ -13,7 +13,7 @@ class RatingController extends Controller
 {
     private function userHasAccess()
     {
-        if (User::findOrFail(Auth::id())->role < 4)
+        if (Auth::User()->role < 4)
             abort(403);
     }
 
@@ -22,7 +22,7 @@ class RatingController extends Controller
         $image_id = $request->get('image_id');
         $rating_id = $request->get('rating_id');
         $rated = $request->get('user_rated');
-        $user = Auth::user();
+        $user = Auth::User();
 
         if ($rated) {
             // remove rating

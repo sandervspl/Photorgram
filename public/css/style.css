@@ -141,7 +141,7 @@ header {
     width: 100%;
     height: 50px;
     background-color: #fff;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
 }
 
 header.admin {
@@ -156,37 +156,143 @@ header a {
     color: black;
 }
 
-.navbar {
+
+
+header {
+    width: 100%;
+    height: 75px;
+    background-color: #fcfcfc;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+nav {
+    display: table;
     margin: auto;
-    padding-top: 7px;
     width: 70%;
-    z-index: 2;
+    table-layout: fixed;
 }
 
-.navbar-left #navbar-logo {
-    font-size: 1.5em;
+nav .left, nav .right {
+    display: table-cell;
+    vertical-align: middle;
 }
 
-.navbar-right {
-    font-size: .85em;
+nav .left {
+    text-align: left;
+    color: #fff;
+    padding: 17px 0;
+}
+
+nav .username::before {
+    position: relative;
+    top: 4px;
+    display: inline-block;
+    content: '';
+    background: transparent url(../img/user.png) no-repeat;
+    background-size: 19px 20px;
+    width: 19px;
+    height: 20px;
+}
+
+nav .right {
+    text-align: right;
+}
+
+nav .left img {
+    height: 40px;
+}
+
+nav .right ul {
+    margin: 0;
+}
+
+nav > .right > ul > li {
+    display: inline-block;
+}
+
+nav > .right > ul > li:not(:first-child) {
+    margin-left: 1em;
+}
+
+nav .right ul li img {
+    width: 20px;
+}
+
+.user-dropdown {
+    border: 0;
+    background-color: inherit;
+    font-size: 1em;
+    vertical-align: inherit;
+}
+
+.user-dropdown:focus {
+    background-color: inherit;
+}
+
+
+
+#searchbar {
+    position: relative;
+    z-index: 1;
+    height: 0;
+    width: 100%;
+    background: #eee;
+    -webkit-transition: height .3s ease-in-out;
+    -moz-transition: height .3s ease-in-out;
+    -o-transition: height .3s ease-in-out;
+    transition: height .3s ease-in-out;
+}
+
+#searchbar.show {
+    height: 70px;
+}
+
+#search-btn {
+    position: relative;
+    top: 4px;
+    width: 20px;
+    height: 20px;
+    background: transparent url('../img/search3.png') 0 0 no-repeat;
+    background-size: 20px;
+    border: 0;
+}
+
+#searchbar-form {
+    position: relative;
+    z-index: 1;
+    top: -5px;
+}
+
+#searchbar-input {
+    position: relative;
+    z-index: 1;
+    border: none;
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    padding-left: 4.8em;
+    font-size: 2.5em;
+}
+
+#searchbar-clear {
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    width: 30px;
+    right: 11em;
+    top: -3.4em;
     float: right;
+    opacity: 0;
+    pointer-events: none;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 
-#user-dropdown {
-    margin-left: 10px;
-}
-
-.signin-register-list {
-    padding-top: 7px;
-}
-
-.horizontal-list-divider {
-    color: black;
-    padding: 0 5px;
-}
-
-.horizontal-list-divider::before {
-    content: ' | ';
+#searchbar-clear.show {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .upload-form {
@@ -204,7 +310,7 @@ header a {
 .image-thumbnail {
     position: relative;
     display: inline-block;
-    margin: 0 10px 10px 0;
+    margin: 0 22px 22px 22px;
     width: 250px;
     height: 250px;
     overflow: hidden;
@@ -254,10 +360,6 @@ header a {
     display: inline-block;
 }
 
-.dropdown ul li {
-    display: block;
-}
-
 #follow-button:hover {
     background-color: rgba(55, 187, 93, 0.5) !important;
     box-shadow: inset 0 -2px 0 0 rgba(55, 187, 93, 1.0);
@@ -272,6 +374,11 @@ header a {
 
 #profile-more-info {
     padding-top: 1em;
+}
+
+#profile-more-info span, #profile-more-info a {
+    color: black;
+    padding-right: 2em;
 }
 
 #profile-followers {
@@ -310,15 +417,16 @@ header a {
     float: right;
 }
 
-.profile-header, .profile-body, .image-container {
-    width: 88.39%;
+.profile-body, .image-container {
+    width: 100%;
     margin: auto;
 }
 
 .profile-header {
     display: table;
-    margin: 1.5em auto;
+    margin: 3em;
     min-height: 125px;
+    width: 90%;
 }
 
 #profile-bio {
@@ -327,7 +435,7 @@ header a {
 
 #profile-user-info-box {
     display: table-cell;
-    padding-left: 1em;
+    padding-left: 3em;
     width: 100%;
     vertical-align: top;
 }
@@ -335,8 +443,8 @@ header a {
 #profile-user-image, #profile-user-image img {
     display: inline-block;
     vertical-align: bottom;
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
 }
 
 #profile-user-image {
@@ -369,6 +477,10 @@ header a {
 
 .image-info-description {
     margin-top: 2em;
+}
+
+.image-info-description small {
+    font-weight: bold;
 }
 
 .image-info-description .description {
@@ -516,71 +628,6 @@ header a {
             rgba(255, 255, 255, 0) 0%,
             rgba(255, 255, 255, 1) 100%
     );
-}
-
-#searchbar {
-    position: relative;
-    z-index: 1;
-    height: 0;
-    width: 100%;
-    background: #eee;
-    -webkit-transition: height .3s ease-in-out;
-    -moz-transition: height .3s ease-in-out;
-    -o-transition: height .3s ease-in-out;
-    transition: height .3s ease-in-out;
-}
-
-#searchbar.show {
-    height: 70px;
-}
-
-#search-btn {
-    position: relative;
-    top: 7px;
-    margin-left: 10px;
-    width: 20px;
-    height: 20px;
-    background: transparent url('../img/search3.png') 0 0 no-repeat;
-    background-size: 20px;
-    border: 0;
-}
-
-#searchbar-form {
-    position: relative;
-    z-index: 1;
-    top: -5px;
-}
-
-#searchbar-input {
-    position: relative;
-    z-index: 1;
-    border: none;
-    height: 100%;
-    width: 100%;
-    background: transparent;
-    padding-left: 4.8em;
-    font-size: 2.5em;
-}
-
-#searchbar-clear {
-    position: relative;
-    z-index: 1;
-    cursor: pointer;
-    width: 30px;
-    right: 11em;
-    top: -3.4em;
-    float: right;
-    opacity: 0;
-    pointer-events: none;
-    -webkit-transition: all .3s ease-in-out;
-    -moz-transition: all .3s ease-in-out;
-    -o-transition: all .3s ease-in-out;
-    transition: all .3s ease-in-out;
-}
-
-#searchbar-clear.show {
-    opacity: 1;
-    pointer-events: auto;
 }
 
 .alt-title {

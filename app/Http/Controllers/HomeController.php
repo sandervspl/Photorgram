@@ -28,14 +28,14 @@ class HomeController extends Controller
         $user = Auth::user();
 
         // get all profiles he follows
-        $following = User::getAllFollowing($user->id);
+        $following = $user->following;
 
         if ($following->count() > 0) {
             // get all images these profiles have posted
             // and order them latest to oldest
             $images = Image::getAllImagesFromProfiles($following);
 
-            return view('index')->with('images', $images);
+            return view('index', compact('images'));
         }
 
         return view('index');

@@ -8,8 +8,8 @@ Route::get('/register', function (){ return view('register'); });
 
 Route::post('/user/remove', 'UserController@remove');
 
-Route::get('/images', 'ImageController@all');
-Route::get('/images/all', 'ImageController@all');
+Route::get('/images', 'ImageController@allImages');
+Route::get('/images/all', 'ImageController@allImages');
 Route::get('/images/upload', 'ImageController@upload');
 Route::get('/images/result', 'ImageController@result');
 Route::get('/images/category/{categoryname}', 'ImageController@category');

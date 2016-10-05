@@ -1,22 +1,28 @@
 @extends('layouts.master')
-@section('title', 'Image')
+@section('title', $image->title)
 @section('content')
 <section class="main-article">
     <div class="profile-header">
         <div id="profile-user-image">
             @if( ! empty($user->profile->profile_picture))
-                <img src="{{ url('uploads/profile/'.$user->profile->profile_picture) }}" alt="profile picture">
+                <a href="{{ action('ProfileController@show', ['username' => $user->name]) }}">
+                    <img src="{{ url('uploads/profile/'.$user->profile->profile_picture) }}" alt="profile picture">
+                </a>
             @endif
         </div>
         <div id="profile-user-info-box">
             <h1 id="profile-user-name">
-                <a href="{{ action('ProfileController@show', ['username' => $user->name]) }}">{{ $user->name }}</a>
+                <a href="{{ action('ProfileController@show', ['username' => $user->name]) }}">
+                    {{ $user->name }}
+                </a>
             </h1>
 
             @include('partials/following_button')
 
             <div id="profile-more-info">
-                <h4 id="profile-followers"><b>{{ $followers }}</b> followers</h4>
+                <a href="#" id="profile-followers"><b>{{ $user->followers->count() }}</b> followers</a>
+                <a href="#" id="profile-following"><b>{{ $user->following->count() }}</b> following</a>
+                <span id="profile-pictures"><b>{{ $user->images->count() }}</b> photos</span>
             </div>
         </div>
     </div>
@@ -24,13 +30,14 @@
     <div class="image-container">
         <div class="row">
             <div class="image-body col-md-6">
-                <img src="{{ url('uploads/'.$image->image_uri) }}" class="col-md-6 image-body-src" alt="{{ $image->title }}" title="{{ $image->title }}">
+                <img src="{{ url('uploads/'.$image->image_uri) }}" class="col-md-6 image-body-src"
+                     alt="{{ $image->title }}" title="{{ $image->title }}">
             </div>
 
             <div class="image-info col-md-6">
                 <div class="image-info-header row">
                     <?php
-                        if($user->id == Auth::id() || App\User::find(Auth::id())->role >= 3) {
+                        if( ! Auth::Guest() && ($user->id == Auth::id() || Auth::User()->role >= 3)) {
                             $colWidth = 'col-md-7';
                             $isUserImg = true;
                         }
@@ -47,10 +54,12 @@
                     @if($isUserImg)
                     <div class="col-md-5">
                         <div id="image-user-buttons">
-                            <a href="{{ action('ImageController@edit', $image->image_uri) }}" class="btn btn-default" id="image-edit-button">
+                            <a href="{{ action('ImageController@edit', $image->image_uri) }}"
+                               class="btn btn-default" id="image-edit-button">
                                 Edit
                             </a>
-                            <a href="{{ action('ImageController@confirmRemove', $image->image_uri) }}" class="btn btn-default btn-warning" id="image-remove-button">
+                            <a href="{{ action('ImageController@confirmRemove', $image->image_uri) }}"
+                               class="btn btn-default btn-warning" id="image-remove-button">
                                 Remove
                             </a>
                         </div>
@@ -70,17 +79,19 @@
                     }
                     ?>
                     <h4>
-                        @if ($categoryName !== 'undefined')
-                        <a href="{{ url('/images/category/'.$categoryName) }}">{{ ucfirst(trans($categoryName)) }}</a>
-                        @else
+                    @if ($categoryName !== 'undefined')
+                        <a href="{{ url('/images/category/'.$categoryName) }}">
+                            {{ ucfirst(trans($categoryName)) }}
+                        </a>
+                    @else
                         <span>{{ ucfirst(trans($categoryName)) }}</span>
-                        @endif
+                    @endif
                     </h4>
 
                     <div class="image-info-description">
                         <small>Description</small>
                         <div class="description">
-                            <pre>{{ $image->description }}</pre>
+                            <p>{{ $image->description }}</p>
                         </div>
                         <div class="fadeout"></div>
                     </div>
@@ -140,7 +151,7 @@
 
                     <?php
                     $totalRates = $likes + $dislikes;
-                    $likePct = ($likes / $totalRates) * 100;
+                    $likePct = ($totalRates > 0) ? ($likes / $totalRates) * 100 : 0;
                     ?>
 
                     <div class="ratings-bar-container">

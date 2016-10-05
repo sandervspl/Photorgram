@@ -41,16 +41,10 @@ class ProfileController extends Controller
         $user = User::getUserByName($user_name);
 
         // if it does not exist, show 404 page
-        if (is_null($user)) {
+        if (is_null($user))
             abort(404);
-        }
 
-        $followers = Follow::getFollowersCount($user->id);
-
-        return view('profile.index', [
-            'user' => $user,
-            'followers' => $followers
-        ]);
+        return view('profile.index', ['user' => $user]);
     }
 
 
@@ -60,7 +54,7 @@ class ProfileController extends Controller
             abort(403);
 
         $profile_user = User::getUserByName($user_name);
-        $cur_user = User::findOrFail(Auth::id());
+        $cur_user = Auth::User();
 
         if ($cur_user->id != $profile_user->id && $cur_user->role < 4)
             abort(403);
@@ -74,7 +68,7 @@ class ProfileController extends Controller
             abort(403);
 
         $profile_user = User::getUserByName($user_name);
-        $cur_user = User::findOrFail(Auth::id());
+        $cur_user = Auth::User();
 
         if ($cur_user->id != $profile_user->id && $cur_user->role < 4)
             abort(403);
