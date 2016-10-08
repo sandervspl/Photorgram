@@ -12,6 +12,9 @@ class Profile extends Model
         'bio'
     ];
 
+
+
+
     public static function getProfile($user_id)
     {
         $profile = Profile::where('user_id', '=', $user_id);

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Image_Rating extends Model
 {
-    // don't use plural name
+    // don't use plural name for database tabel
     protected $table = 'image_rating';
 
     protected $fillable = [

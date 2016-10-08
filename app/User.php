@@ -72,7 +72,7 @@ class User extends Authenticatable
 
 
 
-    public static function isFollowing($id)
+    public static function isFollowing($user_id)
     {
         return Follow::where('follow_id', '=', $id)
             ->where('user_id', Auth::id())
@@ -92,9 +92,9 @@ class User extends Authenticatable
     }
 
 
-    public static function getAllUsersWithName($name)
+    public static function getAllUsersWithName($user_name)
     {
-        return User::where('name', 'like', '%'.$name.'%')
+        return User::where('name', 'like', '%'.$user_name.'%')
             ->where('role', '=', '1')
             ->get();
     }

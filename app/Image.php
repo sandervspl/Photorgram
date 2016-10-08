@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
 class Image extends Model
 {
@@ -19,7 +18,6 @@ class Image extends Model
 
 
 
-    // does not work
     public function user()
     {
         return $this->belongsTo(User::class);

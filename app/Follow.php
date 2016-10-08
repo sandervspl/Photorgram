@@ -16,15 +16,4 @@ class Follow extends Model
         $followers = Follow::where('follow_id', '=', $user_id);
         return ( ! is_null($followers)) ? $followers->count() : 0;
     }
-
-    public function follows()
-    {
-        return $this->belongsToMany(User::class, 'follows', 'user_id', 'follows_id');
-    }
-
-    // wordt hasMany
-    public function followers()
-    {
-        return $this->belongsToMany(User::class, 'follows', 'follows_id', 'user_id');
-    }
 }
