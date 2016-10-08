@@ -74,7 +74,7 @@ class User extends Authenticatable
 
     public static function isFollowing($user_id)
     {
-        return Follow::where('follow_id', '=', $id)
+        return Follow::where('follow_id', '=', $user_id)
             ->where('user_id', Auth::id())
             ->first();
     }
