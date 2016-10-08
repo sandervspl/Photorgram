@@ -68,7 +68,7 @@ class UserController extends Controller
         $user->profile->delete();
 
         // remove the user itself
-        User::findOrFail($user->id)->delete();
+        $user->delete();
 
         return Redirect::to(action('AdminController@index'));
     }
