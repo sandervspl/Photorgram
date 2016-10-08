@@ -12,7 +12,7 @@ class AdminController extends Controller
 {
     private function userHasAccess()
     {
-        if (Auth::guest() || Auth::user()->role < 4)
+        if (Auth::Guest() || Auth::User()->role < 4)
             abort(403);
     }
 
@@ -60,6 +60,8 @@ class AdminController extends Controller
 
     public function addCategory()
     {
+        $this->userHasAccess();
+
         return view('admin.add_category');
     }
 
@@ -69,19 +71,25 @@ class AdminController extends Controller
         $this->userHasAccess();
 
         $category = Category::findOrFail($category_id);
+
         return view('admin.edit_category', ['category' => $category]);
     }
 
 
     public function removeCategory($category_id)
     {
+        $this->userHasAccess();
+
         $category = Category::findOrFail($category_id);
+
         return view('admin.remove_category', ['category' => $category]);
     }
 
 
     public function addRole()
     {
+        $this->userHasAccess();
+
         return view('admin.add_role');
     }
 
@@ -91,6 +99,7 @@ class AdminController extends Controller
         $this->userHasAccess();
 
         $role = Role::findOrFail($role_id);
+
         return view('admin.edit_role', ['role' => $role]);
     }
 
@@ -98,6 +107,7 @@ class AdminController extends Controller
     public function removeRole($role_id)
     {
         $role = Role::findOrFail($role_id);
+
         return view('admin.remove_role', ['role' => $role]);
     }
 
