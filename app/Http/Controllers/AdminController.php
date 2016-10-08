@@ -106,6 +106,8 @@ class AdminController extends Controller
 
     public function removeRole($role_id)
     {
+        $this->userHasAccess();
+
         $role = Role::findOrFail($role_id);
 
         return view('admin.remove_role', ['role' => $role]);
@@ -114,6 +116,8 @@ class AdminController extends Controller
 
     public function removeUser($user_name)
     {
+        $this->userHasAccess();
+
         $user = User::getUserByName($user_name);
 
         return view('admin.remove_user', ['user' => $user]);
