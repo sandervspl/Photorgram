@@ -97,56 +97,32 @@
                     </div>
 
 
-                    <div class="image-info-buttons">
                     <?php
-                        $disabled = '';
-                        if (Auth::Guest()) {
-                            $disabled = 'disabled';
-                        }
+                    $disabled = '';
+                    if (Auth::Guest()) {
+                        $disabled = 'disabled';
+                    }
 
-                        if ($userHasRated == '1') {
-                            $likedStyle = ' user-liked';
-                            $dislikedStyle = '';
-                        }
-                        elseif ($userHasRated == '2') {
-                            $likedStyle = '';
-                            $dislikedStyle = ' user-disliked';
-                        }
-                        else {
-                            $likedStyle = ''; $dislikedStyle = '';
-                        }
+                    if ($userHasRated == '1') {
+                        $likedStyle = ' user-liked';
+                        $dislikedStyle = '';
+                    }
+                    elseif ($userHasRated == '2') {
+                        $likedStyle = '';
+                        $dislikedStyle = ' user-disliked';
+                    }
+                    else {
+                        $likedStyle = '';
+                        $dislikedStyle = '';
+                    }
                     ?>
 
-                        {!! Form::open([
-                                'action' => 'RatingController@rate',
-                                'class'  => 'horizontal-form rating-form'
-                            ])
-                        !!}
+                    <div class="image-info-buttons" data-imageid="{{ $image->id }}" data-userrated="{{ $userHasRated }}">
+                        <button data-ratingid="1" {{ $disabled }} class="btn btn-default profile-buttons image-like-btn like-btn{{ $likedStyle }}"></button>
+                        <span class="image-like-count">{{ $image->getLikesCount() }}</span>
 
-                        {!! Form::hidden('image_id', $image->id) !!}
-                        {!! Form::hidden('rating_id', 1) !!}
-                        {!! Form::hidden('user_rated', $userHasRated) !!}
-
-                        {!! Form::submit('', ['class' => 'btn btn-default profile-buttons image-like-btn like-btn'.$likedStyle, $disabled]) !!}
-
-                        {!! Form::close() !!}
-
-                        <span>{{ $image->getLikesCount() }}</span>
-
-                        {!! Form::open([
-                                'action' => 'RatingController@rate',
-                                'class'  => 'horizontal-form rating-form'
-                            ])
-                        !!}
-
-                        {!! Form::hidden('image_id', $image->id) !!}
-                        {!! Form::hidden('rating_id', 2) !!}
-                        {!! Form::hidden('user_rated', $userHasRated) !!}
-                        {!! Form::submit('', ['class' => 'btn btn-default profile-buttons image-dislike-btn dislike-btn'.$dislikedStyle, $disabled]) !!}
-
-                        {!! Form::close() !!}
-
-                        <span>{{ $image->getDislikesCount() }}</span>
+                        <button data-ratingid="2" {{ $disabled }} class="btn btn-default profile-buttons image-dislike-btn dislike-btn{{ $dislikedStyle }}"></button>
+                        <span class="image-dislike-count">{{ $image->getDislikesCount() }}</span>
                     </div>
 
                     <?php
@@ -155,9 +131,8 @@
                     ?>
 
                     <div class="ratings-bar-container">
-                            <div class="rating-bar-bg"></div>
-                            <div class="rating-bar" style="width: {{ $likePct }}%;"></div>
-                        </div>
+                        <div class="rating-bar-bg"></div>
+                        <div id="rating-bar-{{ $image->id }}" class="rating-bar" style="width: {{ $likePct }}%;"></div>
                     </div>
 
                     <div class="ratings-link-container">
@@ -168,4 +143,8 @@
         </div>
     </div>
 </section>
+<script>
+    var url = '{{ route('rate') }}',
+        token = '{{ csrf_token() }}';
+</script>
 @endsection

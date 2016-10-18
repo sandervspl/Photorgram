@@ -40,60 +40,36 @@
                         <h4 class="date feed">{{ time_elapsed_string($image->created_at) }}</h4>
                     </div>
                     <div class="col-md-8">
-                        <div class="image-info-buttons">
-                            <?php
-                            $userHasRated = App\Image_Rating::userHasRated(Auth::id(), $image->id);
+                        <?php
+                        $userHasRated = App\Image_Rating::userHasRated(Auth::id(), $image->id);
 
-                            $disabled = '';
-                            if (Auth::Guest()) {
-                                $disabled = 'disabled';
-                            }
+                        $disabled = '';
+                        if (Auth::Guest()) {
+                            $disabled = 'disabled';
+                        }
 
-                            if ($userHasRated == '1') {
-                                $likedStyle = ' user-liked';
-                                $dislikedStyle = '';
-                            }
-                            elseif ($userHasRated == '2') {
-                                $likedStyle = '';
-                                $dislikedStyle = ' user-disliked';
-                            }
-                            else {
-                                $likedStyle = '';
-                                $dislikedStyle = '';
-                            }
-                            ?>
+                        if ($userHasRated == '1') {
+                            $likedStyle = ' user-liked';
+                            $dislikedStyle = '';
+                        }
+                        elseif ($userHasRated == '2') {
+                            $likedStyle = '';
+                            $dislikedStyle = ' user-disliked';
+                        }
+                        else {
+                            $likedStyle = '';
+                            $dislikedStyle = '';
+                        }
+                        ?>
 
-                            {!! Form::open([
-                                    'action' => 'RatingController@rate',
-                                    'class'  => 'horizontal-form rating-form'
-                                ])
-                            !!}
+                        <div class="image-info-buttons" data-imageid="{{ $image->id }}" data-userrated="{{ $userHasRated }}">
+                            <button data-ratingid="1" {{ $disabled }} class="btn btn-default profile-buttons image-like-btn like-btn{{ $likedStyle }}"></button>
 
-                            {!! Form::hidden('image_id', $image->id) !!}
-                            {!! Form::hidden('rating_id', 1) !!}
-                            {!! Form::hidden('user_rated', $userHasRated) !!}
+                            <span class="image-like-count">{{ $image->getLikesCount() }}</span>
 
-                            {!! Form::submit('', ['class' => 'btn btn-default profile-buttons image-like-btn like-btn'.$likedStyle, $disabled]) !!}
+                            <button data-ratingid="2" {{ $disabled }} class="btn btn-default profile-buttons image-dislike-btn dislike-btn{{ $dislikedStyle }}"></button>
 
-                            {!! Form::close() !!}
-
-                            <span>{{ $image->getLikesCount() }}</span>
-
-                            {!! Form::open([
-                                    'action' => 'RatingController@rate',
-                                    'class'  => 'horizontal-form rating-form'
-                                ])
-                            !!}
-
-                            {!! Form::hidden('image_id', $image->id) !!}
-                            {!! Form::hidden('rating_id', 2) !!}
-                            {!! Form::hidden('user_rated', $userHasRated) !!}
-
-                            {!! Form::submit('', ['class' => 'btn btn-default profile-buttons image-dislike-btn dislike-btn'.$dislikedStyle, $disabled]) !!}
-
-                            {!! Form::close() !!}
-
-                            <span>{{ $image->getDislikesCount() }}</span>
+                            <span class="image-dislike-count">{{ $image->getDislikesCount() }}</span>
                         </div>
                     </div>
                 </div>
@@ -107,7 +83,7 @@
                     <div class="col-md-7"></div>
                     <div class="col-md-5">
                         <div class="rating-bar-bg"></div>
-                        <div class="rating-bar" style="width: {{ $likePct }}%;"></div>
+                        <div id="rating-bar-{{ $image->id }}" class="rating-bar" style="width: {{ $likePct }}%;"></div>
                     </div>
                 </div>
             </div>
@@ -119,4 +95,8 @@
     <p>You are not following any profiles!</p>
     @endif
 </section>
+<script>
+    var url = '{{ route('rate') }}',
+        token = '{{ csrf_token() }}';
+</script>
 @stop

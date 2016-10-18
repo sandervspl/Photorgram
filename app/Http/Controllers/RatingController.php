@@ -39,7 +39,11 @@ class RatingController extends Controller
         // add to image_rating table
         $image->ratings()->attach($rating_id, ['user_id' => $user->id]);
 
-        return Redirect::back();
+        return response()->json([
+            'image_id' => $request->get('image_id'),
+            'rating_id' => $request->get('rating_id'),
+            'user_rated' => $request->get('user_rated')
+        ]);
     }
 
 
