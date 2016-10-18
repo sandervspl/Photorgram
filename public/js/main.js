@@ -92,11 +92,11 @@ function rate(e, that) {
         });
 }
 
-$('.row.info-2').find('.image-info-buttons').find('.btn').click(function (event) {
+$('.row.info-2').find('.image-info-buttons').find('.button').click(function (event) {
     rate(event, $(this));
 });
 
-$('.image-info-section').find('.image-info-buttons').find('.btn').click(function (event) {
+$('.image-info-section').find('.image-info-buttons').find('.button').click(function (event) {
     rate(event, $(this));
 });
 

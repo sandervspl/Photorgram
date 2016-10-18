@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Follow;
 use App\Image_Rating;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use \Storage;
 use App\Image;
-use App\User;
 use App\Category;
 use Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -182,12 +180,12 @@ class ImageController extends Controller
 
     public function confirmRemove($image_name)
     {
-        $image = Image::getImageByName($image_name);
-
         if (Auth::Guest())
             abort(404);
 
+        $image = Image::getImageByName($image_name);
         $user = Auth::User();
+
         $verify = $image->user->id == $user->id || $user->role < 3;
 
         // forbidden
@@ -200,12 +198,12 @@ class ImageController extends Controller
 
     public function remove(Request $request)
     {
-        $image = Image::findOrFail($request->get('image_id'));
-
         if (Auth::Guest())
             abort(404);
 
+        $image = Image::findOrFail($request->get('image_id'));
         $user = Auth::User();
+
         $verify = $image->user->id == $user->id || $user->role < 3;
 
         // forbidden

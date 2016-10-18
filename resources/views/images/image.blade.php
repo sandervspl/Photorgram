@@ -118,10 +118,10 @@
                     ?>
 
                     <div class="image-info-buttons" data-imageid="{{ $image->id }}" data-userrated="{{ $userHasRated }}">
-                        <button data-ratingid="1" {{ $disabled }} class="btn btn-default profile-buttons image-like-btn like-btn{{ $likedStyle }}"></button>
+                        <button data-ratingid="1" {{ $disabled }} class="button profile-buttons image-like-btn like-btn{{ $likedStyle }}"></button>
                         <span class="image-like-count">{{ $image->getLikesCount() }}</span>
 
-                        <button data-ratingid="2" {{ $disabled }} class="btn btn-default profile-buttons image-dislike-btn dislike-btn{{ $dislikedStyle }}"></button>
+                        <button data-ratingid="2" {{ $disabled }} class="button profile-buttons image-dislike-btn dislike-btn{{ $dislikedStyle }}"></button>
                         <span class="image-dislike-count">{{ $image->getDislikesCount() }}</span>
                     </div>
 

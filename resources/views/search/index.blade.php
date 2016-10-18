@@ -12,8 +12,8 @@
 
                 @foreach($users as $user)
                 <div class="search-user">
-                    <a href="{{ action('ProfileController@show', $user->name) }}">
-                        <div class="user-card">
+                    <a href="{{ action('ProfileController@show', $user->name) }}" class="user-card-link">
+                        <div class="user-card" title="Profile of {{ $user->name }}">
                             <div class="profile-picture">
                                 <img src="{{ url('uploads/profile/', $user->profile->profile_picture) }}"
                                      alt="avatar">
@@ -35,7 +35,7 @@
 
                 <ul>
                 @foreach($categories as $category)
-                    <li class="search-category">
+                    <li class="search-category" title="Category {{ $category->name }}">
                         <a href="{{ url('/images/category/'.$category->name) }}">
                             {{ ucfirst(trans($category->name)) }}
                         </a>
@@ -51,7 +51,7 @@
                     <p>There are no images like that, sorry.</p>
                 @else
                     @foreach($images as $image)
-                    <div class="image-thumbnail">
+                    <div class="image-thumbnail" title="Image: {{ $image->title }}">
                         <a href="{{ action('ImageController@show', ['image' => $image->image_uri]) }}">
                             <img src="{{ url('/uploads/'.$image->image_uri) }}" alt="{{ $image->title }}" title="{{ $image->title }}">
                         </a>

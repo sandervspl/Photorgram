@@ -13,7 +13,7 @@
     !!}
 
     {!! Form::hidden('follow_id', $user->id) !!}
-    {!! Form::submit('Following', ['class' => 'btn btn-default profile-buttons following'.$visibility]) !!}
+    {!! Form::submit('Following', ['class' => 'button profile-buttons follow-btn following'.$visibility]) !!}
 
     {!! Form::close() !!}
 @else
@@ -25,7 +25,7 @@
     !!}
 
     {!! Form::hidden('follow_id', $user->id) !!}
-    {!! Form::submit('Follow', ['class' => 'btn btn-default profile-buttons'.$visibility, 'id' => 'follow-button']) !!}
+    {!! Form::submit('Follow', ['class' => 'button profile-buttons follow-btn'.$visibility, 'id' => 'follow-button']) !!}
 
     {!! Form::close() !!}
 @endif

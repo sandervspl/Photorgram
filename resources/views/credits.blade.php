@@ -13,6 +13,8 @@
                 <li>artworkbean</li>
                 <li>AFY Studio</li>
                 <li>Karthik Aathis</li>
+                <li>Creative Outlet</li>
+                <li>Noun Project</li>
             </ul>
         </div>
     </section>
