@@ -124,6 +124,17 @@ function follow(e, that) {
             var str = (~that.text().indexOf('Following')) ? '+ Follow' : 'Following';
             that.text(str);
 
+            // update following count
+            var count = 0;
+            var followersCount = $('#followers-count');
+
+            if (str === 'Following') {
+                count = parseInt(followersCount.text()) + 1;
+            } else {
+                count = parseInt(followersCount.text()) - 1;
+            }
+            followersCount.text(count);
+
             // change url of POST request
             followingsUrl = (~followingsUrl.indexOf('unfollow')) ? followUrl : unfollowUrl;
         })

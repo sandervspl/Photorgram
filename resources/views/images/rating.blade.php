@@ -12,7 +12,7 @@
         </div>
 
         <div class="image-info col-md-9">
-            <div class="row">
+            <div class="ratings row">
                 <div class="col-md-6 ratings-like">
                     <h2 class="title-like">Likes</h2>
                     <ul>
