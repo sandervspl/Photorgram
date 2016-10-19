@@ -1,4 +1,13 @@
 <?php
+use Illuminate\Support\Facades\Config;
+
+$roles = [
+    'user' => Config::get('constants.roles.user'),
+    'developer' => Config::get('constants.roles.developer'),
+    'moderator' => Config::get('constants.roles.moderator'),
+    'administrator' => Config::get('constants.roles.administrator'),
+];
+
 Route::get('/', 'HomeController@index');
 Route::get('/about', 'HomeController@about');
 Route::get('/credits', 'HomeController@credits');
@@ -6,7 +15,11 @@ Route::get('/credits', 'HomeController@credits');
 Route::get('/login', function (){ return view('login'); });
 Route::get('/register', function (){ return view('register'); });
 
-Route::post('/user/remove', 'UserController@remove');
+Route::post('/user/remove', [
+    'uses' => 'UserController@remove',
+    'middleware' => 'roles',
+    'roles' => [$roles['administrator']]
+]);
 
 Route::get('/images', 'ImageController@allImages');
 Route::get('/images/all', 'ImageController@allImages');
@@ -37,30 +50,176 @@ Route::post('/rate', 'RatingController@rate')->name('rate');
 
 Route::post('/user/update', 'UserController@update');
 
-Route::get('/admin', 'AdminController@index');
+/*
+ *      ADMIN PAGE
+ */
+Route::get('/admin', [
+    'uses' => 'AdminController@index',
+    'middleware' => 'roles',
+    'roles' => [
+        $roles['moderator'],
+        $roles['administrator']
+    ]
+]);
 
-Route::get('/admin/categories', 'AdminController@categories');
-Route::get('/admin/categories/add', 'AdminController@addCategory');
-Route::get('/admin/categories/{categoryid}/edit', 'AdminController@editCategory');
-Route::get('/admin/categories/{categoryid}/remove', 'AdminController@removeCategory');
 
-Route::get('/admin/roles', 'AdminController@roles');
-Route::get('/admin/roles/add', 'AdminController@addRole');
-Route::get('/admin/roles/{roleid}/edit', 'AdminController@editRole');
-Route::get('/admin/roles/{roleid}/remove', 'AdminController@removeRole');
-Route::get('/admin/roles/{roleid}', 'AdminController@userRoles');
 
-Route::get('/admin/users/{username}/remove', 'AdminController@removeUser');
+/*
+ *      ADMIN USERS PAGE
+ */
+Route::get('/admin/users/{username}/remove', [
+    'uses' => 'AdminController@removeUser',
+    'middleware' => 'roles',
+    'roles' => [$roles['administrator']]
+]);
 
-Route::post('/admin/addCategory', 'CategoryController@add');
-Route::post('/admin/updateCategory', 'CategoryController@editName');
-Route::post('/admin/removeCategory', 'CategoryController@remove');
 
-Route::post('/admin/addRole', 'RoleController@add');
-Route::post('/admin/updateUserRole', 'RoleController@editName');
-Route::post('/admin/removeRole', 'RoleController@remove');
+/*
+ *      ADMIN CATEGORIES PAGES
+ */
+Route::get('/admin/categories', [
+    'uses' => 'AdminController@categories',
+    'middleware' => 'roles',
+    'roles' => [
+        $roles['moderator'],
+        $roles['administrator']
+    ]
+]);
+Route::get('/admin/categories/add', [
+    'uses' => 'AdminController@addCategory',
+    'middleware' => 'roles',
+    'roles' => [
+        $roles['moderator'],
+        $roles['administrator']
+    ]
+]);
+Route::get('/admin/categories/{categoryid}/edit', [
+    'uses' => 'AdminController@editCategory',
+    'middleware' => 'roles',
+    'roles' => [
+        $roles['moderator'],
+        $roles['administrator']
+    ]
+]);
+Route::get('/admin/categories/{categoryid}/remove', [
+    'uses' =>'AdminController@removeCategory',
+    'middleware' => 'roles',
+    'roles' => [
+        $roles['moderator'],
+        $roles['administrator']
+    ]
+]);
 
-Route::post('/admin/updaterole', 'UserController@updateRole');
+
+/*
+ *      ADMIN ROLES PAGES
+ */
+Route::get('/admin/roles', [
+    'uses' =>'AdminController@roles',
+    'middleware' => 'roles',
+    'roles' => [
+        $roles['moderator'],
+        $roles['administrator']
+    ]
+]);
+Route::get('/admin/roles/add', [
+    'uses' => 'AdminController@addRole',
+    'middleware' => 'roles',
+    'roles' => [
+        $roles['moderator'],
+        $roles['administrator']
+    ]
+]);
+Route::get('/admin/roles/{roleid}/edit', [
+    'uses' => 'AdminController@editRole',
+    'middleware' => 'roles',
+    'roles' => [
+        $roles['moderator'],
+        $roles['administrator']
+    ]
+]);
+Route::get('/admin/roles/{roleid}/remove', [
+    'uses' => 'AdminController@removeRole',
+    'middleware' => 'roles',
+    'roles' => [
+        $roles['moderator'],
+        $roles['administrator']
+    ]
+]);
+Route::get('/admin/roles/{roleid}', [
+    'uses' => 'AdminController@userRoles',
+    'middleware' => 'roles',
+    'roles' => [
+        $roles['moderator'],
+        $roles['administrator']
+    ]
+]);
+
+
+/*
+ *      ADMIN CATEGORY REQUESTS
+ */
+Route::post('/admin/addCategory', [
+    'uses' => 'CategoryController@add',
+    'middleware' => 'roles',
+    'roles' => [
+        $roles['moderator'],
+        $roles['administrator']
+    ]
+]);
+Route::post('/admin/updateCategory', [
+    'uses' => 'CategoryController@editName',
+    'middleware' => 'roles',
+    'roles' => [
+        $roles['moderator'],
+        $roles['administrator']
+    ]
+]);
+Route::post('/admin/removeCategory', [
+    'uses' => 'CategoryController@remove',
+    'middleware' => 'roles',
+    'roles' => [
+        $roles['moderator'],
+        $roles['administrator']
+    ]
+]);
+
+
+/*
+ *      ADMIN ROLES REQUESTS
+ */
+Route::post('/admin/addRole', [
+    'uses' => 'RoleController@add',
+    'middleware' => 'roles',
+    'roles' => [
+        $roles['moderator'],
+        $roles['administrator']
+    ]
+]);
+Route::post('/admin/updateUserRole', [
+    'uses' => 'RoleController@editName',
+    'middleware' => 'roles',
+    'roles' => [
+        $roles['moderator'],
+        $roles['administrator']
+    ]
+]);
+Route::post('/admin/removeRole', [
+    'uses' => 'RoleController@remove',
+    'middleware' => 'roles',
+    'roles' => [
+        $roles['moderator'],
+        $roles['administrator']
+    ]
+]);
+Route::post('/admin/updaterole', [
+    'uses' => 'UserController@updateRole',
+    'middleware' => 'roles',
+    'roles' => [
+        $roles['moderator'],
+        $roles['administrator']
+    ]
+]);
 
 // wildcard acting as a profile url !! always have as last route !!
 Route::get('/{userid}', 'ProfileController@show');

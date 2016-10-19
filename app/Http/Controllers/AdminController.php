@@ -10,17 +10,8 @@ use App\Http\Requests;
 
 class AdminController extends Controller
 {
-    private function userHasAccess()
-    {
-        if (Auth::Guest() || Auth::User()->role < 4)
-            abort(403);
-    }
-
-
     public function index()
     {
-        $this->userHasAccess();
-
         // get all users
         $users = User::all();
 
@@ -30,8 +21,6 @@ class AdminController extends Controller
 
     public function categories()
     {
-        $this->userHasAccess();
-
         $categories = Category::all();
 
         return view('admin.categories', ['categories' => $categories]);
@@ -40,8 +29,6 @@ class AdminController extends Controller
 
     public function roles()
     {
-        $this->userHasAccess();
-
         $roles = Role::all();
 
         return view('admin.roles', compact('roles'));
@@ -50,8 +37,6 @@ class AdminController extends Controller
 
     public function userRoles($role_id)
     {
-        $this->userHasAccess();
-
         $users = User::getAllUsersWithRole($role_id);
 
         return view('admin.role', compact('users', 'role_id'));
@@ -60,16 +45,12 @@ class AdminController extends Controller
 
     public function addCategory()
     {
-        $this->userHasAccess();
-
         return view('admin.add_category');
     }
 
 
     public function editCategory($category_id)
     {
-        $this->userHasAccess();
-
         $category = Category::findOrFail($category_id);
 
         return view('admin.edit_category', ['category' => $category]);
@@ -78,8 +59,6 @@ class AdminController extends Controller
 
     public function removeCategory($category_id)
     {
-        $this->userHasAccess();
-
         $category = Category::findOrFail($category_id);
 
         return view('admin.remove_category', ['category' => $category]);
@@ -88,16 +67,12 @@ class AdminController extends Controller
 
     public function addRole()
     {
-        $this->userHasAccess();
-
         return view('admin.add_role');
     }
 
 
     public function editRole($role_id)
     {
-        $this->userHasAccess();
-
         $role = Role::findOrFail($role_id);
 
         return view('admin.edit_role', ['role' => $role]);
@@ -106,8 +81,6 @@ class AdminController extends Controller
 
     public function removeRole($role_id)
     {
-        $this->userHasAccess();
-
         $role = Role::findOrFail($role_id);
 
         return view('admin.remove_role', ['role' => $role]);
@@ -116,8 +89,6 @@ class AdminController extends Controller
 
     public function removeUser($user_name)
     {
-        $this->userHasAccess();
-
         $user = User::getUserByName($user_name);
 
         return view('admin.remove_user', ['user' => $user]);

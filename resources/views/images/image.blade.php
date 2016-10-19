@@ -1,6 +1,10 @@
 @extends('layouts.master')
 @section('title', $image->title)
 @section('content')
+<div id="preloads">
+    <div id="preload-01"></div>
+    <div id="preload-02"></div>
+</div>
 <section class="main-article">
     <div class="profile-header">
         <div id="profile-user-image">

@@ -4,6 +4,10 @@
 @extends('layouts.master')
 @section('title', 'Frontpage')
 @section('content')
+<div id="preloads">
+    <div class="preload"><img src="{{ url('img/like_heart_full.png') }}"></div>
+    <div class="preload"><img src="{{ url('img/dislike_heart_full.png') }}"></div>
+</div>
 <section class="main-article feed">
     @if (isset($images))
     <div class="feed-images">
@@ -49,12 +53,12 @@
                         }
 
                         if ($userHasRated == '1') {
-                            $likedStyle = ' user-liked-sm';
+                            $likedStyle = ' user-liked';
                             $dislikedStyle = '';
                         }
                         elseif ($userHasRated == '2') {
                             $likedStyle = '';
-                            $dislikedStyle = ' user-disliked-sm';
+                            $dislikedStyle = ' user-disliked';
                         }
                         else {
                             $likedStyle = '';

@@ -98,4 +98,31 @@ class User extends Authenticatable
             ->where('role', '=', '1')
             ->get();
     }
+
+    // check if user has any of the given roles
+    public function hasAnyRole($roles)
+    {
+        if (is_array($roles)) {
+            foreach ($roles as $role) {
+                if ($this->hasRole($role)) {
+                    return true;
+                }
+            }
+        } else {
+            if ($this->hasRole($roles)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    public function hasRole($role_id) {
+        if ($this->role == $role_id) {
+            return true;
+        }
+
+        return false;
+    }
 }
