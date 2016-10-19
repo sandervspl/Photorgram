@@ -15,12 +15,6 @@ Route::get('/credits', 'HomeController@credits');
 Route::get('/login', function (){ return view('login'); });
 Route::get('/register', function (){ return view('register'); });
 
-Route::post('/user/remove', [
-    'uses' => 'UserController@remove',
-    'middleware' => 'roles',
-    'roles' => [$roles['administrator']]
-]);
-
 Route::get('/images', 'ImageController@allImages');
 Route::get('/images/all', 'ImageController@allImages');
 Route::get('/images/upload', 'ImageController@upload');
@@ -42,8 +36,8 @@ Route::post('/profile/update', 'ProfileController@update');
 Route::get('/search/{images}', 'SearchController@show');
 Route::post('/search', 'SearchController@search');
 
-Route::post('/follow', 'FollowController@follow');
-Route::post('/unfollow', 'FollowController@unfollow');
+Route::post('/follow', 'FollowController@follow')->name('follow');
+Route::post('/unfollow', 'FollowController@unfollow')->name('unfollow');
 
 Route::get('/rate/{rating_id}/remove', 'RatingController@remove');
 Route::post('/rate', 'RatingController@rate')->name('rate');
@@ -72,7 +66,11 @@ Route::get('/admin/users/{username}/remove', [
     'middleware' => 'roles',
     'roles' => [$roles['administrator']]
 ]);
-
+Route::post('/user/remove', [
+    'uses' => 'UserController@remove',
+    'middleware' => 'roles',
+    'roles' => [$roles['administrator']]
+]);
 
 /*
  *      ADMIN CATEGORIES PAGES

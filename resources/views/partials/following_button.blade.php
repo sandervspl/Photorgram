@@ -4,28 +4,22 @@
     <?php $visibility = ''; ?>
 @endif
 
+<div class="follow-button-container">
 @if ( ! Auth::Guest() && Auth::User()->isFollowing($user->id))
-    {!!
-        Form::open([
-            'action' => 'FollowController@unfollow',
-            'class'  => 'horizontal-form follow-button-form'
-        ])
-    !!}
-
-    {!! Form::hidden('follow_id', $user->id) !!}
-    {!! Form::submit('Following', ['class' => 'button profile-buttons follow-btn following'.$visibility]) !!}
-
-    {!! Form::close() !!}
+    <button class="button profile-buttons follow-btn following{{ $visibility }}" data-followid="{{ $user->id }}">Following</button>
+    <script>
+        var url = '{{ route('unfollow') }}',
+            token = '{{ csrf_token() }}';
+    </script>
 @else
-    {!!
-        Form::open([
-            'action' => 'FollowController@follow',
-            'class'  => 'horizontal-form follow-button-form'
-        ])
-    !!}
-
-    {!! Form::hidden('follow_id', $user->id) !!}
-    {!! Form::submit('Follow', ['class' => 'button profile-buttons follow-btn'.$visibility, 'id' => 'follow-button']) !!}
-
-    {!! Form::close() !!}
+    <button class="button profile-buttons follow-btn{{ $visibility }}" data-followid="{{ $user->id }}">Follow</button>
+    <script>
+        var url = '{{ route('follow') }}',
+            token = '{{ csrf_token() }}';
+    </script>
 @endif
+</div>
+<script>
+    var followUrl = '{{ route('follow') }}',
+        unfollowUrl = '{{ route('unfollow') }}';
+</script>

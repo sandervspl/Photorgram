@@ -32,67 +32,67 @@ function rate(e, that) {
             _token: token
         }
     })
-    .done(function () {
-        if (that.hasClass('like-btn')) {
-            if (that.hasClass('user-liked')) {
-                that.removeClass('user-liked');
+        .done(function () {
+            if (that.hasClass('like-btn')) {
+                if (that.hasClass('user-liked')) {
+                    that.removeClass('user-liked');
 
-                btn.parentNode.dataset.userrated = none;
-
-                likes -= 1;
-                likeCount.text(likes);
-            } else {
-                if (dislikeBtn.hasClass('user-disliked')) {
-                    // remove disliked styling from dislike button
-                    dislikeBtn.removeClass('user-disliked').removeClass('rated');
-
-                    // count one off
-                    dislikes -= 1;
-                    dislikeCount.text(dislikes);
-                }
-
-                // add liked styling to like button
-                that.addClass('user-liked');
-
-                // set new user data
-                btn.parentNode.dataset.userrated = liked;
-
-                // update rating numbers
-                likes += 1;
-                likeCount.text(likes);
-            }
-        } else {
-            if (that.hasClass('user-disliked')) {
-                that.removeClass('user-disliked');
-                btn.parentNode.dataset.userrated = none;
-
-                dislikes -= 1;
-                dislikeCount.text(dislikes);
-            } else {
-                if (likeBtn.hasClass('user-liked')) {
-                    likeBtn.removeClass('user-liked').removeClass('rated');
+                    btn.parentNode.dataset.userrated = none;
 
                     likes -= 1;
                     likeCount.text(likes);
+                } else {
+                    if (dislikeBtn.hasClass('user-disliked')) {
+                        // remove disliked styling from dislike button
+                        dislikeBtn.removeClass('user-disliked').removeClass('rated');
+
+                        // count one off
+                        dislikes -= 1;
+                        dislikeCount.text(dislikes);
+                    }
+
+                    // add liked styling to like button
+                    that.addClass('user-liked');
+
+                    // set new user data
+                    btn.parentNode.dataset.userrated = liked;
+
+                    // update rating numbers
+                    likes += 1;
+                    likeCount.text(likes);
                 }
-                that.addClass('user-disliked');
-                btn.parentNode.dataset.userrated = disliked;
+            } else {
+                if (that.hasClass('user-disliked')) {
+                    that.removeClass('user-disliked');
+                    btn.parentNode.dataset.userrated = none;
 
-                dislikes += 1;
-                dislikeCount.text(dislikes);
+                    dislikes -= 1;
+                    dislikeCount.text(dislikes);
+                } else {
+                    if (likeBtn.hasClass('user-liked')) {
+                        likeBtn.removeClass('user-liked').removeClass('rated');
+
+                        likes -= 1;
+                        likeCount.text(likes);
+                    }
+                    that.addClass('user-disliked');
+                    btn.parentNode.dataset.userrated = disliked;
+
+                    dislikes += 1;
+                    dislikeCount.text(dislikes);
+                }
             }
-        }
 
-        // rated animation
-        that.toggleClass('rated');
+            // rated animation
+            that.toggleClass('rated');
 
-        // set width of rating bar
-        var width = ((likes + dislikes) > 0) ? (likes / (likes + dislikes)) * 100 : 0;
-        ratingBar.css('width', width + '%');
-    })
-    .fail(function () {
-        console.log('fail');
-    });
+            // set width of rating bar
+            var width = ((likes + dislikes) > 0) ? (likes / (likes + dislikes)) * 100 : 0;
+            ratingBar.css('width', width + '%');
+        })
+        .fail(function () {
+            console.log('fail');
+        });
 }
 
 $('.row.info-2').find('.image-info-buttons').find('.button').click(function (event) {
@@ -103,6 +103,38 @@ $('.image-info-section').find('.image-info-buttons').find('.button').click(funct
     rate(event, $(this));
 });
 
+
+/*
+ *      PROFILE FOLLOW
+ */
+
+function follow(e, that) {
+    var followId = e.target.dataset['followid'];
+
+    $.post({
+        url: url,
+        data: {
+            follow_id: followId,
+            _token: token
+        }
+    })
+        .done(function () {
+            that.toggleClass('following');
+
+            var str = (~that.text().indexOf('Following')) ? 'Follow' : 'Following';
+            that.text(str);
+
+            // change url of POST request
+            url = (~url.indexOf('unfollow')) ? followUrl : unfollowUrl;
+        })
+        .fail(function () {
+            console.log('fail');
+        });
+}
+
+$('.follow-btn').click(function (event) {
+    follow(event, $(this));
+});
 
 
 /*
