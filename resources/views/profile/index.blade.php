@@ -14,8 +14,12 @@
             @include('partials/following_button')
 
             <div id="profile-more-info">
-                <a href="#" id="profile-followers"><b>{{ $user->followers->count() }}</b> followers</a>
-                <a href="#" id="profile-following"><b>{{ $user->following->count() }}</b> following</a>
+                <a href="{{ action('ProfileController@followers', $user->name) }}" id="profile-followers">
+                    <b>{{ $user->followers->count() }}</b> followers
+                </a>
+                <a href="{{ action('ProfileController@following', $user->name) }}" id="profile-following">
+                    <b>{{ $user->following->count() }}</b> following
+                </a>
                 <span id="profile-pictures"><b>{{ $user->images->count() }}</b> photos</span>
                 <div id="profile-bio">{{ $user->profile->bio }}</div>
             </div>

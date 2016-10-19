@@ -12,7 +12,7 @@
             token = '{{ csrf_token() }}';
     </script>
 @else
-    <button class="button profile-buttons follow-btn{{ $visibility }}" data-followid="{{ $user->id }}">Follow</button>
+    <button class="button profile-buttons follow-btn{{ $visibility }}" data-followid="{{ $user->id }}">+ Follow</button>
     <script>
         var url = '{{ route('follow') }}',
             token = '{{ csrf_token() }}';

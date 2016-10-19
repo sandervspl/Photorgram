@@ -28,6 +28,8 @@ Route::post('images/remove', 'ImageController@remove');
 Route::post('/images/edit', 'ImageController@update');
 Route::post('/images/upload', 'ImageController@process');
 
+Route::get('/profile/{username}/followers', 'ProfileController@followers');
+Route::get('/profile/{username}/following', 'ProfileController@following');
 Route::get('/profile/{username}/edit/profile', 'ProfileController@editProfile');
 Route::get('/profile/{username}/edit/account', 'ProfileController@editAccount');
 Route::get('/profile/{username}', 'ProfileController@show');

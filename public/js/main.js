@@ -121,7 +121,7 @@ function follow(e, that) {
         .done(function () {
             that.toggleClass('following');
 
-            var str = (~that.text().indexOf('Following')) ? 'Follow' : 'Following';
+            var str = (~that.text().indexOf('Following')) ? '+ Follow' : 'Following';
             that.text(str);
 
             // change url of POST request

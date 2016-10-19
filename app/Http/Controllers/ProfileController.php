@@ -31,20 +31,42 @@ class ProfileController extends Controller
         return ($user_name == 'administrator');
     }
 
+    private function getUser($user_name)
+    {
+        // look for user with this name
+        $user = User::getUserByName($user_name);
+
+        // if it does not exist, show 404 page
+        if (is_null($user))
+            return abort(404);
+
+        return $user;
+    }
+
 
     public function show($user_name)
     {
         if ($this->forbiddenAccess($user_name))
             abort(404);
 
-        // look for user with this name
-        $user = User::getUserByName($user_name);
-
-        // if it does not exist, show 404 page
-        if (is_null($user))
-            abort(404);
-
+        $user = $this->getUser($user_name);
         return view('profile.index', ['user' => $user]);
+    }
+
+
+    public function followers($user_name)
+    {
+        $user = $this->getUser($user_name);
+        $followers = $user->followers()->get();
+        return view('profile.followers', compact('user', 'followers'));
+    }
+
+
+    public function following($user_name)
+    {
+        $user = $this->getUser($user_name);
+        $following = $user->following()->get();
+        return view('profile.following', compact('user', 'following'));
     }
 
 
