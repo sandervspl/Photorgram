@@ -408,12 +408,6 @@ nav .right ul li img {
     display: inline-block;
 }
 
-/*#follow-button:hover {*/
-    /*background-color: rgba(55, 187, 93, 0.5) !important;*/
-    /*box-shadow: inset 0 -2px 0 0 rgba(55, 187, 93, 1.0);*/
-    /*border: 1px solid rgba(55, 187, 93, 1.0);*/
-/*}*/
-
 .follow-btn {
     background-color: transparent;
     border-color: #3689ee;
@@ -468,11 +462,6 @@ nav .right ul li img {
     color: #eee;
     border: 1px solid #3689ee;
 }
-
-/*.following:hover {*/
-    /*box-shadow: inset 0 -2px 0 0 #a7a7a7 !important;*/
-    /*border: 1px solid #a7a7a7;*/
-/*}*/
 
 #profile-edit-button {
     float: right;
