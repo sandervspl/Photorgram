@@ -100,7 +100,7 @@
     @endif
 </section>
 <script>
-    var url = '{{ route('rate') }}',
+    var rateUrl = '{{ route('rate') }}',
         token = '{{ csrf_token() }}';
 </script>
 @stop

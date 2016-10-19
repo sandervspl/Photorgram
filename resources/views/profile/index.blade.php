@@ -11,7 +11,9 @@
         <div id="profile-user-info-box">
             <h1 id="profile-user-name">{{ $user->name }}</h1>
 
-            @include('partials/following_button')
+            <div class="follow-button-container">
+                @include('partials/following_button')
+            </div>
 
             <div id="profile-more-info">
                 <a href="{{ action('ProfileController@followers', $user->name) }}" id="profile-followers">

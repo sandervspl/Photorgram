@@ -6,34 +6,34 @@
     <div id="preload-02"></div>
 </div>
 <section class="main-article">
-    <div class="profile-header">
-        <div id="profile-user-image">
-            @if( ! empty($user->profile->profile_picture))
-                <a href="{{ action('ProfileController@show', ['username' => $user->name]) }}">
-                    <img src="{{ url('uploads/profile/'.$user->profile->profile_picture) }}" alt="profile picture">
-                </a>
-            @endif
-        </div>
-        <div id="profile-user-info-box">
-            <h1 id="profile-user-name">
-                <a href="{{ action('ProfileController@show', ['username' => $user->name]) }}">
-                    {{ $user->name }}
-                </a>
-            </h1>
+    {{--<div class="profile-header">--}}
+        {{--<div id="profile-user-image">--}}
+            {{--@if( ! empty($user->profile->profile_picture))--}}
+                {{--<a href="{{ action('ProfileController@show', ['username' => $user->name]) }}">--}}
+                    {{--<img src="{{ url('uploads/profile/'.$user->profile->profile_picture) }}" alt="profile picture">--}}
+                {{--</a>--}}
+            {{--@endif--}}
+        {{--</div>--}}
+        {{--<div id="profile-user-info-box">--}}
+            {{--<h1 id="profile-user-name">--}}
+                {{--<a href="{{ action('ProfileController@show', ['username' => $user->name]) }}">--}}
+                    {{--{{ $user->name }}--}}
+                {{--</a>--}}
+            {{--</h1>--}}
 
-            @include('partials/following_button')
+            {{--@include('partials/following_button')--}}
 
-            <div id="profile-more-info">
-                <a href="{{ action('ProfileController@followers', $user->name) }}" id="profile-followers">
-                    <b>{{ $user->followers->count() }}</b> followers
-                </a>
-                <a href="{{ action('ProfileController@following', $user->name) }}" id="profile-following">
-                    <b>{{ $user->following->count() }}</b> following
-                </a>
-                <span id="profile-pictures"><b>{{ $user->images->count() }}</b> photos</span>
-            </div>
-        </div>
-    </div>
+            {{--<div id="profile-more-info">--}}
+                {{--<a href="{{ action('ProfileController@followers', $user->name) }}" id="profile-followers">--}}
+                    {{--<b>{{ $user->followers->count() }}</b> followers--}}
+                {{--</a>--}}
+                {{--<a href="{{ action('ProfileController@following', $user->name) }}" id="profile-following">--}}
+                    {{--<b>{{ $user->following->count() }}</b> following--}}
+                {{--</a>--}}
+                {{--<span id="profile-pictures"><b>{{ $user->images->count() }}</b> photos</span>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
 
     <div class="image-container">
         <div class="row">
@@ -44,6 +44,27 @@
 
             <div class="image-info col-md-6">
                 <div class="image-info-header row">
+                    <div class="col-md-12">
+                        <div class="image-user-info row">
+                            <div class="col-md-9">
+                                <a href="{{ action('ProfileController@show', $user->name) }}">
+                                    <div class="image-user-header">
+                                        <div class="avatar">
+                                            <img src="{{ url('uploads/profile/', $user->profile->profile_picture) }}" alt="avatar">
+                                        </div>
+                                        <div class="username">{{ $user->name }}</div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="followbutton">
+                                    @include('partials/following_button')
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <?php
                         if( ! Auth::Guest() && ($user->id == Auth::id() || Auth::User()->role >= 3)) {
                             $colWidth = 'col-md-7';
@@ -101,7 +122,7 @@
                         <div class="description">
                             <p>{{ $image->description }}</p>
                         </div>
-                        <div class="fadeout"></div>
+                        {{--<div class="fadeout"></div>--}}
                     </div>
 
 
@@ -152,7 +173,7 @@
     </div>
 </section>
 <script>
-    var url = '{{ route('rate') }}',
+    var rateUrl = '{{ route('rate') }}',
         token = '{{ csrf_token() }}';
 </script>
 @endsection

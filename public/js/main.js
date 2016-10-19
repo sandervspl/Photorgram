@@ -24,7 +24,7 @@ function rate(e, that) {
 
     // send info to @RatingController@rate
     $.post({
-        url: url,
+        url: rateUrl,
         data: {
             image_id: imageId,
             rating_id: ratingId,
@@ -112,7 +112,7 @@ function follow(e, that) {
     var followId = e.target.dataset['followid'];
 
     $.post({
-        url: url,
+        url: followingsUrl,
         data: {
             follow_id: followId,
             _token: token
@@ -125,7 +125,7 @@ function follow(e, that) {
             that.text(str);
 
             // change url of POST request
-            url = (~url.indexOf('unfollow')) ? followUrl : unfollowUrl;
+            followingsUrl = (~followingsUrl.indexOf('unfollow')) ? followUrl : unfollowUrl;
         })
         .fail(function () {
             console.log('fail');
