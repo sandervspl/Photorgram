@@ -11,7 +11,7 @@
         <ul class="signin-register-list">
             <li>
                 <a href="{{ action('ImageController@allImages') }}">
-                    All Images
+                    Categories
                 </a>
             </li>
             <li>
@@ -30,13 +30,13 @@
             </li>
             <li>
                 <a href="{{ action('ImageController@allImages') }}">
-                    All Images
+                    Categories
                 </a>
             </li>
 
             <li>
             <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle user-dropdown" type="button" id="dropdownMenu1"
+                <button class="button button-default dropdown-toggle user-dropdown" type="button" id="dropdownMenu1"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     {{ Auth::user()->name }}
                     <span class="caret"></span>

@@ -3,19 +3,21 @@
 @section('content')
     <section class="main-article">
         <h1>Credits</h1>
-        <h4 class="alt-title">People that have contributed to this project</h4>
+        <div class="alt-title">People that have contributed to this project</div>
 
         <div class="article-container">
             <h2>Artwork —</h2>
-            <ul class="bulleted-list">
-                <li>PCMPixels</li>
-                <li>Shashank Sahay</li>
-                <li>artworkbean</li>
-                <li>AFY Studio</li>
-                <li>Karthik Aathis</li>
-                <li>Creative Outlet</li>
-                <li>Noun Project</li>
-            </ul>
+            <div class="credits-list-container">
+                <ul class="bulleted-list">
+                    <li>PCMPixels</li>
+                    <li>Shashank Sahay</li>
+                    <li>artworkbean</li>
+                    <li>AFY Studio</li>
+                    <li>Karthik Aathis</li>
+                    <li>Creative Outlet</li>
+                    <li>Noun Project</li>
+                </ul>
+            </div>
         </div>
     </section>
 @endsection

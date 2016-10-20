@@ -3,7 +3,7 @@
 @section('content')
     <section class="main-article">
         <h1>Search Results</h1>
-        <h4 class="alt-title">You searched for "{{ $query }}"</h4>
+        <div class="alt-title">You searched for "{{ $query }}"</div>
 
         <div class="article-container">
             <div class="search-result users">

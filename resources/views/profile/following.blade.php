@@ -4,7 +4,7 @@
 <section class="main-article">
     <h1>Following list of <a href="{{ action('ProfileController@show', $user->name) }}">{{ $user->name }}</a></h1>
 
-    <div class="follow-list">
+    <div class="horizontal-list">
         <ul>
             @foreach($following as $follow)
                 <?php
@@ -12,7 +12,7 @@
                 ?>
                 <li>
                     <a href="{{ action('ProfileController@show', $usr->name) }}">
-                        <div class="user-card-follow-list">
+                        <div class="user-card-horizontal-list">
                             <div class="avatar">
                                 <img src="{{ url('uploads/profile/', $usr->profile->profile_picture) }}" alt="avatar">
                             </div>

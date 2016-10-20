@@ -5,7 +5,7 @@ if (isset($image)) {
     $cur_category = null;
 }
 ?>
-<div class="col-sm-2">
+<div class="col-sm-3">
     <select name="category" class="form-control input-sm" required>
         @foreach($categories as $category)
             @if ($category->id == $cur_category)

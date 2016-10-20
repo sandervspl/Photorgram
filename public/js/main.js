@@ -40,7 +40,7 @@ function rate(e, that) {
                     btn.parentNode.dataset.userrated = none;
 
                     likes -= 1;
-                    likeCount.text(likes);
+                    likeCount.text(likes + ' likes');
                 } else {
                     if (dislikeBtn.hasClass('user-disliked')) {
                         // remove disliked styling from dislike button
@@ -48,7 +48,7 @@ function rate(e, that) {
 
                         // count one off
                         dislikes -= 1;
-                        dislikeCount.text(dislikes);
+                        dislikeCount.text(dislikes + ' dislikes');
                     }
 
                     // add liked styling to like button
@@ -59,7 +59,7 @@ function rate(e, that) {
 
                     // update rating numbers
                     likes += 1;
-                    likeCount.text(likes);
+                    likeCount.text(likes + ' likes');
                 }
             } else {
                 if (that.hasClass('user-disliked')) {
@@ -67,19 +67,19 @@ function rate(e, that) {
                     btn.parentNode.dataset.userrated = none;
 
                     dislikes -= 1;
-                    dislikeCount.text(dislikes);
+                    dislikeCount.text(dislikes + ' dislikes');
                 } else {
                     if (likeBtn.hasClass('user-liked')) {
                         likeBtn.removeClass('user-liked').removeClass('rated');
 
                         likes -= 1;
-                        likeCount.text(likes);
+                        likeCount.text(likes + ' likes');
                     }
                     that.addClass('user-disliked');
                     btn.parentNode.dataset.userrated = disliked;
 
                     dislikes += 1;
-                    dislikeCount.text(dislikes);
+                    dislikeCount.text(dislikes + ' dislikes');
                 }
             }
 

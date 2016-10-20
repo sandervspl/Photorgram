@@ -228,4 +228,28 @@ class ImageController extends Controller
             'dislikes' => $dislikes
         ]);
     }
+
+
+    public function likesOverview($image_name)
+    {
+        $image = Image::getImageByName($image_name);
+        $likes = Image_Rating::getLikesForImage($image->id);
+
+        return view('images.likes', [
+            'image' => $image,
+            'likes' => $likes
+        ]);
+    }
+
+
+    public function dislikesOverview($image_name)
+    {
+        $image = Image::getImageByName($image_name);
+        $dislikes = Image_Rating::getDislikesForImage($image->id);
+
+        return view('images.dislikes', [
+            'image' => $image,
+            'dislikes' => $dislikes
+        ]);
+    }
 }

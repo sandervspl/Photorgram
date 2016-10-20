@@ -2,7 +2,7 @@
 @section('title', 'All Images')
 @section('content')
 <section class="main-article">
-    <h1>All Images</h1>
+    <h1>All Categories</h1>
 
     @include('partials/category_dropdown')
 

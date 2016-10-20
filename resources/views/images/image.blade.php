@@ -6,35 +6,6 @@
     <div id="preload-02"></div>
 </div>
 <section class="main-article">
-    {{--<div class="profile-header">--}}
-        {{--<div id="profile-user-image">--}}
-            {{--@if( ! empty($user->profile->profile_picture))--}}
-                {{--<a href="{{ action('ProfileController@show', ['username' => $user->name]) }}">--}}
-                    {{--<img src="{{ url('uploads/profile/'.$user->profile->profile_picture) }}" alt="profile picture">--}}
-                {{--</a>--}}
-            {{--@endif--}}
-        {{--</div>--}}
-        {{--<div id="profile-user-info-box">--}}
-            {{--<h1 id="profile-user-name">--}}
-                {{--<a href="{{ action('ProfileController@show', ['username' => $user->name]) }}">--}}
-                    {{--{{ $user->name }}--}}
-                {{--</a>--}}
-            {{--</h1>--}}
-
-            {{--@include('partials/following_button')--}}
-
-            {{--<div id="profile-more-info">--}}
-                {{--<a href="{{ action('ProfileController@followers', $user->name) }}" id="profile-followers">--}}
-                    {{--<b>{{ $user->followers->count() }}</b> followers--}}
-                {{--</a>--}}
-                {{--<a href="{{ action('ProfileController@following', $user->name) }}" id="profile-following">--}}
-                    {{--<b>{{ $user->following->count() }}</b> following--}}
-                {{--</a>--}}
-                {{--<span id="profile-pictures"><b>{{ $user->images->count() }}</b> photos</span>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-
     <div class="image-container">
         <div class="row">
             <div class="image-body col-md-6">
@@ -96,8 +67,12 @@
                     @endif
                 </div>
 
+                <div class="info-divider">
+
+                </div>
+
                 <div class="image-info-section">
-                    <h4>{{ $image->created_at->format('j F Y') }}</h4>
+                    <div class="date">{{ $image->created_at->format('j F Y') }}</div>
 
                     <?php
                     $categoryName = App\Category::find($image->category_id);
@@ -107,7 +82,7 @@
                         $categoryName = $categoryName->name;
                     }
                     ?>
-                    <h4>
+                    <div class="category-name">
                     @if ($categoryName !== 'undefined')
                         <a href="{{ url('/images/category/'.$categoryName) }}">
                             {{ ucfirst(trans($categoryName)) }}
@@ -115,15 +90,16 @@
                     @else
                         <span>{{ ucfirst(trans($categoryName)) }}</span>
                     @endif
-                    </h4>
+                    </div>
 
+                    @if ($image->description != null)
                     <div class="image-info-description">
                         <small>Description</small>
                         <div class="description">
                             <p>{{ $image->description }}</p>
                         </div>
-                        {{--<div class="fadeout"></div>--}}
                     </div>
+                    @endif
 
 
                     <?php
@@ -148,10 +124,14 @@
 
                     <div class="image-info-buttons" data-imageid="{{ $image->id }}" data-userrated="{{ $userHasRated }}">
                         <button data-ratingid="1" {{ $disabled }} class="button profile-buttons image-like-btn like-btn{{ $likedStyle }}"></button>
-                        <span class="image-like-count">{{ $image->getLikesCount() }}</span>
+                        <a href="{{ action('ImageController@likesOverview', $image->image_uri) }}" class="image-like-count">
+                            {{ $image->getLikesCount() }} likes
+                        </a>
 
                         <button data-ratingid="2" {{ $disabled }} class="button profile-buttons image-dislike-btn dislike-btn{{ $dislikedStyle }}"></button>
-                        <span class="image-dislike-count">{{ $image->getDislikesCount() }}</span>
+                        <a href="{{ action('ImageController@dislikesOverview', $image->image_uri) }}" class="image-dislike-count">
+                            {{ $image->getDislikesCount() }} dislikes
+                        </a>
                     </div>
 
                     <?php
@@ -162,10 +142,6 @@
                     <div class="ratings-bar-container">
                         <div class="rating-bar-bg"></div>
                         <div id="rating-bar-{{ $image->id }}" class="rating-bar" style="width: {{ $likePct }}%;"></div>
-                    </div>
-
-                    <div class="ratings-link-container">
-                        <a href="{{ action('ImageController@ratings', $image->image_uri) }}">Ratings Overview</a>
                     </div>
                 </div>
             </div>

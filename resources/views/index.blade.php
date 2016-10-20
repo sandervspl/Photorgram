@@ -27,21 +27,23 @@
 
                     <div class="col-md-4 username feed">
                         <a href="{{ action('ProfileController@show', ['username' => $image->user->name]) }}">
-                            <div class="avatar feed">
-                                <img src="{{ url('uploads/profile/'.App\Profile::getProfile($image->user_id)->profile_picture) }}"
-                                     alt="Avatar">
-                            </div>
+                            <div class="avatar-name-container">
+                                <div class="avatar feed">
+                                    <img src="{{ url('uploads/profile/'.App\Profile::getProfile($image->user_id)->profile_picture) }}"
+                                         alt="Avatar">
+                                </div>
 
-                            <h4 class="user feed">
-                                {{ $image->user->name }}
-                            </h4>
+                                <span class="user feed">
+                                    {{ $image->user->name }}
+                                </span>
+                            </div>
                         </a>
                     </div>
                 </div>
 
                 <div class="row info-2">
                     <div class="col-md-4">
-                        <h4 class="date feed">{{ time_elapsed_string($image->created_at) }}</h4>
+                        <span class="date feed">{{ time_elapsed_string($image->created_at) }}</span>
                     </div>
                     <div class="col-md-8">
                         <?php
@@ -68,12 +70,14 @@
 
                         <div class="image-info-buttons" data-imageid="{{ $image->id }}" data-userrated="{{ $userHasRated }}">
                             <button data-ratingid="1" {{ $disabled }} class="button profile-buttons image-like-btn like-btn{{ $likedStyle }}"></button>
-
-                            <span class="image-like-count">{{ $image->getLikesCount() }}</span>
+                            <a href="{{ action('ImageController@likesOverview', $image->image_uri) }}" class="image-like-count">
+                                {{ $image->getLikesCount() }} likes
+                            </a>
 
                             <button data-ratingid="2" {{ $disabled }} class="button profile-buttons image-dislike-btn dislike-btn{{ $dislikedStyle }}"></button>
-
-                            <span class="image-dislike-count">{{ $image->getDislikesCount() }}</span>
+                            <a href="{{ action('ImageController@dislikesOverview', $image->image_uri) }}" class="image-dislike-count">
+                                {{ $image->getDislikesCount() }} dislikes
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -84,8 +88,8 @@
                 ?>
 
                 <div class="row info-3">
-                    <div class="col-md-7"></div>
-                    <div class="col-md-5">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-8">
                         <div class="rating-bar-bg"></div>
                         <div id="rating-bar-{{ $image->id }}" class="rating-bar" style="width: {{ $likePct }}%;"></div>
                     </div>
