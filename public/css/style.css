@@ -174,6 +174,7 @@ table {
 
 .container {
     min-height: 100%;
+    margin-top: 75px;
 }
 
 .btn {
@@ -223,9 +224,33 @@ table {
 }
 
 header {
+    position: fixed;
     width: 100%;
     height: 75px;
+    margin-top: -75px;
     border-bottom: 1px solid rgba(0, 0, 0, .1);
+    background-color: #fff;
+    z-index: 1;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+header.slim {
+    height: 45px;
+    margin-top: -75px;
+    font-size: .85em;
+}
+
+header.slim > nav > .left {
+    padding: 10px 0;
+}
+
+header.slim > nav > .left > a > #logo {
+    height: 25px;
+}
+
+header.slim + #searchbar {
+    margin-top: -30px;
 }
 
 header.admin {
@@ -238,6 +263,20 @@ a:hover, a:active, a:focus {
 
 header a {
     color: black;
+}
+
+#searchbar {
+    position: fixed;
+    z-index: 1;
+    height: 0;
+    width: 100%;
+    background: #eee;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+#searchbar.show {
+    height: 70px;
 }
 
 nav {
@@ -272,8 +311,10 @@ nav .right {
     text-align: right;
 }
 
-nav .left img {
+nav .left img#logo {
     height: 40px;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 
 nav .right ul {
@@ -303,32 +344,14 @@ nav .right ul li img {
     background-color: inherit;
 }
 
-
-
-#searchbar {
-    position: relative;
-    z-index: 1;
-    height: 0;
-    width: 100%;
-    background: #eee;
-    -webkit-transition: height .3s ease-in-out;
-    -moz-transition: height .3s ease-in-out;
-    -o-transition: height .3s ease-in-out;
-    transition: height .3s ease-in-out;
-}
-
-#searchbar.show {
-    height: 70px;
-}
-
 #search-btn {
     position: relative;
-    top: 4px;
     width: 20px;
     height: 20px;
     background: transparent url('../img/search3.png') 0 0 no-repeat;
     background-size: 20px;
     border: 0;
+    vertical-align: middle;
 }
 
 #searchbar-form {
@@ -530,10 +553,25 @@ nav .right ul li img {
     vertical-align: bottom;
 }
 
-.image-user-info .avatar, .image-user-info .avatar img {
+.avatar, .avatar img {
     display: inline-block;
     border-radius: 50%;
+    width: 4em;
+    height: 4em;
+}
+
+.list-header .avatar {
+    position: relative;
+    top: 10px;
+}
+
+.list-header .count {
+    text-align: right;
+}
+
+.image-user-info .avatar, .image-user-info .avatar img {
     width: 3em;
+    height: 3em;
     overflow: hidden;
 }
 
@@ -556,7 +594,7 @@ nav .right ul li img {
 
 .profile-header {
     display: table;
-    margin: 3em;
+    margin: 1em 3em 3em;
     min-height: 125px;
     width: 90%;
 }
@@ -755,7 +793,7 @@ nav .right ul li img {
 }
 
 .main-article.feed {
-    margin-top: 5em;
+    margin-top: 1em;
 }
 
 .image-thumbnail-big.feed {
@@ -870,15 +908,12 @@ h3.title.feed {
 }
 
 .avatar.feed, .avatar.feed img {
-    display: inline-block;
     width: 30px;
     height: 30px;
     margin-right: .3em;
-    border: 1px solid #f9f9f9;
-    border-radius: 50%;
 }
 
-.feed-image-card  .avatar-name-container .user {
+.feed-image-card .avatar-name-container .user {
     color: #000;
     font-weight: normal;
 }
@@ -922,11 +957,13 @@ h3.title.feed {
 }
 
 .user-card-horizontal-list .avatar, .user-card-horizontal-list .avatar img {
-    display: inline-block;
     width: 40px;
     height: 40px;
-    border-radius: 50%;
     overflow: hidden;
+}
+
+.horizontal-list .horizontal-list-item {
+    margin-bottom: 1em;
 }
 
 .horizontal-list ul li {
@@ -1109,4 +1146,8 @@ tr.users-data td span {
     height: 20px;
     font-size: .67em;
     padding: 0;
+}
+
+.fixed {
+    position: fixed;
 }

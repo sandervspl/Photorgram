@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'All Images')
+@section('title', 'All Categories')
 @section('content')
 <section class="main-article">
     <h1>All Categories</h1>

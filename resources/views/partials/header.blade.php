@@ -1,8 +1,8 @@
-<header>
-<nav>
+<header id="nav-header">
+<nav id="navigation">
     <div class="left">
         <a href="/">
-            <img src="{{ url('img/logo_full.png') }}" alt="logo">
+            <img src="{{ url('img/logo_full.png') }}" alt="logo" id="logo">
         </a>
     </div>
 
@@ -78,7 +78,6 @@
     </div>
 </nav>
 </header>
-
 <div id="searchbar">
     {!! Form::open([
             'action' => 'SearchController@search',

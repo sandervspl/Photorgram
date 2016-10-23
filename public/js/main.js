@@ -1,4 +1,19 @@
 /*
+ *      NAVIGATION BAR
+ */
+
+$(window).on('wheel', function (e) {
+    console.log('scrolling');
+
+    if ($(this).scrollTop() > 75) {
+        $('#nav-header').addClass('slim');
+    } else {
+        $('#nav-header').removeClass('slim');
+    }
+});
+
+
+/*
  *     RATING BAR
  */
 
