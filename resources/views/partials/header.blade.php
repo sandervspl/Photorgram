@@ -12,8 +12,8 @@
         </div>
         <div class="icon">☰</div>
     </div>
-    <div class="right menu col-md-9">
     @if (Auth::guest())
+    <div class="right menu guest col-md-9">
         <ul class="signin-register-list">
             <li>
                 <a href="{{ action('ImageController@allImages') }}">
@@ -27,7 +27,9 @@
                 <a href="{{ url('/register') }}">Register</a>
             </li>
         </ul>
+    </div>
     @else
+    <div class="right menu col-md-9">
         <ul>
             <li>
                 <a href=" {{ action('ImageController@upload') }}">
@@ -80,6 +82,7 @@
                 <button class="search-btn"></button>
             </li>
         </ul>
+    </div>
     @endif
     </div>
 </nav>

@@ -19,13 +19,13 @@
                 </a>
             </div>
 
-            <div class="info">
+            <div class="container-fluid info">
                 <div class="row info-1">
-                    <div class="col-md-8 title">
+                    <div class="col-xs-8 title">
                         <h3 class="title feed">{{ $image->title or 'Undefined' }}</h3>
                     </div>
 
-                    <div class="col-md-4 username feed">
+                    <div class="col-xs-4 username feed">
                         <a href="{{ action('ProfileController@show', ['username' => $image->user->name]) }}">
                             <div class="avatar-name-container">
                                 <div class="avatar feed">
@@ -42,10 +42,10 @@
                 </div>
 
                 <div class="row info-2">
-                    <div class="col-md-4">
+                    <div class="col-xs-2">
                         <span class="date feed">{{ time_elapsed_string($image->created_at) }}</span>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-xs-10">
                         <?php
                         $userHasRated = App\Image_Rating::userHasRated(Auth::id(), $image->id);
 
@@ -88,8 +88,8 @@
                 ?>
 
                 <div class="row info-3">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-8">
+                    <div class="col-sm-5 col-md-4"></div>
+                    <div class="col-xs-11 col-sm-7 col-md-8">
                         <div class="rating-bar-bg"></div>
                         <div id="rating-bar-{{ $image->id }}" class="rating-bar" style="width: {{ $likePct }}%;"></div>
                     </div>

@@ -2,9 +2,7 @@
  *      NAVIGATION BAR
  */
 
-$(window).on('wheel', function (e) {
-    console.log('scrolling');
-
+$(window).on('scroll', function () {
     if ($(this).scrollTop() > 75) {
         $('#nav-header').addClass('slim');
     } else {

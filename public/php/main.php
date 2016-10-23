@@ -8,22 +8,27 @@ function time_elapsed_string($datetime, $full = false) {
     $diff->d -= $diff->w * 7;
 
     $string = array(
-        'y' => 'year',
-        'm' => 'month',
-        'w' => 'week',
-        'd' => 'day',
-        'h' => 'hour',
-        'i' => 'minute',
-        's' => 'second',
+        'y' => 'y',
+        'm' => 'm',
+        'w' => 'w',
+        'd' => 'd',
+        'h' => 'h',
+        'i' => 'm',
+        's' => 's'
     );
-    foreach ($string as $k => &$v) {
-        if ($diff->$k) {
-            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+
+    foreach ($string as $key => &$value) {
+        if ($diff->$key) {
+//            $value = $diff->$key . ' ' . $value . ($diff->$key > 1 ? 's' : '');
+            $value = $diff->$key . '' . $value;
         } else {
-            unset($string[$k]);
+            unset($string[$key]);
         }
     }
 
-    if (!$full) $string = array_slice($string, 0, 1);
+    if (!$full) {
+        $string = array_slice($string, 0, 1);
+    }
+
     return $string ? implode(', ', $string) . ' ago' : 'just now';
 }
