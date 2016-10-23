@@ -1,12 +1,18 @@
 <header id="nav-header">
-<nav id="navigation">
-    <div class="left">
+<nav id="navigation row">
+    <div class="left col-md-3">
         <a href="/">
             <img src="{{ url('img/logo_full.png') }}" alt="logo" id="logo">
         </a>
     </div>
 
-    <div class="right">
+    <div class="right menu-icon col-md-9">
+        <div class="search">
+            <button class="search-btn"></button>
+        </div>
+        <div class="icon">☰</div>
+    </div>
+    <div class="right menu col-md-9">
     @if (Auth::guest())
         <ul class="signin-register-list">
             <li>
@@ -71,7 +77,7 @@
             </div>
             </li>
             <li>
-                <button id="search-btn"></button>
+                <button class="search-btn"></button>
             </li>
         </ul>
     @endif

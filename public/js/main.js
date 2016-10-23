@@ -167,7 +167,7 @@ $('.follow-btn').click(function (event) {
  *    SEARCH BAR
  */
 
-$('#search-btn').click(function () {
+$('.search-btn').click(function () {
     $('#searchbar').toggleClass('show');
     $('#searchbar-clear').toggleClass('show');
     $('#searchbar-input').focus();
