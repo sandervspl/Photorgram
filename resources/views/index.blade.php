@@ -21,11 +21,11 @@
 
             <div class="container-fluid info">
                 <div class="row info-1">
-                    <div class="col-xs-8 title">
+                    <div class="col-xs-7 title">
                         <h3 class="title feed">{{ $image->title or 'Undefined' }}</h3>
                     </div>
 
-                    <div class="col-xs-4 username feed">
+                    <div class="col-xs-5 username feed">
                         <a href="{{ action('ProfileController@show', ['username' => $image->user->name]) }}">
                             <div class="avatar-name-container">
                                 <div class="avatar feed">

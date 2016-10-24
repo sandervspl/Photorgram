@@ -8,16 +8,16 @@
 <section class="main-article">
     <div class="image-container">
         <div class="row">
-            <div class="image-body col-md-6">
+            <div class="image-body col-xs-12 col-md-6 col-lg-6">
                 <img src="{{ url('uploads/'.$image->image_uri) }}" class="col-md-6 image-body-src"
                      alt="{{ $image->title }}" title="{{ $image->title }}">
             </div>
 
-            <div class="image-info col-md-6">
+            <div class="image-info col-xs-12 col-md-6 col-lg-6">
                 <div class="image-info-header row">
-                    <div class="col-md-12">
+                    <div class="col-xs-12">
                         <div class="image-user-info row">
-                            <div class="col-md-9">
+                            <div class="col-xs-9">
                                 <a href="{{ action('ProfileController@show', $user->name) }}">
                                     <div class="image-user-header">
                                         <div class="avatar">
@@ -28,7 +28,7 @@
                                 </a>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-xs-3">
                                 <div class="followbutton">
                                     @include('partials/following_button')
                                 </div>
@@ -38,11 +38,11 @@
 
                     <?php
                         if( ! Auth::Guest() && ($user->id == Auth::id() || Auth::User()->role >= 3)) {
-                            $colWidth = 'col-md-7';
+                            $colWidth = 'col-xs-6';
                             $isUserImg = true;
                         }
                         else {
-                            $colWidth = 'col-md-12';
+                            $colWidth = 'col-xs-6 col-md-12 col-lg-12';
                             $isUserImg = false;
                         }
                     ?>
@@ -52,7 +52,7 @@
                     </div>
 
                     @if($isUserImg)
-                    <div class="col-md-5">
+                    <div class="col-xs-6">
                         <div id="image-user-buttons">
                             <a href="{{ action('ImageController@edit', $image->image_uri) }}"
                                class="btn btn-default" id="image-edit-button">
