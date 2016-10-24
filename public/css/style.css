@@ -196,8 +196,6 @@ table {
     touch-action: manipulation;
     cursor: pointer;
     -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
     background-image: none;
     border: 1px solid transparent;
@@ -409,8 +407,6 @@ nav .right ul li img {
     opacity: 0;
     pointer-events: none;
     -webkit-transition: all .3s ease-in-out;
-    -moz-transition: all .3s ease-in-out;
-    -o-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
 }
 
@@ -524,9 +520,14 @@ nav .right ul li img {
     padding-top: 1em;
 }
 
-#profile-more-info span, #profile-more-info a {
+#profile-more-info a {
     color: black;
     padding-right: 2em;
+}
+
+#profile-more-info .count {
+    color: #b4b4b4;
+    margin-left: .2em;
 }
 
 #profile-followers {
@@ -1074,28 +1075,28 @@ tr.users-data td span {
     color: #ba3838;
 }
 
-.search-category:not(:first-child) {
-    margin-left: 2em;
+.category-item {
+    display: inline-block;
+    margin: 0 5px 5px 0;
 }
 
-.search-category a {
-    display: block;
+.search-category {
     color: #000;
     font-size: .9em;
     border: 1px solid black;
     padding: .8em;
-    min-width: 7em;
+    min-width: 120px;
     text-align: center;
     -webkit-transition: all .2s;
     transition: all .2s;
 }
 
-.search-category a:hover, .search-category a:focus {
+.search-category:hover, .search-category:focus {
     background-color: #e9e9e9;
 }
 
 .search-user {
-    margin: .25em;
+    margin: 5px;
 }
 
 .search-result:not(:last-child) {
@@ -1104,10 +1105,6 @@ tr.users-data td span {
 
 .search-result h2 {
     font-weight: bold;
-}
-
-.search-user {
-    margin: .25em;
 }
 
 .warning-box {
@@ -1176,6 +1173,10 @@ tr.users-data td span {
     height: 20px;
     font-size: .67em;
     padding: 0;
+}
+
+#forgot-password {
+    margin-left: .5em;
 }
 
 .fixed {

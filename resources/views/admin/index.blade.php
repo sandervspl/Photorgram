@@ -2,7 +2,7 @@
 @section('title', 'Use')
 @section('content')
 <section class="main-article admin-page">
-    <h1>Administration - Users</h1>
+    <h1>Administration - All Users</h1>
 
     <div id="edit-account-menu">
         <ul>
@@ -86,5 +86,8 @@
         <tr class="spacer"></tr>
         @endforeach
     </table>
+    <div class="text-center">
+    {{ $users->links() }}
+    </div>
 </section>
 @endsection

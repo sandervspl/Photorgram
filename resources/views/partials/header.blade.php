@@ -1,5 +1,5 @@
 <header id="nav-header">
-<nav id="navigation row">
+<nav id="navigation">
     <div class="left col-md-3">
         <a href="/">
             <img src="{{ url('img/logo_full.png') }}" alt="logo" id="logo">
@@ -43,7 +43,7 @@
             </li>
 
             <li>
-            <div class="dropdown">
+            <div class="dropdown" id="nav-user-dropdown">
                 <button class="button button-default dropdown-toggle user-dropdown" type="button" id="dropdownMenu1"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     {{ Auth::user()->name }}
@@ -84,7 +84,6 @@
         </ul>
     </div>
     @endif
-    </div>
 </nav>
 </header>
 <div id="searchbar">

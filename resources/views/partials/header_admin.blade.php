@@ -1,12 +1,18 @@
-<header class="admin">
-<nav>
-    <div class="left">
+<header class="admin" id="nav-header">
+<nav id="navigation">
+    <div class="left col-md-3">
         <a href="/">
-            <img src="{{ url('img/logo_full.png') }}" alt="logo">
+            <img src="{{ url('img/logo_full.png') }}" alt="logo" id="logo">
         </a>
     </div>
 
-    <div class="right">
+    <div class="right menu-icon col-md-9">
+        <div class="search">
+            <button class="search-btn"></button>
+        </div>
+        <div class="icon">☰</div>
+    </div>
+    <div class="right menu col-md-9">
         <ul>
             <li>
                 <a href=" {{ action('ImageController@upload') }}">
@@ -15,12 +21,12 @@
             </li>
             <li>
                 <a href="{{ action('ImageController@allImages') }}">
-                    All Images
+                    Categories
                 </a>
             </li>
 
             <li>
-                <div class="dropdown">
+                <div class="dropdown" id="nav-user-dropdown">
                     <button class="btn btn-default dropdown-toggle user-dropdown" type="button" id="dropdownMenu1"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         {{ Auth::user()->name }}
@@ -50,7 +56,7 @@
                 </div>
             </li>
             <li>
-                <button id="search-btn"></button>
+                <button class="search-btn"></button>
             </li>
         </ul>
     </div>

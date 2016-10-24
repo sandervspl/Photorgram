@@ -32,16 +32,15 @@
             <div class="search-result categories">
                 @if($categories->count() > 0)
                 <h2>Categories</h2>
-
-                <ul>
                 @foreach($categories as $category)
-                    <li class="search-category" title="Category {{ $category->name }}">
-                        <a href="{{ url('/images/category/'.$category->name) }}">
+                <div class="category-item">
+                    <a href="{{ url('/images/category/'.$category->name) }}">
+                        <div class="search-category" title="Category {{ $category->name }}">
                             {{ ucfirst(trans($category->name)) }}
-                        </a>
-                    </li>
+                        </div>
+                    </a>
+                </div>
                 @endforeach
-                </ul>
                 @endif
             </div>
 

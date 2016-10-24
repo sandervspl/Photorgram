@@ -45,7 +45,7 @@
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             {!! Form::submit('Sign In', ['class' => 'btn btn-primary']) !!}
-            <a href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+            <a href="{{ url('/password/reset') }}" id="forgot-password">Forgot Your Password?</a>
         </div>
     </div>
     {!! Form::close() !!}

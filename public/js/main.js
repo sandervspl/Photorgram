@@ -166,12 +166,28 @@ $('.follow-btn').click(function (event) {
  */
 
 $('.search-btn').click(function () {
-    $('#searchbar').toggleClass('show');
-    $('#searchbar-clear').toggleClass('show');
-    $('#searchbar-input').focus();
+    showSearchBar();
 });
 
 $('#searchbar-clear').click(function () {
+    hideSearchBar();
+});
+
+$('#nav-user-dropdown').click(function () {
+    hideSearchBar();
+});
+
+$('.container').click(function () {
+    hideSearchBar();
+});
+
+function showSearchBar() {
+    $('#searchbar').toggleClass('show');
+    $('#searchbar-clear').toggleClass('show');
+    $('#searchbar-input').focus();
+}
+
+function hideSearchBar() {
     $('#searchbar').removeClass('show');
     $('#searchbar-clear').removeClass('show');
-});
+}

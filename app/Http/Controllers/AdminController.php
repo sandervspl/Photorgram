@@ -13,23 +13,28 @@ class AdminController extends Controller
     public function index()
     {
         // get all users
-        $users = User::all();
+        // sort a-z
+        $users = User::orderBy('name', 'asc')->paginate(10);
 
-        return view('admin.index', ['users' => $users]);
+        return view('admin.index', compact('users'));
     }
 
 
     public function categories()
     {
-        $categories = Category::all();
+        // get all categories
+        // sort a-z
+        $categories = Category::orderBy('name', 'asc')->paginate(10);
 
-        return view('admin.categories', ['categories' => $categories]);
+        return view('admin.categories', compact('categories'));
     }
 
 
     public function roles()
     {
-        $roles = Role::all();
+        // get all roles
+        // sort a-z
+        $roles = Role::orderBy('name', 'asc')->paginate(10);
 
         return view('admin.roles', compact('roles'));
     }
@@ -53,7 +58,7 @@ class AdminController extends Controller
     {
         $category = Category::findOrFail($category_id);
 
-        return view('admin.edit_category', ['category' => $category]);
+        return view('admin.edit_category', compact('category'));
     }
 
 
@@ -61,7 +66,7 @@ class AdminController extends Controller
     {
         $category = Category::findOrFail($category_id);
 
-        return view('admin.remove_category', ['category' => $category]);
+        return view('admin.remove_category', compact('category'));
     }
 
 
@@ -75,7 +80,7 @@ class AdminController extends Controller
     {
         $role = Role::findOrFail($role_id);
 
-        return view('admin.edit_role', ['role' => $role]);
+        return view('admin.edit_role', compact('role'));
     }
 
 
@@ -83,7 +88,7 @@ class AdminController extends Controller
     {
         $role = Role::findOrFail($role_id);
 
-        return view('admin.remove_role', ['role' => $role]);
+        return view('admin.remove_role', compact('role'));
     }
 
 
@@ -91,6 +96,6 @@ class AdminController extends Controller
     {
         $user = User::getUserByName($user_name);
 
-        return view('admin.remove_user', ['user' => $user]);
+        return view('admin.remove_user', compact('user'));
     }
 }

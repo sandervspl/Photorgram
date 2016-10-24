@@ -17,12 +17,16 @@
 
             <div id="profile-more-info">
                 <a href="{{ action('ProfileController@followers', $user->name) }}" id="profile-followers">
-                    <b id="followers-count">{{ $user->followers->count() }}</b> followers
+                    <b>Followers</b>
+                    <span class="count" id="followers-count">{{ $user->followers->count() }}</span>
                 </a>
                 <a href="{{ action('ProfileController@following', $user->name) }}" id="profile-following">
-                    <b id="following-count">{{ $user->following->count() }}</b> following
+                    <b>Following</b>
+                    <span class="count" id="following-count">{{ $user->following->count() }}</span>
                 </a>
-                <span id="profile-pictures"><b>{{ $user->images->count() }}</b> photos</span>
+                <b>Photos</b>
+                <span class="count">{{ $user->images->count() }}</span>
+
                 <div id="profile-bio">{{ $user->profile->bio }}</div>
             </div>
         </div>

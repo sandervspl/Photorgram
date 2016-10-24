@@ -42,6 +42,8 @@
             <tr class="spacer"></tr>
         @endforeach
     </table>
-
+    <div class="text-center">
+        {{ $categories->links() }}
+    </div>
 </section>
 @endsection
