@@ -10,7 +10,7 @@
 </div>
 <section class="main-article feed">
     @if (isset($images))
-    <div class="feed-images">
+    <div class="feed-images scroll">
     @foreach($images as $image)
         <div class="feed-image-card" href="{{ $image->image_uri }}">
             <div class="image-thumbnail-big feed">
@@ -97,12 +97,17 @@
             </div>
         </div>
     @endforeach
+
+        <div class="hidden text-center">
+            {{ $images->links() }}
+        </div>
     </div>
     @else
     <h1>Feed</h1>
     <p>You are not following any profiles!</p>
     @endif
 </section>
+<script src="{{ url('js/jquery.jscroll.min.js') }}"></script>
 <script>
     var rateUrl = '{{ route('rate') }}',
         token = '{{ csrf_token() }}';

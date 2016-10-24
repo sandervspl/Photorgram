@@ -68,6 +68,6 @@ class Image extends Model
             }
         }
 
-        return $query->orderBy('created_at', 'desc')->get();
+        return $query->orderBy('created_at', 'desc')->paginate(5);
     }
 }
