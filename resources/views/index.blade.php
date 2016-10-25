@@ -108,6 +108,7 @@
     @endif
 </section>
 <script src="{{ url('js/jquery.jscroll.min.js') }}"></script>
+<script src="{{ url('js/feed.js') }}"></script>
 <script>
     var rateUrl = '{{ route('rate') }}',
         token = '{{ csrf_token() }}';

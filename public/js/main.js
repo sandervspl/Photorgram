@@ -193,15 +193,52 @@ function hideSearchBar() {
 }
 
 
+
 /*
- *      INFINITE SCROLL ON FEED
+ *      ADMIN PAGES
  */
 
-$('.scroll').jscroll({
-    autoTrigger: true,
-    nextSelector: '.pagination li.active + li a',
-    contentSelector: 'div.scroll',
-    callback: function() {
-        $('ul.pagination:visible:first').hide();
-    }
+var popupSuccess = $('.popup.success'),
+    popupFail = $('.popup.fail');
+
+function showRoleWait(el) {
+    el.prop('disabled', true);
+}
+
+function hideAdminPopup() {
+    $('.popup').each(function () {
+        $(this).removeClass('show');
+    });
+}
+
+$('.role-list').change(function (event)
+{
+    var that = $(this);
+    var userId = event.target.dataset.userid,
+        roleId = $(this).val();
+
+    // wait animation
+    showRoleWait($(this));
+
+    // post data to controller
+    $.post({
+        url: updateRoleUrl,
+        data: {
+            user_id: userId,
+            role_id: roleId,
+            _token: token
+        }
+    })
+        .done(function () {
+            that.prop('disabled', false);
+            popupSuccess.addClass('show');
+
+            setTimeout(hideAdminPopup.bind(popupSuccess), 1000);
+        })
+        .fail(function () {
+            that.prop('disabled', false);
+            popupFail.addClass('show');
+
+            setTimeout(hideAdminPopup.bind(popupFail), 1000);
+        });
 });

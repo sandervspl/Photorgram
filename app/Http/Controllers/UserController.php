@@ -35,12 +35,9 @@ class UserController extends Controller
 
     public function updateRole(Request $request)
     {
-        if (Auth::User()->role < 4)
-            abort(403);
-
         $user = User::findOrFail($request->get('user_id'));
 
-        $user->role = $request->get('role');
+        $user->role = $request->get('role_id');
         $user->save();
 
         return Redirect::back();
@@ -49,9 +46,6 @@ class UserController extends Controller
 
     public function remove(Request $request)
     {
-        if (Auth::User()->role < 4)
-            abort(403);
-
         $user = User::findOrFail($request->get('user_id'));
 
         // remove all their images

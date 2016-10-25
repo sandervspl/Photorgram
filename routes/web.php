@@ -221,7 +221,7 @@ Route::post('/admin/updaterole', [
         $roles['moderator'],
         $roles['administrator']
     ]
-]);
+])->name('updateRole');
 
 // wildcard acting as a profile url !! always have as last route !!
 Route::get('/{userid}', 'ProfileController@show');

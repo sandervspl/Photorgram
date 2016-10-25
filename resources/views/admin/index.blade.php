@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Use')
+@section('title', 'All Users')
 @section('content')
 <section class="main-article admin-page">
     <h1>Administration - All Users</h1>
@@ -49,8 +49,8 @@
                 !!}
 
                 <label for="role" class="control-label"></label>
-                <select name="role" id="role" class="form control input-sm admin-role-dropdown"
-                        onchange="this.form.submit()" required>
+                <select name="role" id="{{ $user->id }}-role" class="form control input-sm admin-role-dropdown role-list"
+                        data-userid="{{ $user->id }}" data-userrole="{{ $user->role }}">
                     @foreach(\App\Role::all() as $role)
                         @if($user->role == $role->id)
                             <option value="{{ $role->id }}" selected>{{ $role->name }}</option>
@@ -89,5 +89,18 @@
     <div class="text-center">
     {{ $users->links() }}
     </div>
+
+    <div class="popup success">
+        <h1>Done</h1>
+    </div>
+
+    <div class="popup fail">
+        <h1>Failed</h1>
+    </div>
 </section>
+
+<script>
+    var updateRoleUrl = '{{ route('updateRole') }}',
+        token = '{{ csrf_token() }}';
+</script>
 @endsection
