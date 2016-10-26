@@ -1,3 +1,4 @@
+<?php $p = Config::get('constants.permissions') ?>
 @extends('layouts.master')
 @section('title', 'Administration - Categories')
 @section('content')
@@ -9,9 +10,12 @@
             <li><a href="{{ action('AdminController@index') }}" class="btn btn-default">Users</a></li>
             <li><a href="{{ action('AdminController@roles') }}" class="btn btn-default">Roles</a></li>
             <li><a href="{{ action('AdminController@categories') }}" class="btn btn-default">Categories</a></li>
+
+            @if (Auth::User()->role >= $p['add_category'])
             <li class="add-new-category-btn">
                 <a href="{{ action('AdminController@addCategory') }}" class="btn btn-default">Add New Category</a>
             </li>
+            @endif
         </ul>
     </div>
 
@@ -30,15 +34,23 @@
                 <td> {{ $category->description }} </td>
 
                 <td>
+                    @if (Auth::User()->role >= $p['edit_category'])
                     <a href="{{ action('AdminController@editCategory', ['categoryid' => $category->id]) }}">
                         Edit
                     </a>
+                    @else
+                        Edit
+                    @endif
 
                     <span> | </span>
 
+                    @if (Auth::User()->role >= $p['remove_category'])
                     <a href="{{ action('AdminController@removeCategory', ['categoryid' => $category->id]) }}" class="remove-link">
                         Remove Category
                     </a>
+                    @else
+                        Remove Category
+                    @endif
                 </td>
             </tr>
             <tr class="spacer"></tr>

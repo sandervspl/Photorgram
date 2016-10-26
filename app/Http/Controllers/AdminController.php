@@ -104,7 +104,7 @@ class AdminController extends Controller
     {
         $users = User::getAllUsersWithName($query);
 
-        return view('admin.search.users', compact('query', 'users'));
+        return view('admin.index', compact('query', 'users'));
     }
 
 
@@ -112,6 +112,6 @@ class AdminController extends Controller
     {
         $categories = Category::getAllCategoriesWithName($query);
 
-        return view('admin.search.categories', compact('query', 'categories'));
+        return view('admin.categories', compact('query', 'categories'));
     }
 }

@@ -1,3 +1,4 @@
+<?php $p = Config::get('constants.permissions') ?>
 @extends('layouts.master')
 @section('title', 'All Users')
 @section('content')
@@ -46,6 +47,12 @@
             <td> {{ $user->id }} </td>
             <td> {{ $user->name }} </td>
 
+            <?php
+                $disabled = "disabled";
+                if (Auth::User()->role >= $p['change_role'])
+                    $disabled = "";
+            ?>
+
             <td>
                 {!! Form::open([
                         'action' => 'UserController@updateRole'
@@ -54,7 +61,7 @@
 
                 <label for="role" class="control-label"></label>
                 <select name="role" id="{{ $user->id }}-role" class="form control input-sm admin-role-dropdown role-list"
-                        data-userid="{{ $user->id }}" data-userrole="{{ $user->role }}">
+                        data-userid="{{ $user->id }}" data-userrole="{{ $user->role }}" {{ $disabled }}>
                     @foreach(\App\Role::all() as $role)
                         @if($user->role == $role->id)
                             <option value="{{ $role->id }}" selected>{{ $role->name }}</option>
@@ -76,15 +83,23 @@
 
                 <span> | </span>
 
+                @if (Auth::User()->role >= $p['edit_profile'])
                 <a href="{{ action('ProfileController@editProfile', ['user_name' => $user->name]) }}">
                     Edit
                 </a>
+                @else
+                    Edit
+                @endif
 
                 <span> | </span>
 
+                @if (Auth::User()->role >= $p['remove_user'])
                 <a href="{{ action('AdminController@removeUser', ['user_id' => $user->id]) }}" class="remove-link">
                     Remove user
                 </a>
+                @else
+                    Remove user
+                @endif
             </td>
         </tr>
         <tr class="spacer"></tr>

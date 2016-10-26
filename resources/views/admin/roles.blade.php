@@ -1,3 +1,4 @@
+<?php $p = Config::get('constants.permissions') ?>
 @extends('layouts.master')
 @section('title', 'Administration - Roles')
 @section('content')
@@ -9,9 +10,12 @@
                 <li><a href="{{ action('AdminController@index') }}" class="btn btn-default">Users</a></li>
                 <li><a href="{{ action('AdminController@roles') }}" class="btn btn-default">Roles</a></li>
                 <li><a href="{{ action('AdminController@categories') }}" class="btn btn-default">Categories</a></li>
+
+                @if (Auth::User()->role >= $p['add_role'])
                 <li class="add-new-category-btn">
                     <a href="{{ action('AdminController@addRole') }}" class="btn btn-default">Add New Role</a>
                 </li>
+                @endif
             </ul>
         </div>
 
@@ -25,13 +29,17 @@
                     <td> {{ $role->name }} </td>
 
                     <td>
+                        @if (Auth::User()->role >= $p['edit_role'])
                         <a href="{{ action('AdminController@editRole', ['roleid' => $role->id]) }}">
                             Edit
                         </a>
+                        @else
+                            Edit
+                        @endif
 
                         <span> | </span>
 
-                        @if($role->id != 1)
+                        @if($role->id != 1 && (Auth::User()->role >= $p['remove_role']))
                         <a href="{{ action('AdminController@removeRole', ['roleid' => $role->id]) }}" class="remove-link">
                             Remove Role
                         </a>
