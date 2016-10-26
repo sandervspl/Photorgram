@@ -242,3 +242,34 @@ $('.role-list').change(function (event)
             setTimeout(hideAdminPopup.bind(popupFail), 1000);
         });
 });
+
+
+
+/*
+ *      ADMIN FUNCTIONS
+ */
+
+$('#ban-button').click(function (e) {
+    var that = $(this);
+    var userId   = e.target.dataset.userid,
+        isBanned = e.target.dataset.isbanned;
+
+    // post data to controller
+    $.post({
+        url: banUrl,
+        data: {
+            user_id: userId,
+            is_banned: isBanned,
+            _token: token
+        }
+    })
+        .done(function () {
+            e.target.dataset.isbanned = (isBanned == 0) ? 1 : 0;
+
+            var str = (isBanned == 0) ? "Unban User" : "Ban User";
+            that.text(str);
+        })
+        .fail(function () {
+            console.log('fail');
+        });
+});

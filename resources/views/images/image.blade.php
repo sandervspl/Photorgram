@@ -1,3 +1,4 @@
+<?php $p = Config::get('constants.permissions') ?>
 @extends('layouts.master')
 @section('title', $image->title)
 @section('content')
@@ -37,7 +38,7 @@
                     </div>
 
                     <?php
-                        if( ! Auth::Guest() && ($user->id == Auth::id() || Auth::User()->role >= 3)) {
+                        if( ! Auth::Guest() && ($user->id == Auth::id() || Auth::User()->role >= $p['edit_image'])) {
                             $colWidth = 'col-xs-6';
                             $isUserImg = true;
                         }
@@ -55,13 +56,16 @@
                     <div class="col-xs-6">
                         <div id="image-user-buttons">
                             <a href="{{ action('ImageController@edit', $image->image_uri) }}"
-                               class="btn btn-default" id="image-edit-button">
+                               class="button button-default" id="image-edit-button">
                                 Edit
                             </a>
+
+                            @if (Auth::User()->role >= $p['remove_image'])
                             <a href="{{ action('ImageController@confirmRemove', $image->image_uri) }}"
-                               class="btn btn-default btn-warning" id="image-remove-button">
+                               class="button button-default btn-warning" id="image-remove-button">
                                 Remove
                             </a>
+                            @endif
                         </div>
                     </div>
                     @endif

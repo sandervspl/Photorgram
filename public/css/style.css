@@ -186,6 +186,7 @@ table {
     display: inline-block;
     padding: 6px 12px;
     margin-bottom: 0;
+    color: #000;
     font-size: 14px;
     font-weight: 400;
     line-height: 1.42857143;
@@ -520,7 +521,7 @@ nav .right ul li img {
     padding-top: 1em;
 }
 
-#profile-more-info a {
+#profile-more-info > a {
     color: black;
     padding-right: 2em;
 }
@@ -727,6 +728,14 @@ nav .right ul li img {
     color: #fff;
     background: #ba3838;
     border: 1px solid #ba3838;
+}
+
+.btn-ban {
+    padding-left: 26px;
+    color: #ba3838;
+    border: 1px solid #ba3838;
+    background: #fff url('../img/ban.png') 7px no-repeat !important;
+    background-size: 1em !important;
 }
 
 .btn-dark {
@@ -1018,8 +1027,14 @@ h3.title.feed {
     font-size: .8em;
 }
 
+.admin-buttons {
+    margin-top: 2em;
+    padding-top: .5em;
+    border-top: 1px solid #6a93bb;
+}
+
 .admin-search {
-margin-bottom: 1.5em;
+    margin-bottom: 1.5em;
 }
 
 .admin-search-field {
@@ -1255,6 +1270,16 @@ tr.users-data td span {
     text-align: center;
 }
 
+#ban-title::before {
+    position: relative;
+    top: 12px;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    margin-right: .25em;
+    content: '';
+    background: transparent url('../img/ban_big.png') center/100% no-repeat;
+}
 
 @media only screen and (max-width: 1130px) {
     nav {

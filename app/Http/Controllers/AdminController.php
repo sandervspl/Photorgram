@@ -7,6 +7,8 @@ use App\Role;
 use Auth;
 use App\User;
 use App\Http\Requests;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class AdminController extends Controller
 {
@@ -97,6 +99,18 @@ class AdminController extends Controller
         $user = User::findOrFail($user_id);
 
         return view('admin.remove_user', compact('user'));
+    }
+
+
+    public function toggleUserBan(Request $request)
+    {
+        $user = User::findOrFail($request->get('user_id'));
+        $isBanned = $request->get('is_banned');
+
+        $user->banned = ($isBanned == 0) ? 1 : 0;
+        $user->save();
+
+        return Redirect::back();
     }
 
 

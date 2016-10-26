@@ -1,7 +1,12 @@
+<?php $p = Config::get('constants.permissions') ?>
 @extends('layouts.master')
 @section('title', $user->name)
 @section('content')
 <section class="main-article">
+    @if ($user->banned && Auth::User()->role < $p['see_banned'])
+        <h1 id="ban-title">Banned</h1>
+        <p>This account has been terminated.</p>
+    @else
     <div class="profile-header">
         <div id="profile-user-image">
             @if( ! empty($user->profile->profile_picture))
@@ -28,6 +33,29 @@
                 <span class="count">{{ $user->images->count() }}</span>
 
                 <div id="profile-bio">{{ $user->profile->bio }}</div>
+
+                @if(Auth::User()->role >= $p['admin_controls'])
+                <div class="admin-buttons">
+                    <p><strong>Admin Controls</strong></p>
+
+                    @if (Auth::User()->role >= $p['edit_profile'])
+                    <a href="{{ action('ProfileController@editProfile', $user->name) }}" class="button button-default">
+                        Edit Profile
+                    </a>
+                    @endif
+
+                    @if (Auth::User()->role >= $p['ban_user'])
+                    <button class="button button-default btn-ban" id="ban-button"
+                            data-userid="{{ $user->id }}" data-isbanned="{{ $user->banned }}">
+                        @if ($user->banned)
+                            Unban User
+                        @else
+                            Ban User
+                        @endif
+                    </button>
+                    @endif
+                </div>
+                @endif
             </div>
         </div>
     </div>
@@ -41,5 +69,10 @@
             </div>
         @endforeach
     </div>
+    @endif
 </section>
+<script>
+    var banUrl = '{{ route('banUser') }}',
+        token  = '{{ csrf_token() }}';
+</script>
 @endsection

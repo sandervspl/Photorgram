@@ -28,7 +28,8 @@ class ProfileController extends Controller
 
     private function forbiddenAccess($user_name)
     {
-        return ($user_name == 'administrator');
+        $user = User::getUserByName($user_name);
+        return ($user->role >= 3);
     }
 
     private function getUser($user_name)

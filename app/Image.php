@@ -59,16 +59,20 @@ class Image extends Model
 
     public static function getAllImagesFromProfiles($profiles)
     {
-        $query = '';
+        $query = [];
 
         for ($i = 0; $i < count($profiles); $i += 1) {
-            if ($i == 0) {
-                $query = Image::where('user_id', '=', $profiles[$i]->follow_id);
-            } else {
-                $query->orWhere('user_id', '=', $profiles[$i]->follow_id);
+            $user = User::findOrFail($profiles[$i]->follow_id);
+
+            if ( ! $user->banned) {
+                if ($i == 0) {
+                    $query = Image::where('user_id', '=', $profiles[$i]->follow_id);
+                } else {
+                    $query->orWhere('user_id', '=', $profiles[$i]->follow_id);
+                }
             }
         }
 
-        return $query->orderBy('created_at', 'desc')->paginate(5);
+        return (count($query) > 0) ? $query->orderBy('created_at', 'desc')->paginate(5) : $query;
     }
 }

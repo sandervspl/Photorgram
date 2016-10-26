@@ -247,6 +247,21 @@ Route::post('/admin/updaterole', [
     ]
 ])->name('updateRole');
 
+
+/*
+ *      ADMIN MISC
+ */
+
+Route::post('/user/ban', [
+    'uses' => 'AdminController@toggleUserBan',
+    'middleware' => 'roles',
+    'roles' => [
+        $roles['moderator'],
+        $roles['administrator']
+    ]
+])->name('banUser');
+
+
 // wildcard acting as a profile url !! always have as last route !!
 Route::get('/{userid}', 'ProfileController@show');
 

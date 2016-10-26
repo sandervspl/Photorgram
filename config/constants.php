@@ -21,6 +21,8 @@ return [
         'ban_user'          => 3,
         'edit_image'        => 3,
         'remove_image'      => 3,
-        'remove_rating'     => 3
+        'remove_rating'     => 3,
+        'admin_controls'    => 3,
+        'see_banned'        => 3
     ]
 ];

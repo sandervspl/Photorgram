@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Image_Rating;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use \Storage;
@@ -43,10 +44,12 @@ class ImageController extends Controller
 
             // start at the latest image
             foreach ($category->images->reverse() as $image) {
-                $temp_array[] = $image;
+                if ( ! $image->user->banned) {
+                    $temp_array[] = $image;
 
-                if (++$i >= 5)
-                    break;
+                    if (++$i >= 5)
+                        break;
+                }
             }
 
             $images[] = $temp_array;
@@ -86,8 +89,13 @@ class ImageController extends Controller
 
     public function show($image_name)
     {
+        $p = Config::get('constants.permissions');
+
         // try to get image
         $image = Image::getImageByName($image_name);
+
+        if ($image->user->banned && Auth::User()->role < $p['see_banned'])
+            return Redirect::to(action('ProfileController@show', ['user_name' => $image->user->name]));
 
         // check if logged-in user has rated this image and what he rated
         $userHasRated = Image_Rating::userHasRated(Auth::id(), $image->id);

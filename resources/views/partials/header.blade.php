@@ -52,13 +52,13 @@
 
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <li>
-                        <a href="{{ action('ProfileController@show', ['user_name' => Auth::user()->name]) }}">
+                        <a href="{{ action('ProfileController@show', Auth::user()->name) }}">
                             My Profile
                         </a>
                     </li>
 
                     <li>
-                        <a href="{{ action('ProfileController@editAccount', ['user_name' => Auth::user()->name]) }}">
+                        <a href="{{ action('ProfileController@editAccount', Auth::user()->name) }}">
                             Edit Account
                         </a>
                     </li>

@@ -9,7 +9,7 @@
     <div class="preload"><img src="{{ url('img/dislike_heart_full.png') }}"></div>
 </div>
 <section class="main-article feed">
-    @if (isset($images))
+    @if (isset($images) && count($images) > 0)
     <div class="feed-images scroll">
     @foreach($images as $image)
         <div class="feed-image-card" href="{{ $image->image_uri }}">
@@ -91,7 +91,7 @@
     </div>
     @else
     <h1>Feed</h1>
-    <p>You are not following any profiles!</p>
+    <p>Nothing to show. Try following some profiles!</p>
     @endif
 </section>
 <script src="{{ url('js/jquery.jscroll.min.js') }}"></script>
