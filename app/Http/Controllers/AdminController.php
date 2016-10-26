@@ -10,6 +10,8 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
+use Illuminate\Support\Facades\Config;
+
 class AdminController extends Controller
 {
     public function index()
@@ -34,6 +36,11 @@ class AdminController extends Controller
 
     public function roles()
     {
+        $p = Config::get('constants.permissions');
+
+        if (Auth::User()->role < $p['edit_role'])
+            return abort(401);
+
         // get all roles
         // sort a-z
         $roles = Role::orderBy('name', 'asc')->paginate(10);

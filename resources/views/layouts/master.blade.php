@@ -1,10 +1,11 @@
+<?php $p = Config::get('constants.permissions') ?>
 <html lang="en">
 <head>
     @include('partials/head')
     <title>Photogram - @yield('title')</title>
 </head>
 <body>
-    @if ( ! Auth::Guest() && App\User::findOrFail(Auth::id())->role == 4)
+    @if ( ! Auth::Guest() && App\User::findOrFail(Auth::id())->role >= $p['admin_controls'])
         @include('partials/header_admin')
     @else
         @include('partials/header')
