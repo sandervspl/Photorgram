@@ -36,12 +36,14 @@
 
     <table>
         <tr>
+            <th>ID</th>
             <th>User</th>
             <th>Role</th>
             <th>Manage</th>
         </tr>
         @foreach($users as $user)
         <tr class="users-data">
+            <td> {{ $user->id }} </td>
             <td> {{ $user->name }} </td>
 
             <td>
@@ -80,7 +82,7 @@
 
                 <span> | </span>
 
-                <a href="{{ action('AdminController@removeUser', ['user_name' => $user->name]) }}" class="remove-link">
+                <a href="{{ action('AdminController@removeUser', ['user_id' => $user->id]) }}" class="remove-link">
                     Remove user
                 </a>
             </td>

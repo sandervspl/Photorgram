@@ -92,9 +92,9 @@ class AdminController extends Controller
     }
 
 
-    public function removeUser($user_name)
+    public function removeUser($user_id)
     {
-        $user = User::getUserByName($user_name);
+        $user = User::findOrFail($user_id);
 
         return view('admin.remove_user', compact('user'));
     }
