@@ -96,7 +96,8 @@ class User extends Authenticatable
     {
         return User::where('name', 'like', '%'.$user_name.'%')
             ->where('role', '=', '1')
-            ->get();
+            ->orderBy('name', 'asc')
+            ->paginate(15);
     }
 
     // check if user has any of the given roles

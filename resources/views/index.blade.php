@@ -81,19 +81,6 @@
                         </div>
                     </div>
                 </div>
-
-                <?php
-                $totalRates = $image->getLikesCount() + $image->getDislikesCount();
-                $likePct = ($totalRates > 0) ? ($image->getLikesCount() / $totalRates) * 100 : 0;
-                ?>
-
-                <div class="row info-3">
-                    <div class="col-sm-5 col-md-4"></div>
-                    <div class="col-xs-11 col-sm-7 col-md-8">
-                        <div class="rating-bar-bg"></div>
-                        <div id="rating-bar-{{ $image->id }}" class="rating-bar" style="width: {{ $likePct }}%;"></div>
-                    </div>
-                </div>
             </div>
         </div>
     @endforeach
@@ -108,7 +95,7 @@
     @endif
 </section>
 <script src="{{ url('js/jquery.jscroll.min.js') }}"></script>
-<script src="{{ url('js/feed.js') }}"></script>
+<script src="{{ url('js/infiniteScroll.js') }}"></script>
 <script>
     var rateUrl = '{{ route('rate') }}',
         token = '{{ csrf_token() }}';

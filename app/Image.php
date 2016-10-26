@@ -52,7 +52,8 @@ class Image extends Model
     {
         return Image::where('title', 'like', '%'.$query.'%')
             ->orWhere('description', 'like', '%'.$query.'%')
-            ->get();
+            ->orderBy('created_at', 'desc')
+            ->paginate(15);
     }
 
 

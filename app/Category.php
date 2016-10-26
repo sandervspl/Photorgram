@@ -30,6 +30,8 @@ class Category extends Model
 
     public static function getAllCategoriesWithName($category_name)
     {
-        return Category::where('name', 'like', '%'.$category_name.'%')->get();
+        return Category::where('name', 'like', '%'.$category_name.'%')
+            ->orderBy('name', 'asc')
+            ->get();
     }
 }

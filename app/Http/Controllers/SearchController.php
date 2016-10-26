@@ -7,26 +7,35 @@ use App\Image;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Redirect;
 
 class SearchController extends Controller
 {
     public function search(Request $request)
     {
-        $query = $request->get('search');
-        $images = Image::getAllImagesWithQuery($query);
-        $categories = Category::getAllCategoriesWithName($query);
-        $users = User::getAllUsersWithName($query);
-
-        return view('search.index', [
-            'images' => $images,
-            'query' => $query,
-            'categories' => $categories,
-            'users' => $users
-        ]);
+        return Redirect::to(action('SearchController@showProfiles', $request->get('search')));
     }
 
-    public function show()
+    public function showProfiles($query)
     {
-        return view('search.index');
+        $users = User::getAllUsersWithName($query);
+
+        return view('search.users', compact('query', 'users'));
+    }
+
+
+    public function showImages($query)
+    {
+        $images = Image::getAllImagesWithQuery($query);
+
+        return view('search.images', compact('query', 'images'));
+    }
+
+
+    public function showCategories($query)
+    {
+        $categories = Category::getAllCategoriesWithName($query);
+
+        return view('search.categories', compact('query', 'categories'));
     }
 }

@@ -707,7 +707,7 @@ nav .right ul li img {
 }
 
 .article-container {
-    margin-top: 3em;
+    margin-top: 1em;
 }
 
 .category {
@@ -861,7 +861,7 @@ h3.title.feed {
 }
 
 .feed-image-card .info .info-2 {
-    margin-top: 2em;
+    margin-top: 1em;
 }
 
 .image-info-buttons #dislike {
@@ -1107,6 +1107,17 @@ tr.users-data td span {
     font-weight: bold;
 }
 
+.search-result-nav h2 {
+    display: inline-block;
+    margin-right: 1em;
+}
+
+.search-result-nav h2.active {
+    display: inline-block;
+    margin-right: 1em;
+    border-bottom: 3px solid black;
+}
+
 .warning-box {
     padding: 1em;
     margin: 1em 0;
@@ -1213,6 +1224,20 @@ tr.users-data td span {
     visibility: visible;
     -webkit-transform: scale(1);
     transform: scale(1);
+}
+
+#jscroll-loading small {
+    display: none;
+}
+
+#jscroll-loading {
+    content: '';
+    background: url('../img/spin.gif') center/3em no-repeat;
+    width: 100px;
+    height: 100px;
+    overflow: visible;
+    margin: auto;
+    text-align: center;
 }
 
 

@@ -37,7 +37,9 @@ Route::get('/profile/{username}/edit/account', 'ProfileController@editAccount');
 Route::get('/profile/{username}', 'ProfileController@show');
 Route::post('/profile/update', 'ProfileController@update');
 
-Route::get('/search/{images}', 'SearchController@show');
+Route::get('/search/profiles/{query}', 'SearchController@showProfiles');
+Route::get('/search/images/{query}', 'SearchController@showImages');
+Route::get('/search/categories/{query}', 'SearchController@showCategories');
 Route::post('/search', 'SearchController@search');
 
 Route::post('/follow', 'FollowController@follow')->name('follow');

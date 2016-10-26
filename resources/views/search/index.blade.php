@@ -8,7 +8,11 @@
         <div class="article-container">
             <div class="search-result users">
             @if($users->count() > 0)
-                <h2>Users</h2>
+                <div class="search-result-nav">
+                    <a href="{{ action('SearchController@showProfiles') }}"><h2>Profiles</h2></a>
+                    <a href="{{ action('SearchController@showImages') }}"><h2>Images</h2></a>
+                    <a href="{{ action('SearchController@showCategories') }}"><h2>Categories</h2></a>
+                </div>
 
                 @foreach($users as $user)
                 <div class="search-user">
@@ -26,6 +30,10 @@
                     </a>
                 </div>
                 @endforeach
+
+                <div class="text-left">
+                    <a href="#">More profiles...</a>
+                </div>
             @endif
             </div>
 
@@ -56,6 +64,10 @@
                         </a>
                     </div>
                     @endforeach
+
+                    <div class="text-left">
+                        <a href="#">More images...</a>
+                    </div>
                 @endif
             </div>
         </div>
