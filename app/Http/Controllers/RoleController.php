@@ -18,9 +18,11 @@ class RoleController extends Controller
             'name' => 'required|max:255|unique:roles'
         ]);
     }
+
+
     public function add(Request $request)
     {
-        self::validator($request);
+        $this->validator($request);
 
         Role::create([
             'name' => $request->get('name')
@@ -32,7 +34,7 @@ class RoleController extends Controller
 
     public function editName(Request $request)
     {
-        self::validator($request);
+        $this->validator($request);
 
         $role = Role::findOrFail($request->get('role_id'));
         $role->name = $request->get('name');

@@ -12,18 +12,19 @@ use Illuminate\Support\Facades\Redirect;
 
 class CategoryController extends Controller
 {
-    private function userHasAccess()
+    public function validator($request)
     {
-        if (Auth::guest() || Auth::user()->role < 4)
-            abort(403);
+        return $this->validate($request, [
+            'name' => 'required|max:255|unique:categories'
+        ]);
     }
 
 
     public function add(Request $request)
     {
-        $this->userHasAccess();
+        $this->validator($request);
 
-        $name = $request->get('category_name');
+        $name = $request->get('name');
         $description = $request->get('description');
 
         Category::create([
@@ -37,10 +38,10 @@ class CategoryController extends Controller
 
     public function editName(Request $request)
     {
-        $this->userHasAccess();
+        $this->validator($request);
 
         $category = Category::findOrFail($request->get('category_id'));
-        $category->name = $request->get('category_name');
+        $category->name = $request->get('name');
         $category->save();
 
         return Redirect::to(action('AdminController@categories'));
