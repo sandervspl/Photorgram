@@ -15,6 +15,8 @@ return [
         'remove_role'       => 4,
 
         'edit_profile'      => 3,
+        'edit_account'      => 3,
+        'update_account'    => 3,
         'add_category'      => 3,
         'edit_category'     => 3,
         'remove_category'   => 3,

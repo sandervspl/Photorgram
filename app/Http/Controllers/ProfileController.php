@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Follow;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
@@ -10,9 +9,17 @@ use App\Profile;
 use Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Config;
 
 class ProfileController extends Controller
 {
+    private $p;
+
+    function __construct()
+    {
+        return $this->p = Config::get('constants.permissions');
+    }
+
     private function generateRandomString($length = 10) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
@@ -22,9 +29,6 @@ class ProfileController extends Controller
         }
         return $randomString;
     }
-
-
-
 
     private function forbiddenAccess($user_name)
     {
@@ -79,7 +83,7 @@ class ProfileController extends Controller
         $profile_user = User::getUserByName($user_name);
         $cur_user = Auth::User();
 
-        if ($cur_user->id != $profile_user->id && $cur_user->role < 4)
+        if ($cur_user->id != $profile_user->id && $cur_user->role < $this->p['edit_account'])
             abort(403);
 
         return view('profile.edit.edit_account', ['user' => $profile_user]);
@@ -93,7 +97,7 @@ class ProfileController extends Controller
         $profile_user = User::getUserByName($user_name);
         $cur_user = Auth::User();
 
-        if ($cur_user->id != $profile_user->id && $cur_user->role < 4)
+        if ($cur_user->id != $profile_user->id && $cur_user->role < $this->p['edit_profile'])
             abort(403);
 
         return view('profile.edit.edit_profile', ['user' => $profile_user]);

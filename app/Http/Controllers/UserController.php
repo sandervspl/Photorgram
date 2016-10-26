@@ -9,12 +9,20 @@ use App\User;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Config;
 
 class UserController extends Controller
 {
+    private $p;
+
+    function __construct()
+    {
+        return $this->p = Config::get('constants.permissions');
+    }
+
     public function update(Request $request)
     {
-        if (Auth::id() != $request->get('user_id') && Auth::User()->role < 4)
+        if (Auth::id() != $request->get('user_id') && Auth::User()->role < $this->p['update_account'])
             abort(403);
 
         $user = User::findOrFail($request->get('user_id'));
