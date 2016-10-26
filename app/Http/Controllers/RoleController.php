@@ -12,21 +12,18 @@ use Illuminate\Support\Facades\Redirect;
 
 class RoleController extends Controller
 {
-    private function userHasAccess()
+    public function validator($request)
     {
-        if (Auth::User()->role < 4)
-            abort(403);
+        return $this->validate($request, [
+            'name' => 'required|max:255|unique:roles'
+        ]);
     }
-
-
     public function add(Request $request)
     {
-        $this->userHasAccess();
-
-        $name = $request->get('role_name');
+        self::validator($request);
 
         Role::create([
-            'name' => $name
+            'name' => $request->get('name')
         ]);
 
         return Redirect::to(action('AdminController@roles'));
@@ -35,10 +32,10 @@ class RoleController extends Controller
 
     public function editName(Request $request)
     {
-        $this->userHasAccess();
+        self::validator($request);
 
         $role = Role::findOrFail($request->get('role_id'));
-        $role->name = $request->get('role_name');
+        $role->name = $request->get('name');
         $role->save();
 
         return Redirect::to(action('AdminController@roles'));

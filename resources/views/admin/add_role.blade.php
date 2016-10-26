@@ -12,10 +12,16 @@
             !!}
 
             <div class="form-group">
-                {!! Form::label('role_name', 'Role Name*', ['class' => 'col-sm-2 control-label']) !!}
+                {!! Form::label('name', 'Role Name*', ['class' => 'col-sm-2 control-label']) !!}
                 <div class="col-sm-6">
-                    {!! Form::text('role_name', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                    {!! Form::text('name', null, ['class' => 'form-control', 'required' => 'required']) !!}
                 </div>
+
+                @if ($errors->has('name'))
+                <span class="help-block col-sm-offset-2 col-sm-6 error-text">
+                    <strong>{{ $errors->first('name') }}</strong>
+                </span>
+                @endif
             </div>
 
             <div class="form-group">
