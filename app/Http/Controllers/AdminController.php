@@ -98,4 +98,20 @@ class AdminController extends Controller
 
         return view('admin.remove_user', compact('user'));
     }
+
+
+    public function searchShowUsers($query)
+    {
+        $users = User::getAllUsersWithName($query);
+
+        return view('admin.search.users', compact('query', 'users'));
+    }
+
+
+    public function searchShowCategories($query)
+    {
+        $categories = Category::getAllCategoriesWithName($query);
+
+        return view('admin.search.categories', compact('query', 'categories'));
+    }
 }

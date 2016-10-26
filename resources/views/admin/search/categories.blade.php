@@ -1,8 +1,8 @@
 @extends('layouts.master')
-@section('title', 'Administration - Categories')
+@section('title', 'Administration - Search Categories')
 @section('content')
 <section class="main-article admin-page">
-    <h1>Administration - Categories</h1>
+    <h1>Administration - Search Categories</h1>
 
     <div id="edit-account-menu">
         <ul>

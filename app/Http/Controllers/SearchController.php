@@ -38,4 +38,16 @@ class SearchController extends Controller
 
         return view('search.categories', compact('query', 'categories'));
     }
+
+
+    public function adminSearchUsers(Request $request)
+    {
+        return Redirect::to(action('AdminController@searchShowUsers', $request->get('search')));
+    }
+
+
+    public function adminSearchCategories(Request $request)
+    {
+        return Redirect::to(action('AdminController@searchShowCategories', $request->get('search')));
+    }
 }

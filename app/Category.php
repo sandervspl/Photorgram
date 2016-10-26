@@ -32,6 +32,6 @@ class Category extends Model
     {
         return Category::where('name', 'like', '%'.$category_name.'%')
             ->orderBy('name', 'asc')
-            ->get();
+            ->paginate(10);
     }
 }

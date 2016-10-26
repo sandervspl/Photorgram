@@ -85,7 +85,7 @@
         </div>
     @endforeach
 
-        <div class="hidden text-center">
+        <div class="hidden">
             {{ $images->links() }}
         </div>
     </div>

@@ -1,8 +1,8 @@
 @extends('layouts.master')
-@section('title', 'All Users')
+@section('title', 'Search Users')
 @section('content')
 <section class="main-article admin-page">
-    <h1>Administration - All Users</h1>
+    <h1>Administration - Search Users</h1>
 
     <div id="edit-account-menu">
         <ul>
@@ -41,54 +41,53 @@
             <th>Manage</th>
         </tr>
         @foreach($users as $user)
-        <tr class="users-data">
-            <td> {{ $user->name }} </td>
+            <tr class="users-data">
+                <td> {{ $user->name }} </td>
 
-            <td>
-                {!! Form::open([
-                        'action' => 'UserController@updateRole'
-                    ])
-                !!}
+                <td>
+                    {!! Form::open([
+                            'action' => 'UserController@updateRole'
+                        ])
+                    !!}
 
-                <label for="role" class="control-label"></label>
-                <select name="role" id="{{ $user->id }}-role" class="form control input-sm admin-role-dropdown role-list"
-                        data-userid="{{ $user->id }}" data-userrole="{{ $user->role }}">
-                    @foreach(\App\Role::all() as $role)
-                        @if($user->role == $role->id)
-                            <option value="{{ $role->id }}" selected>{{ $role->name }}</option>
-                        @else
-                            <option value="{{ $role->id }}">{{ $role->name }}</option>
-                        @endif
-                    @endforeach
-                </select>
+                    <label for="role" class="control-label"></label>
+                    <select name="role" id="{{ $user->id }}-role" class="form control input-sm admin-role-dropdown role-list"
+                            data-userid="{{ $user->id }}" data-userrole="{{ $user->role }}">
+                        @foreach(\App\Role::all() as $role)
+                            @if($user->role == $role->id)
+                                <option value="{{ $role->id }}" selected>{{ $role->name }}</option>
+                            @else
+                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            @endif
+                        @endforeach
+                    </select>
 
-                {!! Form::hidden('user_id', $user->id) !!}
+                    {!! Form::hidden('user_id', $user->id) !!}
 
-                {!! Form::close() !!}
-            </td>
+                    {!! Form::close() !!}
+                </td>
 
-            <td>
-                <a href="{{ action('ProfileController@show', ['user_name' => $user->name]) }}">
-                    Profile
-                </a>
+                <td>
+                    <a href="{{ action('ProfileController@show', ['user_name' => $user->name]) }}">
+                        Profile
+                    </a>
 
-                <span> | </span>
+                    <span> | </span>
 
-                <a href="{{ action('ProfileController@editProfile', ['user_name' => $user->name]) }}">
-                    Edit
-                </a>
+                    <a href="{{ action('ProfileController@editProfile', ['user_name' => $user->name]) }}">
+                        Edit
+                    </a>
 
-                <span> | </span>
+                    <span> | </span>
 
-                <a href="{{ action('AdminController@removeUser', ['user_name' => $user->name]) }}" class="remove-link">
-                    Remove user
-                </a>
-            </td>
-        </tr>
-        <tr class="spacer"></tr>
+                    <a href="{{ action('AdminController@removeUser', ['user_name' => $user->name]) }}" class="remove-link">
+                        Remove user
+                    </a>
+                </td>
+            </tr>
+            <tr class="spacer"></tr>
         @endforeach
     </table>
-
     <div class="text-center">
         {{ $users->links() }}
     </div>
@@ -101,8 +100,9 @@
         <h1>Failed</h1>
     </div>
 </section>
+
 <script>
     var updateRoleUrl = '{{ route('updateRole') }}',
-        token = '{{ csrf_token() }}';
+            token = '{{ csrf_token() }}';
 </script>
 @endsection

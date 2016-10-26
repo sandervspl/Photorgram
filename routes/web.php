@@ -78,6 +78,28 @@ Route::post('/user/remove', [
     'roles' => [$roles['administrator']]
 ]);
 
+Route::get('/admin/search/users/{query}', [
+    'uses' => 'AdminController@searchShowUsers',
+    'middleware' => 'roles',
+    'roles' => [$roles['moderator'], $roles['administrator']]
+]);
+Route::post('/admin/search/users', [
+    'uses' => 'SearchController@adminSearchUsers',
+    'middleware' => 'roles',
+    'roles' => [$roles['moderator'], $roles['administrator']]
+]);
+
+Route::get('/admin/search/categories/{query}', [
+    'uses' => 'AdminController@searchShowCategories',
+    'middleware' => 'roles',
+    'roles' => [$roles['moderator'], $roles['administrator']]
+]);
+Route::post('/admin/search/categories', [
+    'uses' => 'SearchController@adminSearchCategories',
+    'middleware' => 'roles',
+    'roles' => [$roles['moderator'], $roles['administrator']]
+]);
+
 /*
  *      ADMIN CATEGORIES PAGES
  */

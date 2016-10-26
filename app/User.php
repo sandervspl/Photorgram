@@ -88,7 +88,9 @@ class User extends Authenticatable
 
     public static function getAllUsersWithRole($role_id)
     {
-        return User::where('role', '=', $role_id)->get();
+        return User::where('role', '=', $role_id)
+            ->orderBy('name', 'asc')
+            ->paginate(15);
     }
 
 
