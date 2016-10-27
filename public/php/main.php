@@ -9,7 +9,7 @@ function time_elapsed_string($datetime, $full = false) {
 
     $string = array(
         'y' => 'y',
-        'm' => 'm',
+        'm' => 'mo',
         'w' => 'w',
         'd' => 'd',
         'h' => 'h',

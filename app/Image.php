@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class Image extends Model
 {
@@ -61,6 +62,7 @@ class Image extends Model
     {
         $query = [];
 
+        // grab all profiles and look for their images
         for ($i = 0; $i < count($profiles); $i += 1) {
             $user = User::findOrFail($profiles[$i]->follow_id);
 
@@ -73,6 +75,11 @@ class Image extends Model
             }
         }
 
+        // your own pictures should also show up in your feed
+        $query->orWhere('user_id', '=', Auth::id());
+
+        // return an ordered list (latest to oldest) of 5
+        // or return an empty list if user does not follow any profiles
         return (count($query) > 0) ? $query->orderBy('created_at', 'desc')->paginate(5) : $query;
     }
 }
