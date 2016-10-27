@@ -6,7 +6,7 @@
     <div id="preload-01"></div>
     <div id="preload-02"></div>
 </div>
-<section class="main-article">
+<section class="main-article full-image">
     <div class="image-container">
         <div class="row">
             <div class="image-body col-xs-12 col-md-6 col-lg-6">
