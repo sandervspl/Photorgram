@@ -36,22 +36,30 @@
 
     <table>
         <tr>
-            <th>ID</th>
             <th>User</th>
+            <th>Banned</th>
             <th>Role</th>
             <th>Manage</th>
         </tr>
         @foreach($users as $user)
         <tr class="users-data">
-            <td> {{ $user->id }} </td>
             <td> {{ $user->name }} </td>
 
             <?php
-                $disabled = "disabled";
-                if (Auth::User()->role >= $p['change_role'])
-                    $disabled = "";
-            ?>
+                $class = ($user->banned) ? 'onoff ban is-transitioned' : 'onoff ban';
 
+                if ($user->role >= 4)
+                    $class .= ' hidden';
+            ?>
+            <td>
+                <div class="{{ $class }}" data-userid="{{ $user->id }}"
+                     data-isbanned="{{ $user->banned }}">
+                    <div class="load-spinner onoff-button hidden"></div>
+                    <div class="onoff-circle"></div>
+                </div>
+            </td>
+
+            <?php $disabled = (Auth::User()->role < $p['change_role']) ? 'disabled' : ''; ?>
             <td>
                 {!! Form::open([
                         'action' => 'UserController@updateRole'
@@ -119,6 +127,7 @@
 </section>
 <script>
     var updateRoleUrl = '{{ route('updateRole') }}',
+        banUrl = '{{ route('banUser') }}',
         token = '{{ csrf_token() }}';
 </script>
 @endsection

@@ -124,6 +124,12 @@ $('.image-info-section').find('.image-info-buttons').find('.button').click(funct
 function follow(e, that) {
     var followId = e.target.dataset['followid'];
 
+    // show load spinner
+    $('.load-spinner.follow').removeClass('hidden');
+
+    // lower button opacity
+    $('.button.follow-btn').addClass('dim');
+
     $.post({
         url: followingsUrl,
         data: {
@@ -150,9 +156,17 @@ function follow(e, that) {
 
             // change url of POST request
             followingsUrl = (~followingsUrl.indexOf('unfollow')) ? followUrl : unfollowUrl;
+
+            // hide load spinner
+            $('.load-spinner.follow').addClass('hidden');
+            // remove lower button opacity
+            $('.button.follow-btn').removeClass('dim');
         })
         .fail(function () {
-            console.log('fail');
+            // hide load spinner
+            $('.load-spinner.follow').addClass('hidden');
+            // remove lower button opacity
+            $('.button.follow-btn').removeClass('dim');
         });
 }
 
@@ -214,7 +228,7 @@ function hideAdminPopup() {
 $('.role-list').change(function (event)
 {
     var that = $(this);
-    var userId = event.target.dataset.userid,
+    var userId = $(this).attr('data-userid'),
         roleId = $(this).val();
 
     // wait animation
@@ -251,8 +265,14 @@ $('.role-list').change(function (event)
 
 $('#ban-button').click(function (e) {
     var that = $(this);
-    var userId   = e.target.dataset.userid,
-        isBanned = e.target.dataset.isbanned;
+    var userId   = $(this).attr('data-userid'),
+        isBanned = $(this).attr('data-isbanned');
+
+    // show load spinner
+    $('.load-spinner.ban').removeClass('hidden');
+
+    // lower button opacity
+    $('#ban-button').addClass('dim');
 
     // post data to controller
     $.post({
@@ -268,8 +288,73 @@ $('#ban-button').click(function (e) {
 
             var str = (isBanned == 0) ? "Unban User" : "Ban User";
             that.text(str);
+
+            if (e.target.dataset.isbanned == 1) {
+                that.toggleClass('btn-unban').toggleClass('btn-ban');
+            } else {
+                that.toggleClass('btn-ban').toggleClass('btn-unban');
+            }
+
+            // hide load spinner
+            $('.load-spinner.ban').addClass('hidden');
+            // remove lower button opacity
+            $('#ban-button').removeClass('dim');
+            // toggle user-name color
+            $('#profile-user-name').toggleClass('banned');
         })
         .fail(function () {
+            // hide load spinner
+            $('.load-spinner.ban').addClass('hidden');
+            // remove lower button opacity
+            $('#ban-button').removeClass('dim');
+
             console.log('fail');
+        });
+});
+
+
+$('.onoff.ban').click(function (e) {
+    if ($(this).hasClass('dim'))
+        return;
+
+    var that = $(this);
+    var userId   = $(this).attr('data-userid'),
+        isBanned = $(this).attr('data-isbanned');
+
+    // move inner circle to the other side
+    // and change background color
+    $(this).toggleClass('is-transitioned');
+
+    // show load spinner
+    $(this).find('.load-spinner.onoff-button').removeClass('hidden');
+
+    // lower button opacity
+    $(this).addClass('dim');
+
+    // post data to controller
+    $.post({
+        url: banUrl,
+        data: {
+            user_id: userId,
+            is_banned: isBanned,
+            _token: token
+        }
+    })
+        .done(function () {
+            e.target.dataset.isbanned = (isBanned == 0) ? 1 : 0;
+
+            // hide load spinner
+            that.find('.load-spinner.onoff-button').addClass('hidden');
+            // remove lower button opacity
+            that.removeClass('dim');
+        })
+        .fail(function () {
+            // move it back if it failed
+            that.toggleClass('is-transitioned');
+
+            // hide load spinner
+            that.find('.load-spinner.onoff-button').addClass('hidden');
+            // remove lower button opacity
+            that.removeClass('dim');
         });
 });

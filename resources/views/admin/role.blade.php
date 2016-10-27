@@ -1,9 +1,12 @@
-<?php $role = App\Role::findOrFail($role_id)->name; ?>
+<?php
+    $role = App\Role::findOrFail($role_id)->name;
+    $p = Config::get('constants.permissions')
+?>
 @extends('layouts.master')
 @section('title', $role.'s')
 @section('content')
 <section class="main-article admin-page">
-    <h1>Administration - {{ $role.'s' }}</h1>
+    <h1>Administration - filter: {{ $role.'s' }}</h1>
 
     <div id="edit-account-menu">
         <ul>
@@ -32,9 +35,12 @@
         </ul>
     </div>
 
+    @include('partials/admin_search_users')
+
     <table>
         <tr>
             <th>User</th>
+            <th>Banned</th>
             <th>Role</th>
             <th>Manage</th>
         </tr>
@@ -42,6 +48,12 @@
         @foreach($users as $user)
             <tr class="users-data">
                 <td> {{ $user->name }} </td>
+
+                <?php $checked = ($user->banned) ? $checked = 'checked' : ''; ?>
+                <td>
+                    <input type="checkbox" name="banned" class="ban-checkbox"
+                           data-userid="{{ $user->id }}" {{ $checked }}>
+                </td>
 
                 <td>
                     {!! Form::open([
@@ -79,15 +91,23 @@
 
                     <span> | </span>
 
+                    @if (Auth::User()->role >= $p['edit_profile'])
                     <a href="{{ action('ProfileController@editProfile', ['user_name' => $user->name]) }}">
                         Edit
                     </a>
+                    @else
+                        Edit
+                    @endif
 
                     <span> | </span>
 
-                    <a href="{{ action('AdminController@removeUser', ['user_name' => $user->name]) }}" class="remove-link">
+                    @if (Auth::User()->role >= $p['remove_user'])
+                    <a href="{{ action('AdminController@removeUser', ['user_id' => $user->id]) }}" class="remove-link">
                         Remove user
                     </a>
+                    @else
+                        Remove user
+                    @endif
                 </td>
             </tr>
             <tr class="spacer"></tr>
@@ -111,4 +131,8 @@
         <h1>Failed</h1>
     </div>
 </section>
+<script>
+    var banUrl = '{{ route('banUser') }}',
+        token = '{{ csrf_token() }}';
+</script>
 @endsection

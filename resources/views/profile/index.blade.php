@@ -14,7 +14,8 @@
             @endif
         </div>
         <div id="profile-user-info-box">
-            <h1 id="profile-user-name">{{ $user->name }}</h1>
+            <?php $class = ($user->banned) ? 'banned' : '' ; ?>
+            <h1 id="profile-user-name" class="{{ $class }}">{{ $user->name }}</h1>
 
             <div class="follow-button-container">
                 @include('partials/following_button')
@@ -34,7 +35,7 @@
 
                 <div id="profile-bio">{{ $user->profile->bio }}</div>
 
-                @if(Auth::User()->role >= $p['admin_controls'])
+                @if( ! Auth::Guest() && Auth::User()->role >= $p['admin_controls'])
                 <div class="admin-buttons">
                     <p><strong>Admin Controls</strong></p>
 
@@ -44,15 +45,24 @@
                     </a>
                     @endif
 
-                    @if (Auth::User()->role >= $p['ban_user'])
-                    <button class="button button-default btn-ban" id="ban-button"
-                            data-userid="{{ $user->id }}" data-isbanned="{{ $user->banned }}">
-                        @if ($user->banned)
-                            Unban User
-                        @else
-                            Ban User
-                        @endif
-                    </button>
+                    @if ( ! Auth::Guest() && Auth::User()->role >= $p['ban_user'])
+                    <?php
+                        $class = 'button button-default btn-ban';
+                        if ($user->banned)
+                            $class = 'button button-default btn-unban';
+                    ?>
+
+                    <div class="button-inner">
+                        <div class="load-spinner ban hidden"></div>
+                        <button class="{{ $class }}" id="ban-button"
+                                data-userid="{{ $user->id }}" data-isbanned="{{ $user->banned }}">
+                            @if ($user->banned)
+                                Unban User
+                            @else
+                                Ban User
+                            @endif
+                        </button>
+                    </div>
                     @endif
                 </div>
                 @endif

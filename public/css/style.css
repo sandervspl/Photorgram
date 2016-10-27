@@ -497,13 +497,25 @@ nav .right ul li img {
     display: inline-block;
 }
 
+.button-inner {
+    display: inline-block;
+    position: relative;
+}
+
+.follow-button-inner {
+    position: relative;
+    top: -5px;
+}
+
 .follow-btn {
+    position: relative;
+    width: 100%;
     background-color: transparent;
     border-color: #3689ee;
     color: #3689ee;
     font-weight: bold;
-    -webkit-transition: all .2s ease-in-out;
-    transition: all .2s ease-in-out;
+    -webkit-transition: width .2s ease-in-out;
+    transition: width .2s ease-in-out;
 }
 
 .follow-btn:hover {
@@ -515,6 +527,10 @@ nav .right ul li img {
     display: table-cell;
     margin-bottom: .25em;
     width: 100%;
+}
+
+#profile-user-name.banned {
+    color: #ba3838;
 }
 
 #profile-more-info {
@@ -735,6 +751,14 @@ nav .right ul li img {
     color: #ba3838;
     border: 1px solid #ba3838;
     background: #fff url('../img/ban.png') 7px no-repeat !important;
+    background-size: 1em !important;
+}
+
+.btn-unban {
+    padding: 6px 12px;
+    color: #eee;
+    border: 1px solid #eee;
+    background: #ba3838 !important;
     background-size: 1em !important;
 }
 
@@ -1280,6 +1304,83 @@ tr.users-data td span {
     content: '';
     background: transparent url('../img/ban_big.png') center/100% no-repeat;
 }
+
+.ban-checkbox {
+    position: relative;
+    left: 25%;
+}
+
+.load-spinner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 18px;
+    height: 18px;
+    margin-left: -9px;
+    margin-top: -9px;
+    background-image: url('../img/spin.gif');
+    background-size: 100%;
+}
+
+.dim {
+    opacity: .2;
+}
+
+.onoff {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    top: 0;
+    margin: auto;
+    text-align: center;
+    width: 50px;
+    height: 24px;
+    padding: 2px;
+    background: #3689ee;
+    border-radius: 200px;
+    overflow: hidden;
+    box-shadow: 0 20px 15px -15px rgba(0,0,0,0.4);
+    -webkit-transition: background ease-in-out 300ms;
+    transition: background ease-in-out 300ms;
+}
+
+.onoff .onoff-circle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    -webkit-transition: transform .25s ease-in-out;
+    transition: transform .25s ease-in-out;
+    line-height: 50px;
+    color: white;
+    font-weight: 500;
+}
+
+.onoff .on {
+    width: 50%;
+}
+.onoff .off {
+    width: 50%;
+}
+
+.onoff.is-transitioned {
+    background: #ba3838;
+}
+
+.onoff.is-transitioned .onoff-circle {
+    -webkit-transform: translateX(25px);
+    transform: translateX(25px);
+}
+
+
+
+
+
+
 
 @media only screen and (max-width: 1130px) {
     nav {
