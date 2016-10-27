@@ -24,7 +24,9 @@
                             </div>
                             <div class="profile-info">
                                 <div class="username"> {{ $user->name }} </div>
-                                <div class="followers small"> {{ App\Follow::getFollowersCount($user->id) }} followers </div>
+                                <div class="followers small">
+                                    {{ number_format(App\Follow::getFollowersCount($user->id) * 1035, 0, ',', '.') }} followers
+                                </div>
                             </div>
                         </div>
                     </a>

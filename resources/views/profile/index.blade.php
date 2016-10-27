@@ -24,11 +24,11 @@
             <div id="profile-more-info">
                 <a href="{{ action('ProfileController@followers', $user->name) }}" id="profile-followers">
                     <b>Followers</b>
-                    <span class="count" id="followers-count">{{ $user->followers->count() }}</span>
+                    <span class="count" id="followers-count">{{ number_format($user->followers->count() * 1035, 0, ',', '.') }}</span>
                 </a>
                 <a href="{{ action('ProfileController@following', $user->name) }}" id="profile-following">
                     <b>Following</b>
-                    <span class="count" id="following-count">{{ $user->following->count() }}</span>
+                    <span class="count" id="following-count">{{ number_format($user->following->count() * 227, 0, ',', '.') }}</span>
                 </a>
                 <b>Photos</b>
                 <span class="count">{{ $user->images->count() }}</span>

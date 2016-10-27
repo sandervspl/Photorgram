@@ -1,19 +1,28 @@
 <header id="nav-header">
 <nav id="navigation">
-    <div class="left col-md-3">
+    <div class="left logo col-xs-3">
         <a href="/">
-            <img src="{{ url('img/logo_full.png') }}" alt="logo" id="logo">
+            <img src="{{ url('img/logo_full.png') }}" alt="Photorgram" class="logo">
         </a>
     </div>
 
-    <div class="right menu-icon col-md-9">
+    <div class="left menu-icon col-xs-2">
+        <div class="icon">☰</div>
+    </div>
+
+    <div class="middle col-xs-8">
+        <a href="/">
+        <img src="{{ url('img/logo_full.png') }}" alt="Photorgram" class="logo">
+        </a>
+    </div>
+
+    <div class="right small col-xs-2">
         <div class="search">
             <button class="search-btn"></button>
         </div>
-        <div class="icon">☰</div>
     </div>
     @if (Auth::guest())
-    <div class="right menu guest col-md-9">
+    <div class="right menu guest col-xs-9">
         <ul class="signin-register-list">
             <li>
                 <a href="{{ action('ImageController@allImages') }}">
@@ -52,7 +61,7 @@
 
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <li>
-                        <a href="{{ action('ProfileController@show', Auth::user()->name) }}">
+                        <a href="{{ action('ProfileController@show', ['user_name' => Auth::user()->name]) }}">
                             My Profile
                         </a>
                     </li>
