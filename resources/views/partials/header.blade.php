@@ -1,4 +1,8 @@
+@if ( ! Auth::Guest() && Auth::User()->role >= $p['admin_controls'])
+<header class="admin" id="nav-header">
+@else
 <header id="nav-header">
+@endif
 <nav id="navigation">
     <div class="left logo col-xs-3">
         <a href="/">
@@ -7,7 +11,18 @@
     </div>
 
     <div class="left menu-icon col-xs-2">
-        <div class="icon">☰</div>
+        <div class="icon">
+            <button class="dropdown-toggle user-dropdown" type="button" id="dropdownMenu1"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                ☰
+            </button>
+
+            @if ( ! Auth::Guest())
+                @include('partials.header_dropdown_menu')
+            @else
+                @include('partials.header_dropdown_menu_guest')
+            @endif
+        </div>
     </div>
 
     <div class="middle col-xs-8">
@@ -59,32 +74,7 @@
                     <span class="caret"></span>
                 </button>
 
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li>
-                        <a href="{{ action('ProfileController@show', ['user_name' => Auth::user()->name]) }}">
-                            My Profile
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="{{ action('ProfileController@editAccount', Auth::user()->name) }}">
-                            Edit Account
-                        </a>
-                    </li>
-
-                    <li role="separator" class="divider"></li>
-
-                    <li>
-                        <a href="{{ url('/logout') }}"
-                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            Logout
-                        </a>
-
-                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
-                    </li>
-                </ul>
+                @include('partials.header_dropdown_menu')
             </div>
             </li>
             <li>

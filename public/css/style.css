@@ -308,7 +308,6 @@ nav .left, nav .right {
 
 nav .left {
     text-align: left;
-    color: #fff;
     padding: 17px 0;
     -webkit-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
@@ -341,7 +340,6 @@ nav .left.menu-icon {
 nav .left.menu-icon .icon {
     display: none;
     cursor: pointer;
-    color: #000;
     font-size: 1.5em;
     -webkit-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
@@ -392,6 +390,21 @@ nav > .right > ul > li:not(:first-child) {
 
 nav .right ul li img {
     width: 20px;
+}
+
+.open > .dropdown-menu.mobile {
+    width: 100%;
+}
+
+.dropdown-menu > li > span {
+    cursor: default;
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 600;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
 }
 
 .user-dropdown {

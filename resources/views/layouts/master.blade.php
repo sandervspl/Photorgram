@@ -5,11 +5,7 @@
     <title>Photogram - @yield('title')</title>
 </head>
 <body>
-    @if ( ! Auth::Guest() && App\User::findOrFail(Auth::id())->role >= $p['admin_controls'])
-        @include('partials/header_admin')
-    @else
-        @include('partials/header')
-    @endif
+    @include('partials/header')
 
     <div class="container">
         @yield('content')
