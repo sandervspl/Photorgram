@@ -69,7 +69,7 @@ class Image_Rating extends Model
         return $ratings = Image_Rating::where([
             ['image_id', '=', $image_id],
             ['rating_id', '=', '1']
-        ])->get();
+        ])->paginate(15);
     }
 
 
@@ -78,6 +78,6 @@ class Image_Rating extends Model
         return $ratings = Image_Rating::where([
             ['image_id', '=', $image_id],
             ['rating_id', '=', '2']
-        ])->get();
+        ])->paginate(15);
     }
 }

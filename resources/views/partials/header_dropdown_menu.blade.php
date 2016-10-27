@@ -1,9 +1,9 @@
-<ul class="dropdown-menu mobile" aria-labelledby="dropdownMenu1">
+<ul class="dropdown-menu header" aria-labelledby="dropdownMenu1">
     <li>
-        <span>{{ Auth::User()->name }}</span>
+        <span class="mobile">{{ Auth::User()->name }}</span>
     </li>
 
-    <li role="separator" class="divider"></li>
+    <li role="separator" class="divider mobile"></li>
 
     @if ( ! Auth::Guest() && Auth::User()->role >= $p['admin_controls'])
         <li>

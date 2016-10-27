@@ -62,7 +62,7 @@ class ProfileController extends Controller
     public function followers($user_name)
     {
         $user = $this->getUser($user_name);
-        $followers = $user->followers()->get();
+        $followers = $user->followers()->paginate(15);
         return view('profile.followers', compact('user', 'followers'));
     }
 
@@ -70,7 +70,7 @@ class ProfileController extends Controller
     public function following($user_name)
     {
         $user = $this->getUser($user_name);
-        $following = $user->following()->get();
+        $following = $user->following()->paginate(15);
         return view('profile.following', compact('user', 'following'));
     }
 

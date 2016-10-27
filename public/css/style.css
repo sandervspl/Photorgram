@@ -166,6 +166,7 @@ h1 {
     padding-bottom: .5em;
     border-bottom: 1px solid #eee;
     margin-bottom: .75em;
+    font-size: 2em;
 }
 
 table {
@@ -393,6 +394,10 @@ nav .right ul li img {
     width: 20px;
 }
 
+.dropdown-menu.header .mobile {
+    display: none;
+}
+
 .dropdown-menu > li > span {
     cursor: default;
     display: block;
@@ -536,7 +541,7 @@ nav .right ul li img {
     }
 }
 
-.navbar ul li, #edit-account-menu ul li, .search-category, .search-user, .user-card .profile-picture,
+.navbar ul li, #edit-account-menu ul li, .search-category, .user-block, .user-card .profile-picture,
 .user-card .profile-info, .signin-register-list li, .navbar-links li, #profile-user-name, .rating-form
 {
     display: inline-block;
@@ -655,8 +660,18 @@ nav .right ul li img {
     top: 10px;
 }
 
-.list-header .count {
+.list-header .title, .list-header .count {
+    padding: 0;
+}
+
+.list-header .title {
+    padding-left: 15px;
+}
+
+.list-header .count h1 {
+    position: relative;
     text-align: right;
+    color: #b4b4b4;
 }
 
 .image-user-info .avatar, .image-user-info .avatar img {
@@ -1194,8 +1209,8 @@ tr.users-data td span {
     background-color: #e9e9e9;
 }
 
-.search-user {
-    margin: 5px;
+.user-block {
+    width: 100%;
 }
 
 .search-result:not(:last-child) {
@@ -1248,6 +1263,10 @@ tr.users-data td span {
     color: #3689ee;
 }
 
+.search-result.users .row .col-xs-12.col-md-3 {
+    padding-right: 0;
+}
+
 .search-query {
     margin: 20px 0;
     font-weight: 600;
@@ -1282,15 +1301,15 @@ tr.users-data td span {
 }
 
 .user-card {
-    width: 250px;
+    width: 100%;
     height: 75px;
-    border: 1px solid black;
     padding: 12px;
     color: black;
     white-space: nowrap;
     overflow: hidden;
     -webkit-transition: all .2s;
     transition: all .2s;
+    border-radius: 3px;
 }
 
 .user-card:hover {
@@ -1494,6 +1513,10 @@ tr.users-data td span {
         display: table-cell;
     }
 
+    .dropdown-menu.header .mobile {
+        display: block;
+    }
+
     nav .left.logo, nav .right.menu, nav .left img {
         display: none;
     }
@@ -1598,30 +1621,29 @@ tr.users-data td span {
     }
 
     .search-result-nav h2 {
-        margin-right: .75em;
-        font-size: 1.25em;
+        font-size: 1.1em;
     }
 
-    .search-user {
+    .user-block {
         margin: 0;
     }
 
-    .search-user, .search-user a, .search-user .user-card {
+    .user-block, .user-block a, .user-block .user-card {
         width: 100%;
     }
 
-    .search-user .user-card {
+    .user-block .user-card {
         height: auto;
-        padding: 5px;
+        padding: 5px 0 10px 5px;
         border: none;
     }
 
-    .search-user .user-card .profile-picture {
+    .user-block .user-card .profile-picture {
         position: relative;
         bottom: 2px;
     }
 
-    .search-user .user-card .profile-info {
+    .user-block .user-card .profile-info {
         margin-left: .5em;
         width: 100%;
         border-bottom: 1px solid #D5D1D1;
@@ -1647,6 +1669,23 @@ tr.users-data td span {
     #searchbar-clear.show {
         display: none !important;
     }
+
+    .list-header.rating .avatar-container .avatar img {
+        display: inline-block;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+    }
+
+    .list-header.rating .title h1 {
+        font-size: 1.4em;
+    }
+
+    .list-header.rating .count h1 {
+        position: relative;
+        top: 10px;
+        font-size: 1em;
+    }
 }
 
 @media only screen and (max-width: 320px) {
@@ -1661,5 +1700,16 @@ tr.users-data td span {
     .search-result.images .image-thumbnail, .search-result.images .image-thumbnail img {
         width: 100px;
         height: 100px;
+    }
+
+    .list-header.rating .avatar-container .avatar {
+        top: 15px;
+    }
+
+    .list-header.rating .avatar-container .avatar img {
+        display: inline-block;
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
     }
 }
