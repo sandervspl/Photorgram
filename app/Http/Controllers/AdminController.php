@@ -52,7 +52,7 @@ class AdminController extends Controller
     {
         $users = User::getAllUsersWithRole($role_id);
 
-        return view('admin.role', compact('users', 'role_id'));
+        return view('admin.index', compact('users', 'role_id'));
     }
 
 

@@ -5,7 +5,7 @@
     <section class="main-article admin-page">
         <h1>Administration - Roles</h1>
 
-        <div id="edit-account-menu">
+        <div id="admin-menu">
             <ul>
                 @include('partials/admin_menu')
 

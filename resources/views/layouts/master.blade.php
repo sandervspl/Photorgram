@@ -7,13 +7,15 @@
 <body>
     @include('partials/header')
 
-    <div class="se-pre-con"></div>
+    <div id="wrap">
+        <div class="se-pre-con"></div>
 
-    <div class="container">
-        @yield('content')
+        <div class="container">
+            @yield('content')
+        </div>
+
+        @include('partials/footer')
     </div>
-
-    @include('partials/footer')
     <script src="{{ url('js/bootstrap.min.js') }}"></script>
     <script src="{{ url('js/main.js') }}"></script>
 </body>

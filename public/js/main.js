@@ -2,9 +2,27 @@
  *      PAGE LOAD
  */
 
+var wrap = $('#wrap'),
+    header = $('header');
+
+// disable scrolling
+wrap.css({
+    'overflow': 'hidden',
+    'height': '100%'
+});
+
+header.css('margin-top', '0');
+
 // Wait for window load
 $(window).on('load', function() {
-    // Animate loader off screen
+    // enable scrolling
+    wrap.css({
+        'overflow': 'visible',
+        'height': '100%'
+    });
+
+    header.css('margin-top', '-75px');
+
     $('.se-pre-con').fadeOut('slow');
 });
 

@@ -97,7 +97,7 @@ class User extends Authenticatable
     public static function getAllUsersWithName($user_name)
     {
         return User::where('name', 'like', '%'.$user_name.'%')
-            ->where('role', '=', '1')
+            ->where('role', '<=', '2')
             ->orderBy('name', 'asc')
             ->paginate(15);
     }

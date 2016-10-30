@@ -1,6 +1,4 @@
-<?php
-    include_once 'php/main.php';
-?>
+<?php include_once 'php/main.php'; ?>
 @extends('layouts.master')
 @section('title', 'Frontpage')
 @section('content')
