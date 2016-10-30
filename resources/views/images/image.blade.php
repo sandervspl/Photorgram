@@ -7,6 +7,22 @@
     <div id="preload-02"></div>
 </div>
 <section class="main-article full-image">
+    @if( ! Auth::Guest() && ($user->id == Auth::id() || Auth::User()->role >= $p['edit_image']))
+    <div id="image-user-buttons">
+        <a href="{{ action('ImageController@edit', $image->image_uri) }}"
+           class="button button-default" id="image-edit-button">
+            Edit
+        </a>
+
+        @if (Auth::id() == $image->user->id || Auth::User()->role >= $p['remove_image'])
+            <a href="{{ action('ImageController@confirmRemove', $image->image_uri) }}"
+               class="button button-default btn-warning" id="image-remove-button">
+                Remove
+            </a>
+        @endif
+    </div>
+    @endif
+
     <div class="image-container">
         <div class="row">
             <div class="image-body col-xs-12 col-md-6 col-lg-6">
@@ -37,38 +53,9 @@
                         </div>
                     </div>
 
-                    <?php
-                        if( ! Auth::Guest() && ($user->id == Auth::id() || Auth::User()->role >= $p['edit_image'])) {
-                            $colWidth = 'col-xs-6';
-                            $isUserImg = true;
-                        }
-                        else {
-                            $colWidth = 'col-xs-6 col-md-12 col-lg-12';
-                            $isUserImg = false;
-                        }
-                    ?>
-
-                    <div class="{{ $colWidth }}">
+                    <div class="col-xs-12">
                         <h3 class="image-info-title">{{ $image->title }}</h3>
                     </div>
-
-                    @if($isUserImg)
-                    <div class="col-xs-6">
-                        <div id="image-user-buttons">
-                            <a href="{{ action('ImageController@edit', $image->image_uri) }}"
-                               class="button button-default" id="image-edit-button">
-                                Edit
-                            </a>
-
-                            @if (Auth::id() == $image->user->id || Auth::User()->role >= $p['remove_image'])
-                            <a href="{{ action('ImageController@confirmRemove', $image->image_uri) }}"
-                               class="button button-default btn-warning" id="image-remove-button">
-                                Remove
-                            </a>
-                            @endif
-                        </div>
-                    </div>
-                    @endif
                 </div>
 
                 <div class="info-divider">

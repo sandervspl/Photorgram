@@ -52,7 +52,7 @@
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                {!! Form::submit('Upload Image', ['class' => 'btn btn-primary']) !!}
+                {!! Form::submit('Upload Image', ['class' => 'btn btn-primary btn-upload']) !!}
             </div>
         </div>
     {!! Form::close() !!}

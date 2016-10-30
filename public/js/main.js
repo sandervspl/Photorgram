@@ -10,8 +10,10 @@ $(window).on('load', function() {
 
 
 /*
- *      NAVIGATION BAR
+ *      PAGE SCROLL
  */
+
+var g_scrollPos = 0, g_clickedScrollTop;
 
 $(window).on('scroll', function () {
     if ($(this).scrollTop() > 75) {
@@ -19,7 +21,58 @@ $(window).on('scroll', function () {
     } else {
         $('#nav-header').removeClass('slim');
     }
+
+    var scrollTop = $('#scroll-to-top');
+    if ($(this).scrollTop() > 300) {
+        scrollTop.fadeIn(300);
+
+        if (g_clickedScrollTop) {
+            g_scrollPos = 0;
+            g_clickedScrollTop = false;
+            scrollTop.removeClass('down');
+        }
+    } else if ( ! scrollTop.hasClass('down')) {
+        if (g_scrollPos == 0) {
+            scrollTop.fadeOut(300);
+            g_scrollPos = 0;
+        }
+    }
 });
+
+
+/*
+ *      SCROLL TO BUTTON
+ */
+
+$('#scroll-to-top').click(function () {
+    if ($(this).hasClass('down')) {
+        scrollDown($(this));
+    } else {
+        scrollUp($(this));
+    }
+});
+
+function scrollUp(el) {
+    g_scrollPos = $(window).scrollTop();
+    el.addClass('down');
+
+    $('html, body').animate({
+        scrollTop: 0
+    }, 500);
+
+    setTimeout(function () {
+        g_clickedScrollTop = true;
+    }, 500);
+}
+
+function scrollDown(el) {
+    $('html, body').animate({
+        scrollTop: g_scrollPos
+    }, 500);
+
+    el.removeClass('down');
+}
+
 
 
 /*

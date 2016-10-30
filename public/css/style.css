@@ -735,6 +735,7 @@ nav .right ul li img {
     bottom: 15px;
     padding: 0 0 0 .25em;
     font-size: 1.5em;
+    color: black;
 }
 
 .profile-header {
@@ -793,11 +794,10 @@ nav .right ul li img {
     font-weight: normal;
 }
 
-.image-info-header #image-user-buttons {
-    display: inline-block;
-    position: relative;
-    float: right;
-    bottom: 8px;
+#image-user-buttons {
+    text-align: right;
+    margin: 0 0 -24px;
+    padding-right: 10px;
 }
 
 .image-info-description {
@@ -1534,7 +1534,22 @@ tr.users-data td span {
     cursor: default !important;
 }
 
+#scroll-to-top {
+    display: none;
+    position: fixed;
+    right: 33px;
+    bottom: 33px;
+    z-index: 900;
+    width: 50px;
+    height: 50px;
+    background: transparent url('../img/up.png') center/100% no-repeat;
+    cursor: pointer;
+}
 
+#scroll-to-top.down {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
 
 
 
@@ -1617,11 +1632,15 @@ tr.users-data td span {
         font-size: .85em;
         padding: 5px 10px;
     }
+
+    #image-user-buttons {
+        margin: 22px 0 10px;
+    }
 }
 
 @media only screen and (max-width: 680px) {
     footer {
-        margin: 5em 0 0;
+        margin: 0;
     }
 
     .container {
@@ -1638,13 +1657,14 @@ tr.users-data td span {
     }
 
     .feed-image-card {
+        margin: 0 auto 50px;
         border-left: none;
         border-right: none;
         border-radius: 0;
     }
 
-    .feed-image-card {
-        margin: 0 auto 50px;
+    .image-user-info .followbutton {
+        top: 0;
     }
 
     .feed-image-card .info .title {
@@ -1680,6 +1700,7 @@ tr.users-data td span {
 @media only screen and (max-width: 480px) {
     h1 {
         font-size: 1.75em;
+        padding-left: 5px;
     }
 
     .alt-title {
@@ -1702,9 +1723,10 @@ tr.users-data td span {
         bottom: 0;
     }
 
-    .btn-signin, .btn-register {
+    .btn-signin, .btn-register, .btn-upload {
         width: 100%;
         margin-bottom: 1em;
+        padding: 10px;
     }
 
     .main-article.search .search-query {
@@ -1759,6 +1781,10 @@ tr.users-data td span {
 
     #searchbar-clear.show {
         display: none !important;
+    }
+
+    .list-header.rating {
+        margin-bottom: 2em;
     }
 
     .list-header.rating .avatar-container .avatar img {

@@ -88,6 +88,8 @@
         <div class="hidden">
             {{ $images->links() }}
         </div>
+
+        <div id="scroll-to-top"></div>
     </div>
     @else
     <h1>Feed</h1>

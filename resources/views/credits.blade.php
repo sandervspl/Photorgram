@@ -15,6 +15,7 @@
                     <li>AFY Studio</li>
                     <li>Karthik Aathis</li>
                     <li>Creative Outlet</li>
+                    <li>Icons Bazaar</li>
                     <li>Noun Project</li>
                 </ul>
             </div>
