@@ -7,6 +7,8 @@
 <body>
     @include('partials/header')
 
+    <div class="se-pre-con"></div>
+
     <div class="container">
         @yield('content')
     </div>

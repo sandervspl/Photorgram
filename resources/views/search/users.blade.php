@@ -23,7 +23,6 @@
 
         <div class="search-result users scroll">
             @if($users->count() > 0)
-                <div class="row">
                 @foreach($users as $user)
                     <div class="col-xs-12 col-md-3">
                         <div class="user-block">
@@ -44,7 +43,6 @@
                         </div>
                     </div>
                 @endforeach
-                </div>
 
                 <div class="hidden text-left">
                     {{ $users->links() }}

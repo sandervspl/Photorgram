@@ -1,6 +1,20 @@
 <ul class="dropdown-menu header" aria-labelledby="dropdownMenu1">
-    <li>
-        <span class="mobile">{{ Auth::User()->name }}</span>
+    <li class="mobile">
+        <span>{{ Auth::User()->name }}</span>
+    </li>
+
+    <li role="separator" class="divider mobile"></li>
+
+    <li class="mobile">
+        <a href="{{ url('/images/upload') }}">
+            Upload Image
+        </a>
+    </li>
+
+    <li class="mobile">
+        <a href="{{ url('/images/all') }}">
+            Categories
+        </a>
     </li>
 
     <li role="separator" class="divider mobile"></li>

@@ -22,23 +22,22 @@
             <div class="search-query">Results for "{{ $query }}"</div>
 
             <div class="search-result images">
-                <div class="inner">
-                @if($images->count() > 0)
-                    @foreach($images as $image)
-                    <div class="image-thumbnail" title="Image: {{ $image->title }}">
-                        <a href="{{ action('ImageController@show', ['image' => $image->image_uri]) }}">
-                            <img src="{{ url('/uploads/'.$image->image_uri) }}" alt="{{ $image->title }}" title="{{ $image->title }}">
-                        </a>
-                    </div>
-                    @endforeach
-
-                    <div class="text-left">
-                        {{ $images->links() }}
-                    </div>
-                @else
-                    <p>There are no images like that, sorry.</p>
-                @endif
+            @if($images->count() > 0)
+                @foreach($images as $image)
+                <div class="image-thumbnail" title="Image: {{ $image->title }}">
+                    <div class="dummy"></div>
+                    <a href="{{ action('ImageController@show', ['image' => $image->image_uri]) }}">
+                        <img src="{{ url('/uploads/'.$image->image_uri) }}" alt="{{ $image->title }}" title="{{ $image->title }}">
+                    </a>
                 </div>
+                @endforeach
+
+                <div class="text-left">
+                    {{ $images->links() }}
+                </div>
+            @else
+                <p>There are no images like that, sorry.</p>
+            @endif
             </div>
         </div>
     </section>

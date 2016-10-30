@@ -60,7 +60,7 @@
                                 Edit
                             </a>
 
-                            @if (Auth::User()->role >= $p['remove_image'])
+                            @if (Auth::id() == $image->user->id || Auth::User()->role >= $p['remove_image'])
                             <a href="{{ action('ImageController@confirmRemove', $image->image_uri) }}"
                                class="button button-default btn-warning" id="image-remove-button">
                                 Remove
@@ -124,15 +124,20 @@
                         $likedStyle = '';
                         $dislikedStyle = '';
                     }
+
+                    $extraClass = '';
+                    if (Auth::Guest()) {
+                        $extraClass = ' translucent';
+                    }
                     ?>
 
                     <div class="image-info-buttons" data-imageid="{{ $image->id }}" data-userrated="{{ $userHasRated }}">
-                        <button data-ratingid="1" {{ $disabled }} class="button profile-buttons image-like-btn like-btn{{ $likedStyle }}"></button>
+                        <button data-ratingid="1" {{ $disabled }} class="button profile-buttons image-like-btn like-btn{{ $likedStyle }}{{ $extraClass }}"></button>
                         <a href="{{ action('ImageController@likesOverview', $image->image_uri) }}" class="image-like-count">
                             {{ $image->getLikesCount() }} likes
                         </a>
 
-                        <button data-ratingid="2" {{ $disabled }} class="button profile-buttons image-dislike-btn dislike-btn{{ $dislikedStyle }}"></button>
+                        <button data-ratingid="2" {{ $disabled }} class="button profile-buttons image-dislike-btn dislike-btn{{ $dislikedStyle }}{{ $extraClass }}"></button>
                         <a href="{{ action('ImageController@dislikesOverview', $image->image_uri) }}" class="image-dislike-count">
                             {{ $image->getDislikesCount() }} dislikes
                         </a>
