@@ -836,8 +836,8 @@ nav .right ul li img {
 }
 
 .category {
-    margin-bottom: 1em;
-    height: 125px;
+    margin-bottom: 20px;
+    min-height: 125px;
 }
 
 .debug {
@@ -1776,6 +1776,10 @@ tr.users-data td span {
         position: relative;
         top: 10px;
         font-size: 1em;
+    }
+
+    .image-thumbnail-small {
+        width: calc(33.33333% - 10px);
     }
 }
 
