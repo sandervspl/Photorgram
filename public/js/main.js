@@ -11,19 +11,18 @@ wrap.css({
     'height': '100%'
 });
 
-header.css('margin-top', '0');
-
 // Wait for window load
 $(window).on('load', function() {
-    // enable scrolling
-    wrap.css({
-        'overflow': 'visible',
-        'height': '100%'
-    });
+    setTimeout(function () {
+        // enable scrolling
+        wrap.css({
+            'overflow': 'visible',
+            'height': '100%'
+        });
 
-    header.css('margin-top', '-75px');
-
-    $('.se-pre-con').fadeOut('slow');
+        // remove load overlay
+        $('.se-pre-con').fadeOut('slow');
+    }, 250);
 });
 
 

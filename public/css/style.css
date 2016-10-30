@@ -250,6 +250,7 @@ header {
     position: fixed;
     width: 100%;
     height: 75px;
+    top: 0;
     border-bottom: 1px solid rgba(0, 0, 0, .1);
     background-color: #fff;
     z-index: 1;
@@ -305,20 +306,6 @@ a:hover, a:active, a:focus {
 
 header a {
     color: black;
-}
-
-#searchbar {
-    position: fixed;
-    z-index: 1;
-    height: 0;
-    width: 100%;
-    background: #eee;
-    -webkit-transition: all .3s ease-in-out;
-    transition: all .3s ease-in-out;
-}
-
-#searchbar.show {
-    height: 70px;
 }
 
 nav {
@@ -453,6 +440,22 @@ nav .right ul li img {
     background-size: 20px;
     border: 0;
     vertical-align: middle;
+}
+
+#searchbar {
+    position: fixed;
+    z-index: 1;
+    height: 0;
+    width: 100%;
+    background: #eee;
+    visibility: hidden;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+#searchbar.show {
+    height: 70px;
+    visibility: visible;
 }
 
 #searchbar-form {
