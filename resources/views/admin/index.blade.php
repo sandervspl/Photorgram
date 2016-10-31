@@ -118,11 +118,21 @@
     </div>
 
     <div class="popup success">
-        <h1>Done</h1>
+        <div class="inner">
+            <div class="header"></div>
+            <div class="text">
+                <h1>Success</h1>
+            </div>
+        </div>
     </div>
 
     <div class="popup fail">
-        <h1>Failed</h1>
+        <div class="inner">
+            <div class="header"></div>
+            <div class="text">
+                <h1>Failed</h1>
+            </div>
+        </div>
     </div>
 </section>
 <script>

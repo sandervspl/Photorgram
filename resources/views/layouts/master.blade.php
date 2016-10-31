@@ -5,6 +5,8 @@
     <title>Photogram - @yield('title')</title>
 </head>
 <body>
+    <div id="overlay"></div>
+
     @include('partials/header')
 
     <div id="wrap">

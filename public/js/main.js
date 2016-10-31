@@ -304,9 +304,11 @@ function hideAdminPopup() {
     $('.popup').each(function () {
         $(this).removeClass('show');
     });
+
+    $('#overlay').hide();
 }
 
-$('.role-list').change(function (event)
+$('.role-list').change(function ()
 {
     var that = $(this);
     var userId = $(this).attr('data-userid'),
@@ -327,12 +329,14 @@ $('.role-list').change(function (event)
         .done(function () {
             that.prop('disabled', false);
             popupSuccess.addClass('show');
+            $('#overlay').show();
 
             setTimeout(hideAdminPopup.bind(popupSuccess), 1000);
         })
         .fail(function () {
             that.prop('disabled', false);
             popupFail.addClass('show');
+            $('#overlay').show();
 
             setTimeout(hideAdminPopup.bind(popupFail), 1000);
         });

@@ -260,7 +260,6 @@ header {
 
 header.slim {
     height: 45px;
-    margin-top: -75px;
     font-size: .85em;
 }
 
@@ -1424,8 +1423,8 @@ tr.users-data td span {
     right: 0;
     top: 50%;
     bottom: 0;
-    width: 300px;
-    height: 200px;
+    width: 250px;
+    height: 150px;
     margin-left: -150px;
     margin-top: -100px;
     background: #fff;
@@ -1438,8 +1437,30 @@ tr.users-data td span {
 }
 
 .popup h1 {
-    border: 0;
+    position: relative;
+    top: calc(50% - 10px);
+    z-index: 1000;
+    margin: 0;
+    padding: 0;
     text-align: center;
+    font-weight: 300;
+    font-size: 24px;
+    border: 0;
+}
+
+.popup.success .header {
+    background: #3689ee url('../img/success.png') center/17% no-repeat;
+    height: 45%;
+}
+
+.popup.fail .header {
+    background: #ba3838 url('../img/clear.png') center/17% no-repeat;
+    height: 45%;
+}
+
+.popup .text {
+    background-color: #fff;
+    height: 55%;
 }
 
 .popup.show {
@@ -1447,6 +1468,17 @@ tr.users-data td span {
     visibility: visible;
     -webkit-transform: scale(1);
     transform: scale(1);
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.25);
 }
 
 #jscroll-loading small {
